@@ -1,0 +1,2281 @@
+[
+  {
+    "label": "Mc-285",
+    "Z": 115, "N": 170, "A": 285,
+    "functional": "UNE1",
+    "beta2_input": 0.0,
+    "beta2_output": "0.000000",
+    "BE_mev": -2029.606260,
+    "pairing_n": "......",
+    "pairing_p": "-5.372940",
+    "rms_fm": "6.216924",
+    "status": "converged",
+    "iterations": "45",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Mc-286",
+    "Z": 115, "N": 171, "A": 286,
+    "functional": "UNE1",
+    "beta2_input": 0.0,
+    "beta2_output": "-0.000000",
+    "BE_mev": -2037.135070,
+    "pairing_n": "......",
+    "pairing_p": "-5.389813",
+    "rms_fm": "6.223959",
+    "status": "converged",
+    "iterations": "45",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Mc-287",
+    "Z": 115, "N": 172, "A": 287,
+    "functional": "UNE1",
+    "beta2_input": 0.0,
+    "beta2_output": "-0.000000",
+    "BE_mev": -2044.573950,
+    "pairing_n": "......",
+    "pairing_p": "-5.284095",
+    "rms_fm": "6.230914",
+    "status": "converged",
+    "iterations": "45",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Mc-288",
+    "Z": 115, "N": 173, "A": 288,
+    "functional": "UNE1",
+    "beta2_input": 0.0,
+    "beta2_output": "-0.000000",
+    "BE_mev": -2051.930524,
+    "pairing_n": "......",
+    "pairing_p": "-5.092410",
+    "rms_fm": "6.237777",
+    "status": "converged",
+    "iterations": "45",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Mc-289",
+    "Z": 115, "N": 174, "A": 289,
+    "functional": "UNE1",
+    "beta2_input": 0.0,
+    "beta2_output": "0.000000",
+    "BE_mev": -2059.190957,
+    "pairing_n": "......",
+    "pairing_p": "-4.750344",
+    "rms_fm": "6.244539",
+    "status": "converged",
+    "iterations": "46",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Mc-290",
+    "Z": 115, "N": 175, "A": 290,
+    "functional": "UNE1",
+    "beta2_input": 0.0,
+    "beta2_output": "0.000000",
+    "BE_mev": -2066.360636,
+    "pairing_n": "......",
+    "pairing_p": "-4.291423",
+    "rms_fm": "6.251183",
+    "status": "converged",
+    "iterations": "48",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Mc-291",
+    "Z": 115, "N": 176, "A": 291,
+    "functional": "UNE1",
+    "beta2_input": 0.0,
+    "beta2_output": "0.000000",
+    "BE_mev": -2073.445189,
+    "pairing_n": "......",
+    "pairing_p": "-3.762512",
+    "rms_fm": "6.257684",
+    "status": "converged",
+    "iterations": "44",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Mc-292",
+    "Z": 115, "N": 177, "A": 292,
+    "functional": "UNE1",
+    "beta2_input": 0.0,
+    "beta2_output": "0.000000",
+    "BE_mev": -2080.420351,
+    "pairing_n": "......",
+    "pairing_p": "-3.065747",
+    "rms_fm": "6.264042",
+    "status": "converged",
+    "iterations": "47",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Mc-293",
+    "Z": 115, "N": 178, "A": 293,
+    "functional": "UNE1",
+    "beta2_input": 0.0,
+    "beta2_output": "0.000000",
+    "BE_mev": -2087.275425,
+    "pairing_n": "......",
+    "pairing_p": "-2.300668",
+    "rms_fm": "6.270271",
+    "status": "converged",
+    "iterations": "49",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Mc-294",
+    "Z": 115, "N": 179, "A": 294,
+    "functional": "UNE1",
+    "beta2_input": 0.0,
+    "beta2_output": "0.000000",
+    "BE_mev": -2093.979886,
+    "pairing_n": "......",
+    "pairing_p": "-1.808627",
+    "rms_fm": "6.276564",
+    "status": "converged",
+    "iterations": "52",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Mc-295",
+    "Z": 115, "N": 180, "A": 295,
+    "functional": "UNE1",
+    "beta2_input": 0.0,
+    "beta2_output": "-0.000000",
+    "BE_mev": -2100.492515,
+    "pairing_n": "......",
+    "pairing_p": "-1.660126",
+    "rms_fm": "6.283196",
+    "status": "converged",
+    "iterations": "46",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Mc-296",
+    "Z": 115, "N": 181, "A": 296,
+    "functional": "UNE1",
+    "beta2_input": 0.0,
+    "beta2_output": "-0.000000",
+    "BE_mev": -2106.829207,
+    "pairing_n": "......",
+    "pairing_p": "-1.485169",
+    "rms_fm": "6.290060",
+    "status": "converged",
+    "iterations": "46",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Mc-297",
+    "Z": 115, "N": 182, "A": 297,
+    "functional": "UNE1",
+    "beta2_input": 0.0,
+    "beta2_output": "0.000000",
+    "BE_mev": -2113.014702,
+    "pairing_n": "......",
+    "pairing_p": "-1.162070",
+    "rms_fm": "6.297051",
+    "status": "converged",
+    "iterations": "41",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Mc-298",
+    "Z": 115, "N": 183, "A": 298,
+    "functional": "UNE1",
+    "beta2_input": 0.0,
+    "beta2_output": "-0.000000",
+    "BE_mev": -2119.048590,
+    "pairing_n": "......",
+    "pairing_p": "-0.670206",
+    "rms_fm": "6.304123",
+    "status": "converged",
+    "iterations": "42",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Mc-299",
+    "Z": 115, "N": 184, "A": 299,
+    "functional": "UNE1",
+    "beta2_input": 0.0,
+    "beta2_output": "0.000000",
+    "BE_mev": -2124.919151,
+    "pairing_n": "......",
+    "pairing_p": "-0.000000",
+    "rms_fm": "6.311129",
+    "status": "converged",
+    "iterations": "46",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Mc-300",
+    "Z": 115, "N": 185, "A": 300,
+    "functional": "UNE1",
+    "beta2_input": 0.0,
+    "beta2_output": "0.000000",
+    "BE_mev": -2129.294823,
+    "pairing_n": "......",
+    "pairing_p": "-2.111161",
+    "rms_fm": "6.320168",
+    "status": "converged",
+    "iterations": "40",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Mc-301",
+    "Z": 115, "N": 186, "A": 301,
+    "functional": "UNE1",
+    "beta2_input": 0.0,
+    "beta2_output": "0.000000",
+    "BE_mev": -2133.629382,
+    "pairing_n": "......",
+    "pairing_p": "-4.058555",
+    "rms_fm": "6.329194",
+    "status": "converged",
+    "iterations": "42",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Mc-302",
+    "Z": 115, "N": 187, "A": 302,
+    "functional": "UNE1",
+    "beta2_input": 0.0,
+    "beta2_output": "-0.000000",
+    "BE_mev": -2137.938398,
+    "pairing_n": "......",
+    "pairing_p": "-5.945363",
+    "rms_fm": "6.338231",
+    "status": "converged",
+    "iterations": "42",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Mc-303",
+    "Z": 115, "N": 188, "A": 303,
+    "functional": "UNE1",
+    "beta2_input": 0.0,
+    "beta2_output": "0.000000",
+    "BE_mev": -2142.195599,
+    "pairing_n": "......",
+    "pairing_p": "-7.636788",
+    "rms_fm": "6.347246",
+    "status": "converged",
+    "iterations": "43",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Mc-285",
+    "Z": 115, "N": 170, "A": 285,
+    "functional": "SLY4",
+    "beta2_input": 0.0,
+    "beta2_output": "0.000000",
+    "BE_mev": -2021.027847,
+    "pairing_n": "......",
+    "pairing_p": "-24.421970",
+    "rms_fm": "6.212259",
+    "status": "converged",
+    "iterations": "23",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Mc-286",
+    "Z": 115, "N": 171, "A": 286,
+    "functional": "SLY4",
+    "beta2_input": 0.0,
+    "beta2_output": "0.000000",
+    "BE_mev": -2028.426320,
+    "pairing_n": "......",
+    "pairing_p": "-23.555543",
+    "rms_fm": "6.218752",
+    "status": "converged",
+    "iterations": "22",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Mc-287",
+    "Z": 115, "N": 172, "A": 287,
+    "functional": "SLY4",
+    "beta2_input": 0.0,
+    "beta2_output": "0.000000",
+    "BE_mev": -2035.710560,
+    "pairing_n": "......",
+    "pairing_p": "-22.612848",
+    "rms_fm": "6.225083",
+    "status": "converged",
+    "iterations": "20",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Mc-288",
+    "Z": 115, "N": 173, "A": 288,
+    "functional": "SLY4",
+    "beta2_input": 0.0,
+    "beta2_output": "-0.000000",
+    "BE_mev": -2042.880891,
+    "pairing_n": "......",
+    "pairing_p": "-21.568912",
+    "rms_fm": "6.231249",
+    "status": "converged",
+    "iterations": "21",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Mc-289",
+    "Z": 115, "N": 174, "A": 289,
+    "functional": "SLY4",
+    "beta2_input": 0.0,
+    "beta2_output": "-0.000000",
+    "BE_mev": -2049.936952,
+    "pairing_n": "......",
+    "pairing_p": "-20.400498",
+    "rms_fm": "6.237258",
+    "status": "converged",
+    "iterations": "22",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Mc-290",
+    "Z": 115, "N": 175, "A": 290,
+    "functional": "SLY4",
+    "beta2_input": 0.0,
+    "beta2_output": "-0.000000",
+    "BE_mev": -2056.894955,
+    "pairing_n": "......",
+    "pairing_p": "-19.089019",
+    "rms_fm": "6.243172",
+    "status": "converged",
+    "iterations": "22",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Mc-291",
+    "Z": 115, "N": 176, "A": 291,
+    "functional": "SLY4",
+    "beta2_input": 0.0,
+    "beta2_output": "-0.000000",
+    "BE_mev": -2063.738558,
+    "pairing_n": "......",
+    "pairing_p": "-17.613333",
+    "rms_fm": "6.248980",
+    "status": "converged",
+    "iterations": "23",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Mc-292",
+    "Z": 115, "N": 177, "A": 292,
+    "functional": "SLY4",
+    "beta2_input": 0.0,
+    "beta2_output": "-0.000000",
+    "BE_mev": -2070.469751,
+    "pairing_n": "......",
+    "pairing_p": "-16.009892",
+    "rms_fm": "6.254784",
+    "status": "converged",
+    "iterations": "22",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Mc-293",
+    "Z": 115, "N": 178, "A": 293,
+    "functional": "SLY4",
+    "beta2_input": 0.0,
+    "beta2_output": "-0.000000",
+    "BE_mev": -2077.028034,
+    "pairing_n": "......",
+    "pairing_p": "-14.353052",
+    "rms_fm": "6.260552",
+    "status": "converged",
+    "iterations": "23",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Mc-294",
+    "Z": 115, "N": 179, "A": 294,
+    "functional": "SLY4",
+    "beta2_input": 0.0,
+    "beta2_output": "-0.000000",
+    "BE_mev": -2083.459883,
+    "pairing_n": "......",
+    "pairing_p": "-12.776096",
+    "rms_fm": "6.266440",
+    "status": "converged",
+    "iterations": "23",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Mc-295",
+    "Z": 115, "N": 180, "A": 295,
+    "functional": "SLY4",
+    "beta2_input": 0.0,
+    "beta2_output": "-0.000000",
+    "BE_mev": -2089.704212,
+    "pairing_n": "......",
+    "pairing_p": "-11.273428",
+    "rms_fm": "6.272412",
+    "status": "converged",
+    "iterations": "23",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Mc-296",
+    "Z": 115, "N": 181, "A": 296,
+    "functional": "SLY4",
+    "beta2_input": 0.0,
+    "beta2_output": "-0.000000",
+    "BE_mev": -2095.777035,
+    "pairing_n": "......",
+    "pairing_p": "-9.689024",
+    "rms_fm": "6.278449",
+    "status": "converged",
+    "iterations": "23",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Mc-297",
+    "Z": 115, "N": 182, "A": 297,
+    "functional": "SLY4",
+    "beta2_input": 0.0,
+    "beta2_output": "-0.000000",
+    "BE_mev": -2101.666987,
+    "pairing_n": "......",
+    "pairing_p": "-7.832824",
+    "rms_fm": "6.284480",
+    "status": "converged",
+    "iterations": "23",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Mc-298",
+    "Z": 115, "N": 183, "A": 298,
+    "functional": "SLY4",
+    "beta2_input": 0.0,
+    "beta2_output": "0.000000",
+    "BE_mev": -2107.435123,
+    "pairing_n": "......",
+    "pairing_p": "-5.864466",
+    "rms_fm": "6.290588",
+    "status": "converged",
+    "iterations": "23",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Mc-299",
+    "Z": 115, "N": 184, "A": 299,
+    "functional": "SLY4",
+    "beta2_input": 0.0,
+    "beta2_output": "0.000000",
+    "BE_mev": -2112.839219,
+    "pairing_n": "......",
+    "pairing_p": "-1.004924",
+    "rms_fm": "6.295952",
+    "status": "converged",
+    "iterations": "27",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Mc-300",
+    "Z": 115, "N": 185, "A": 300,
+    "functional": "SLY4",
+    "beta2_input": 0.0,
+    "beta2_output": "0.000000",
+    "BE_mev": -2117.536008,
+    "pairing_n": "......",
+    "pairing_p": "-10.211313",
+    "rms_fm": "6.306222",
+    "status": "converged",
+    "iterations": "22",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Mc-301",
+    "Z": 115, "N": 186, "A": 301,
+    "functional": "SLY4",
+    "beta2_input": 0.0,
+    "beta2_output": "0.000000",
+    "BE_mev": -2122.039635,
+    "pairing_n": "......",
+    "pairing_p": "-16.317824",
+    "rms_fm": "6.315783",
+    "status": "converged",
+    "iterations": "21",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Mc-302",
+    "Z": 115, "N": 187, "A": 302,
+    "functional": "SLY4",
+    "beta2_input": 0.0,
+    "beta2_output": "0.000000",
+    "BE_mev": -2126.424706,
+    "pairing_n": "......",
+    "pairing_p": "-21.379512",
+    "rms_fm": "6.325147",
+    "status": "converged",
+    "iterations": "20",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Mc-303",
+    "Z": 115, "N": 188, "A": 303,
+    "functional": "SLY4",
+    "beta2_input": 0.0,
+    "beta2_output": "0.000000",
+    "BE_mev": -2130.696834,
+    "pairing_n": "......",
+    "pairing_p": "-25.782734",
+    "rms_fm": "6.334376",
+    "status": "converged",
+    "iterations": "21",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Mc-285",
+    "Z": 115, "N": 170, "A": 285,
+    "functional": "SKM*",
+    "beta2_input": 0.0,
+    "beta2_output": "-0.000000",
+    "BE_mev": -2017.207167,
+    "pairing_n": "......",
+    "pairing_p": "-13.529123",
+    "rms_fm": "6.208873",
+    "status": "converged",
+    "iterations": "25",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Mc-286",
+    "Z": 115, "N": 171, "A": 286,
+    "functional": "SKM*",
+    "beta2_input": 0.0,
+    "beta2_output": "-0.000000",
+    "BE_mev": -2024.992299,
+    "pairing_n": "......",
+    "pairing_p": "-13.621462",
+    "rms_fm": "6.215550",
+    "status": "converged",
+    "iterations": "26",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Mc-287",
+    "Z": 115, "N": 172, "A": 287,
+    "functional": "SKM*",
+    "beta2_input": 0.0,
+    "beta2_output": "-0.000000",
+    "BE_mev": -2032.708910,
+    "pairing_n": "......",
+    "pairing_p": "-13.490212",
+    "rms_fm": "6.222181",
+    "status": "converged",
+    "iterations": "26",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Mc-288",
+    "Z": 115, "N": 173, "A": 288,
+    "functional": "SKM*",
+    "beta2_input": 0.0,
+    "beta2_output": "-0.000000",
+    "BE_mev": -2040.301194,
+    "pairing_n": "......",
+    "pairing_p": "-13.133440",
+    "rms_fm": "6.228709",
+    "status": "converged",
+    "iterations": "26",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Mc-289",
+    "Z": 115, "N": 174, "A": 289,
+    "functional": "SKM*",
+    "beta2_input": 0.0,
+    "beta2_output": "-0.000000",
+    "BE_mev": -2047.824225,
+    "pairing_n": "......",
+    "pairing_p": "-12.756561",
+    "rms_fm": "6.235180",
+    "status": "converged",
+    "iterations": "26",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Mc-290",
+    "Z": 115, "N": 175, "A": 290,
+    "functional": "SKM*",
+    "beta2_input": 0.0,
+    "beta2_output": "-0.000000",
+    "BE_mev": -2055.221406,
+    "pairing_n": "......",
+    "pairing_p": "-11.957263",
+    "rms_fm": "6.241585",
+    "status": "converged",
+    "iterations": "26",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Mc-291",
+    "Z": 115, "N": 176, "A": 291,
+    "functional": "SKM*",
+    "beta2_input": 0.0,
+    "beta2_output": "-0.000000",
+    "BE_mev": -2062.546258,
+    "pairing_n": "......",
+    "pairing_p": "-10.952534",
+    "rms_fm": "6.247975",
+    "status": "converged",
+    "iterations": "25",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Mc-292",
+    "Z": 115, "N": 177, "A": 292,
+    "functional": "SKM*",
+    "beta2_input": 0.0,
+    "beta2_output": "-0.000000",
+    "BE_mev": -2069.780215,
+    "pairing_n": "......",
+    "pairing_p": "-9.780125",
+    "rms_fm": "6.254385",
+    "status": "converged",
+    "iterations": "23",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Mc-293",
+    "Z": 115, "N": 178, "A": 293,
+    "functional": "SKM*",
+    "beta2_input": 0.0,
+    "beta2_output": "-0.000000",
+    "BE_mev": -2076.864691,
+    "pairing_n": "......",
+    "pairing_p": "-8.547294",
+    "rms_fm": "6.260758",
+    "status": "converged",
+    "iterations": "25",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Mc-294",
+    "Z": 115, "N": 179, "A": 294,
+    "functional": "SKM*",
+    "beta2_input": 0.0,
+    "beta2_output": "-0.000000",
+    "BE_mev": -2083.802434,
+    "pairing_n": "......",
+    "pairing_p": "-7.454442",
+    "rms_fm": "6.267134",
+    "status": "converged",
+    "iterations": "25",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Mc-295",
+    "Z": 115, "N": 180, "A": 295,
+    "functional": "SKM*",
+    "beta2_input": 0.0,
+    "beta2_output": "-0.000000",
+    "BE_mev": -2090.583958,
+    "pairing_n": "......",
+    "pairing_p": "-6.581314",
+    "rms_fm": "6.273600",
+    "status": "converged",
+    "iterations": "19",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Mc-296",
+    "Z": 115, "N": 181, "A": 296,
+    "functional": "SKM*",
+    "beta2_input": 0.0,
+    "beta2_output": "-0.000000",
+    "BE_mev": -2097.220217,
+    "pairing_n": "......",
+    "pairing_p": "-5.883467",
+    "rms_fm": "6.280178",
+    "status": "converged",
+    "iterations": "23",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Mc-297",
+    "Z": 115, "N": 182, "A": 297,
+    "functional": "SKM*",
+    "beta2_input": 0.0,
+    "beta2_output": "-0.000000",
+    "BE_mev": -2103.642873,
+    "pairing_n": "......",
+    "pairing_p": "-4.772691",
+    "rms_fm": "6.286718",
+    "status": "converged",
+    "iterations": "24",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Mc-298",
+    "Z": 115, "N": 183, "A": 298,
+    "functional": "SKM*",
+    "beta2_input": 0.0,
+    "beta2_output": "0.000000",
+    "BE_mev": -2109.891819,
+    "pairing_n": "......",
+    "pairing_p": "-3.131790",
+    "rms_fm": "6.293224",
+    "status": "converged",
+    "iterations": "24",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Mc-299",
+    "Z": 115, "N": 184, "A": 299,
+    "functional": "SKM*",
+    "beta2_input": 0.0,
+    "beta2_output": "0.000000",
+    "BE_mev": -2115.960608,
+    "pairing_n": "......",
+    "pairing_p": "-0.000000",
+    "rms_fm": "6.299525",
+    "status": "converged",
+    "iterations": "31",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Mc-300",
+    "Z": 115, "N": 185, "A": 300,
+    "functional": "SKM*",
+    "beta2_input": 0.0,
+    "beta2_output": "0.000000",
+    "BE_mev": -2121.180192,
+    "pairing_n": "......",
+    "pairing_p": "-6.268129",
+    "rms_fm": "6.308270",
+    "status": "converged",
+    "iterations": "23",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Mc-301",
+    "Z": 115, "N": 186, "A": 301,
+    "functional": "SKM*",
+    "beta2_input": 0.0,
+    "beta2_output": "0.000000",
+    "BE_mev": -2126.278143,
+    "pairing_n": "......",
+    "pairing_p": "-10.746709",
+    "rms_fm": "6.316750",
+    "status": "converged",
+    "iterations": "22",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Mc-302",
+    "Z": 115, "N": 187, "A": 302,
+    "functional": "SKM*",
+    "beta2_input": 0.0,
+    "beta2_output": "0.000000",
+    "BE_mev": -2131.294282,
+    "pairing_n": "......",
+    "pairing_p": "-14.528534",
+    "rms_fm": "6.325159",
+    "status": "converged",
+    "iterations": "23",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Mc-303",
+    "Z": 115, "N": 188, "A": 303,
+    "functional": "SKM*",
+    "beta2_input": 0.0,
+    "beta2_output": "0.000000",
+    "BE_mev": -2136.231271,
+    "pairing_n": "......",
+    "pairing_p": "-17.859119",
+    "rms_fm": "6.333521",
+    "status": "converged",
+    "iterations": "23",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Mc-285",
+    "Z": 115, "N": 170, "A": 285,
+    "functional": "HFB9",
+    "beta2_input": 0.0,
+    "beta2_output": "-0.000000",
+    "BE_mev": -2030.744485,
+    "pairing_n": "......",
+    "pairing_p": "-11.478731",
+    "rms_fm": "6.202285",
+    "status": "converged",
+    "iterations": "24",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Mc-286",
+    "Z": 115, "N": 171, "A": 286,
+    "functional": "HFB9",
+    "beta2_input": 0.0,
+    "beta2_output": "-0.000000",
+    "BE_mev": -2038.392183,
+    "pairing_n": "......",
+    "pairing_p": "-11.270817",
+    "rms_fm": "6.208747",
+    "status": "converged",
+    "iterations": "24",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Mc-287",
+    "Z": 115, "N": 172, "A": 287,
+    "functional": "HFB9",
+    "beta2_input": 0.0,
+    "beta2_output": "0.000000",
+    "BE_mev": -2045.936199,
+    "pairing_n": "......",
+    "pairing_p": "-10.936253",
+    "rms_fm": "6.215090",
+    "status": "converged",
+    "iterations": "24",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Mc-288",
+    "Z": 115, "N": 173, "A": 288,
+    "functional": "HFB9",
+    "beta2_input": 0.0,
+    "beta2_output": "0.000000",
+    "BE_mev": -2053.388944,
+    "pairing_n": "......",
+    "pairing_p": "-10.462793",
+    "rms_fm": "6.221326",
+    "status": "converged",
+    "iterations": "24",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Mc-289",
+    "Z": 115, "N": 174, "A": 289,
+    "functional": "HFB9",
+    "beta2_input": 0.0,
+    "beta2_output": "0.000000",
+    "BE_mev": -2060.743229,
+    "pairing_n": "......",
+    "pairing_p": "-9.837139",
+    "rms_fm": "6.227473",
+    "status": "converged",
+    "iterations": "24",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Mc-290",
+    "Z": 115, "N": 175, "A": 290,
+    "functional": "HFB9",
+    "beta2_input": 0.0,
+    "beta2_output": "0.000000",
+    "BE_mev": -2067.991027,
+    "pairing_n": "......",
+    "pairing_p": "-9.050978",
+    "rms_fm": "6.233531",
+    "status": "converged",
+    "iterations": "24",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Mc-291",
+    "Z": 115, "N": 176, "A": 291,
+    "functional": "HFB9",
+    "beta2_input": 0.0,
+    "beta2_output": "-0.000000",
+    "BE_mev": -2075.136823,
+    "pairing_n": "......",
+    "pairing_p": "-8.108642",
+    "rms_fm": "6.239519",
+    "status": "converged",
+    "iterations": "24",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Mc-292",
+    "Z": 115, "N": 177, "A": 292,
+    "functional": "HFB9",
+    "beta2_input": 0.0,
+    "beta2_output": "-0.000000",
+    "BE_mev": -2082.173247,
+    "pairing_n": "......",
+    "pairing_p": "-7.037191",
+    "rms_fm": "6.245457",
+    "status": "converged",
+    "iterations": "24",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Mc-293",
+    "Z": 115, "N": 178, "A": 293,
+    "functional": "HFB9",
+    "beta2_input": 0.0,
+    "beta2_output": "-0.000000",
+    "BE_mev": -2089.085939,
+    "pairing_n": "......",
+    "pairing_p": "-5.935243",
+    "rms_fm": "6.251383",
+    "status": "converged",
+    "iterations": "24",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Mc-294",
+    "Z": 115, "N": 179, "A": 294,
+    "functional": "HFB9",
+    "beta2_input": 0.0,
+    "beta2_output": "-0.000000",
+    "BE_mev": -2095.852471,
+    "pairing_n": "......",
+    "pairing_p": "-5.000573",
+    "rms_fm": "6.257372",
+    "status": "converged",
+    "iterations": "24",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Mc-295",
+    "Z": 115, "N": 180, "A": 295,
+    "functional": "HFB9",
+    "beta2_input": 0.0,
+    "beta2_output": "-0.000000",
+    "BE_mev": -2102.453237,
+    "pairing_n": "......",
+    "pairing_p": "-4.303285",
+    "rms_fm": "6.263488",
+    "status": "converged",
+    "iterations": "24",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Mc-296",
+    "Z": 115, "N": 181, "A": 296,
+    "functional": "HFB9",
+    "beta2_input": 0.0,
+    "beta2_output": "-0.000000",
+    "BE_mev": -2108.883803,
+    "pairing_n": "......",
+    "pairing_p": "-3.647630",
+    "rms_fm": "6.269723",
+    "status": "converged",
+    "iterations": "23",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Mc-297",
+    "Z": 115, "N": 182, "A": 297,
+    "functional": "HFB9",
+    "beta2_input": 0.0,
+    "beta2_output": "0.000000",
+    "BE_mev": -2115.147468,
+    "pairing_n": "......",
+    "pairing_p": "-2.831604",
+    "rms_fm": "6.276035",
+    "status": "converged",
+    "iterations": "23",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Mc-298",
+    "Z": 115, "N": 183, "A": 298,
+    "functional": "HFB9",
+    "beta2_input": 0.0,
+    "beta2_output": "0.000000",
+    "BE_mev": -2121.257008,
+    "pairing_n": "......",
+    "pairing_p": "-1.695981",
+    "rms_fm": "6.282384",
+    "status": "converged",
+    "iterations": "24",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Mc-299",
+    "Z": 115, "N": 184, "A": 299,
+    "functional": "HFB9",
+    "beta2_input": 0.0,
+    "beta2_output": "0.000000",
+    "BE_mev": -2127.182868,
+    "pairing_n": "......",
+    "pairing_p": "-0.000000",
+    "rms_fm": "6.288677",
+    "status": "converged",
+    "iterations": "26",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Mc-300",
+    "Z": 115, "N": 185, "A": 300,
+    "functional": "HFB9",
+    "beta2_input": 0.0,
+    "beta2_output": "0.000000",
+    "BE_mev": -2131.836906,
+    "pairing_n": "......",
+    "pairing_p": "-4.113157",
+    "rms_fm": "6.297661",
+    "status": "converged",
+    "iterations": "22",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Mc-301",
+    "Z": 115, "N": 186, "A": 301,
+    "functional": "HFB9",
+    "beta2_input": 0.0,
+    "beta2_output": "0.000000",
+    "BE_mev": -2136.416263,
+    "pairing_n": "......",
+    "pairing_p": "-7.616927",
+    "rms_fm": "6.306565",
+    "status": "converged",
+    "iterations": "22",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Mc-302",
+    "Z": 115, "N": 187, "A": 302,
+    "functional": "HFB9",
+    "beta2_input": 0.0,
+    "beta2_output": "0.000000",
+    "BE_mev": -2140.931681,
+    "pairing_n": "......",
+    "pairing_p": "-10.711107",
+    "rms_fm": "6.315418",
+    "status": "converged",
+    "iterations": "22",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Mc-303",
+    "Z": 115, "N": 188, "A": 303,
+    "functional": "HFB9",
+    "beta2_input": 0.0,
+    "beta2_output": "0.000000",
+    "BE_mev": -2145.390104,
+    "pairing_n": "......",
+    "pairing_p": "-13.489717",
+    "rms_fm": "6.324230",
+    "status": "converged",
+    "iterations": "22",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Nh-281",
+    "Z": 113, "N": 168, "A": 281,
+    "functional": "UNE1",
+    "beta2_input": 0.0,
+    "beta2_output": "0.000002",
+    "BE_mev": -2011.351807,
+    "pairing_n": "......",
+    "pairing_p": "-5.111244",
+    "rms_fm": "6.189765",
+    "status": "converged",
+    "iterations": "79",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Nh-282",
+    "Z": 113, "N": 169, "A": 282,
+    "functional": "UNE1",
+    "beta2_input": 0.0,
+    "beta2_output": "0.000001",
+    "BE_mev": -2018.724090,
+    "pairing_n": "......",
+    "pairing_p": "-5.427897",
+    "rms_fm": "6.197012",
+    "status": "converged",
+    "iterations": "71",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Nh-283",
+    "Z": 113, "N": 170, "A": 283,
+    "functional": "UNE1",
+    "beta2_input": 0.0,
+    "beta2_output": "0.000000",
+    "BE_mev": -2026.005456,
+    "pairing_n": "......",
+    "pairing_p": "-5.594255",
+    "rms_fm": "6.204234",
+    "status": "converged",
+    "iterations": "56",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Nh-284",
+    "Z": 113, "N": 171, "A": 284,
+    "functional": "UNE1",
+    "beta2_input": 0.0,
+    "beta2_output": "0.000000",
+    "BE_mev": -2033.208435,
+    "pairing_n": "......",
+    "pairing_p": "-5.674512",
+    "rms_fm": "6.211418",
+    "status": "converged",
+    "iterations": "53",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Nh-285",
+    "Z": 113, "N": 172, "A": 285,
+    "functional": "UNE1",
+    "beta2_input": 0.0,
+    "beta2_output": "-0.000001",
+    "BE_mev": -2040.317580,
+    "pairing_n": "......",
+    "pairing_p": "-5.574094",
+    "rms_fm": "6.218568",
+    "status": "converged",
+    "iterations": "66",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Nh-286",
+    "Z": 113, "N": 173, "A": 286,
+    "functional": "UNE1",
+    "beta2_input": 0.0,
+    "beta2_output": "0.000000",
+    "BE_mev": -2047.341854,
+    "pairing_n": "......",
+    "pairing_p": "-5.348013",
+    "rms_fm": "6.225668",
+    "status": "converged",
+    "iterations": "64",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Nh-287",
+    "Z": 113, "N": 174, "A": 287,
+    "functional": "UNE1",
+    "beta2_input": 0.0,
+    "beta2_output": "-0.000000",
+    "BE_mev": -2054.282043,
+    "pairing_n": "......",
+    "pairing_p": "-4.998565",
+    "rms_fm": "6.232709",
+    "status": "converged",
+    "iterations": "61",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Nh-288",
+    "Z": 113, "N": 175, "A": 288,
+    "functional": "UNE1",
+    "beta2_input": 0.0,
+    "beta2_output": "-0.000000",
+    "BE_mev": -2061.144647,
+    "pairing_n": "......",
+    "pairing_p": "-4.554673",
+    "rms_fm": "6.239680",
+    "status": "converged",
+    "iterations": "65",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Nh-289",
+    "Z": 113, "N": 176, "A": 289,
+    "functional": "UNE1",
+    "beta2_input": 0.0,
+    "beta2_output": "0.000001",
+    "BE_mev": -2067.911591,
+    "pairing_n": "......",
+    "pairing_p": "-3.953000",
+    "rms_fm": "6.246562",
+    "status": "converged",
+    "iterations": "65",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Nh-290",
+    "Z": 113, "N": 177, "A": 290,
+    "functional": "UNE1",
+    "beta2_input": 0.0,
+    "beta2_output": "0.000000",
+    "BE_mev": -2074.583912,
+    "pairing_n": "......",
+    "pairing_p": "-3.228077",
+    "rms_fm": "6.253338",
+    "status": "converged",
+    "iterations": "62",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Nh-291",
+    "Z": 113, "N": 178, "A": 291,
+    "functional": "UNE1",
+    "beta2_input": 0.0,
+    "beta2_output": "-0.000000",
+    "BE_mev": -2081.150075,
+    "pairing_n": "......",
+    "pairing_p": "-2.426544",
+    "rms_fm": "6.259993",
+    "status": "converged",
+    "iterations": "66",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Nh-292",
+    "Z": 113, "N": 179, "A": 292,
+    "functional": "UNE1",
+    "beta2_input": 0.0,
+    "beta2_output": "-0.000000",
+    "BE_mev": -2087.570145,
+    "pairing_n": "......",
+    "pairing_p": "-1.876882",
+    "rms_fm": "6.266638",
+    "status": "converged",
+    "iterations": "51",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Nh-293",
+    "Z": 113, "N": 180, "A": 293,
+    "functional": "UNE1",
+    "beta2_input": 0.0,
+    "beta2_output": "0.000000",
+    "BE_mev": -2093.808066,
+    "pairing_n": "......",
+    "pairing_p": "-1.681131",
+    "rms_fm": "6.273503",
+    "status": "converged",
+    "iterations": "49",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Nh-294",
+    "Z": 113, "N": 181, "A": 294,
+    "functional": "UNE1",
+    "beta2_input": 0.0,
+    "beta2_output": "-0.000000",
+    "BE_mev": -2099.877100,
+    "pairing_n": "......",
+    "pairing_p": "-1.487782",
+    "rms_fm": "6.280563",
+    "status": "converged",
+    "iterations": "78",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Nh-295",
+    "Z": 113, "N": 182, "A": 295,
+    "functional": "UNE1",
+    "beta2_input": 0.0,
+    "beta2_output": "0.000000",
+    "BE_mev": -2105.796751,
+    "pairing_n": "......",
+    "pairing_p": "-1.169367",
+    "rms_fm": "6.287751",
+    "status": "converged",
+    "iterations": "44",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Nh-296",
+    "Z": 113, "N": 183, "A": 296,
+    "functional": "UNE1",
+    "beta2_input": 0.0,
+    "beta2_output": "0.000000",
+    "BE_mev": -2111.568398,
+    "pairing_n": "......",
+    "pairing_p": "-0.667403",
+    "rms_fm": "6.295026",
+    "status": "converged",
+    "iterations": "50",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Nh-297",
+    "Z": 113, "N": 184, "A": 297,
+    "functional": "UNE1",
+    "beta2_input": 0.0,
+    "beta2_output": "-0.000000",
+    "BE_mev": -2117.189917,
+    "pairing_n": "......",
+    "pairing_p": "-0.000000",
+    "rms_fm": "6.302277",
+    "status": "converged",
+    "iterations": "43",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Nh-298",
+    "Z": 113, "N": 185, "A": 298,
+    "functional": "UNE1",
+    "beta2_input": 0.0,
+    "beta2_output": "-0.000000",
+    "BE_mev": -2121.226322,
+    "pairing_n": "......",
+    "pairing_p": "-2.067523",
+    "rms_fm": "6.311364",
+    "status": "converged",
+    "iterations": "45",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Nh-299",
+    "Z": 113, "N": 186, "A": 299,
+    "functional": "UNE1",
+    "beta2_input": 0.0,
+    "beta2_output": "0.000000",
+    "BE_mev": -2125.229724,
+    "pairing_n": "......",
+    "pairing_p": "-4.020182",
+    "rms_fm": "6.320457",
+    "status": "converged",
+    "iterations": "46",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Nh-281",
+    "Z": 113, "N": 168, "A": 281,
+    "functional": "SLY4",
+    "beta2_input": 0.0,
+    "beta2_output": "0.000000",
+    "BE_mev": -2002.657869,
+    "pairing_n": "......",
+    "pairing_p": "-26.877764",
+    "rms_fm": "6.186217",
+    "status": "converged",
+    "iterations": "22",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Nh-282",
+    "Z": 113, "N": 169, "A": 282,
+    "functional": "SLY4",
+    "beta2_input": 0.0,
+    "beta2_output": "0.000000",
+    "BE_mev": -2009.974007,
+    "pairing_n": "......",
+    "pairing_p": "-26.074655",
+    "rms_fm": "6.193100",
+    "status": "converged",
+    "iterations": "22",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Nh-283",
+    "Z": 113, "N": 170, "A": 283,
+    "functional": "SLY4",
+    "beta2_input": 0.0,
+    "beta2_output": "0.000000",
+    "BE_mev": -2017.149092,
+    "pairing_n": "......",
+    "pairing_p": "-25.233076",
+    "rms_fm": "6.199841",
+    "status": "converged",
+    "iterations": "22",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Nh-284",
+    "Z": 113, "N": 171, "A": 284,
+    "functional": "SLY4",
+    "beta2_input": 0.0,
+    "beta2_output": "0.000000",
+    "BE_mev": -2024.212735,
+    "pairing_n": "......",
+    "pairing_p": "-24.333393",
+    "rms_fm": "6.206445",
+    "status": "converged",
+    "iterations": "22",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Nh-285",
+    "Z": 113, "N": 172, "A": 285,
+    "functional": "SLY4",
+    "beta2_input": 0.0,
+    "beta2_output": "0.000000",
+    "BE_mev": -2031.165851,
+    "pairing_n": "......",
+    "pairing_p": "-23.347232",
+    "rms_fm": "6.212901",
+    "status": "converged",
+    "iterations": "22",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Nh-286",
+    "Z": 113, "N": 173, "A": 286,
+    "functional": "SLY4",
+    "beta2_input": 0.0,
+    "beta2_output": "0.000000",
+    "BE_mev": -2038.030658,
+    "pairing_n": "......",
+    "pairing_p": "-22.258956",
+    "rms_fm": "6.219256",
+    "status": "converged",
+    "iterations": "22",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Nh-287",
+    "Z": 113, "N": 174, "A": 287,
+    "functional": "SLY4",
+    "beta2_input": 0.0,
+    "beta2_output": "-0.000000",
+    "BE_mev": -2044.763254,
+    "pairing_n": "......",
+    "pairing_p": "-21.023125",
+    "rms_fm": "6.225423",
+    "status": "converged",
+    "iterations": "22",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Nh-288",
+    "Z": 113, "N": 175, "A": 288,
+    "functional": "SLY4",
+    "beta2_input": 0.0,
+    "beta2_output": "-0.000000",
+    "BE_mev": -2051.410467,
+    "pairing_n": "......",
+    "pairing_p": "-19.635374",
+    "rms_fm": "6.231504",
+    "status": "converged",
+    "iterations": "22",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Nh-289",
+    "Z": 113, "N": 176, "A": 289,
+    "functional": "SLY4",
+    "beta2_input": 0.0,
+    "beta2_output": "-0.000000",
+    "BE_mev": -2057.959363,
+    "pairing_n": "......",
+    "pairing_p": "-18.093551",
+    "rms_fm": "6.237549",
+    "status": "converged",
+    "iterations": "22",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Nh-290",
+    "Z": 113, "N": 177, "A": 290,
+    "functional": "SLY4",
+    "beta2_input": 0.0,
+    "beta2_output": "-0.000000",
+    "BE_mev": -2064.340281,
+    "pairing_n": "......",
+    "pairing_p": "-16.408510",
+    "rms_fm": "6.243473",
+    "status": "converged",
+    "iterations": "22",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Nh-291",
+    "Z": 113, "N": 178, "A": 291,
+    "functional": "SLY4",
+    "beta2_input": 0.0,
+    "beta2_output": "-0.000000",
+    "BE_mev": -2070.617109,
+    "pairing_n": "......",
+    "pairing_p": "-14.692596",
+    "rms_fm": "6.249455",
+    "status": "converged",
+    "iterations": "23",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Nh-292",
+    "Z": 113, "N": 179, "A": 292,
+    "functional": "SLY4",
+    "beta2_input": 0.0,
+    "beta2_output": "-0.000000",
+    "BE_mev": -2076.715613,
+    "pairing_n": "......",
+    "pairing_p": "-13.048810",
+    "rms_fm": "6.255487",
+    "status": "converged",
+    "iterations": "23",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Nh-293",
+    "Z": 113, "N": 180, "A": 293,
+    "functional": "SLY4",
+    "beta2_input": 0.0,
+    "beta2_output": "-0.000000",
+    "BE_mev": -2082.654645,
+    "pairing_n": "......",
+    "pairing_p": "-11.481836",
+    "rms_fm": "6.261624",
+    "status": "converged",
+    "iterations": "23",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Nh-294",
+    "Z": 113, "N": 181, "A": 294,
+    "functional": "SLY4",
+    "beta2_input": 0.0,
+    "beta2_output": "-0.000000",
+    "BE_mev": -2088.445484,
+    "pairing_n": "......",
+    "pairing_p": "-9.832005",
+    "rms_fm": "6.267850",
+    "status": "converged",
+    "iterations": "23",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Nh-295",
+    "Z": 113, "N": 182, "A": 295,
+    "functional": "SLY4",
+    "beta2_input": 0.0,
+    "beta2_output": "0.000000",
+    "BE_mev": -2094.099433,
+    "pairing_n": "......",
+    "pairing_p": "-7.893198",
+    "rms_fm": "6.274114",
+    "status": "converged",
+    "iterations": "22",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Nh-296",
+    "Z": 113, "N": 183, "A": 296,
+    "functional": "SLY4",
+    "beta2_input": 0.0,
+    "beta2_output": "0.000000",
+    "BE_mev": -2099.495512,
+    "pairing_n": "......",
+    "pairing_p": "-5.382760",
+    "rms_fm": "6.280229",
+    "status": "converged",
+    "iterations": "22",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Nh-297",
+    "Z": 113, "N": 184, "A": 297,
+    "functional": "SLY4",
+    "beta2_input": 0.0,
+    "beta2_output": "0.000000",
+    "BE_mev": -2104.638412,
+    "pairing_n": "......",
+    "pairing_p": "-0.000001",
+    "rms_fm": "6.285686",
+    "status": "converged",
+    "iterations": "33",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Nh-298",
+    "Z": 113, "N": 185, "A": 298,
+    "functional": "SLY4",
+    "beta2_input": 0.0,
+    "beta2_output": "0.000000",
+    "BE_mev": -2108.984290,
+    "pairing_n": "......",
+    "pairing_p": "-9.580904",
+    "rms_fm": "6.296139",
+    "status": "converged",
+    "iterations": "23",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Nh-299",
+    "Z": 113, "N": 186, "A": 299,
+    "functional": "SLY4",
+    "beta2_input": 0.0,
+    "beta2_output": "0.000000",
+    "BE_mev": -2113.122106,
+    "pairing_n": "......",
+    "pairing_p": "-15.692675",
+    "rms_fm": "6.305760",
+    "status": "converged",
+    "iterations": "22",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Nh-281",
+    "Z": 113, "N": 168, "A": 281,
+    "functional": "SKM*",
+    "beta2_input": 0.0,
+    "beta2_output": "-0.000000",
+    "BE_mev": -2000.040004,
+    "pairing_n": "......",
+    "pairing_p": "-13.146628",
+    "rms_fm": "6.182837",
+    "status": "converged",
+    "iterations": "23",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Nh-282",
+    "Z": 113, "N": 169, "A": 282,
+    "functional": "SKM*",
+    "beta2_input": 0.0,
+    "beta2_output": "-0.000000",
+    "BE_mev": -2007.720024,
+    "pairing_n": "......",
+    "pairing_p": "-13.703306",
+    "rms_fm": "6.189762",
+    "status": "converged",
+    "iterations": "23",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Nh-283",
+    "Z": 113, "N": 170, "A": 283,
+    "functional": "SKM*",
+    "beta2_input": 0.0,
+    "beta2_output": "-0.000000",
+    "BE_mev": -2015.328462,
+    "pairing_n": "......",
+    "pairing_p": "-14.017119",
+    "rms_fm": "6.196674",
+    "status": "converged",
+    "iterations": "25",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Nh-284",
+    "Z": 113, "N": 171, "A": 284,
+    "functional": "SKM*",
+    "beta2_input": 0.0,
+    "beta2_output": "-0.000000",
+    "BE_mev": -2022.805045,
+    "pairing_n": "......",
+    "pairing_p": "-14.092638",
+    "rms_fm": "6.203482",
+    "status": "converged",
+    "iterations": "25",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Nh-285",
+    "Z": 113, "N": 172, "A": 285,
+    "functional": "SKM*",
+    "beta2_input": 0.0,
+    "beta2_output": "-0.000000",
+    "BE_mev": -2030.186023,
+    "pairing_n": "......",
+    "pairing_p": "-13.941369",
+    "rms_fm": "6.210235",
+    "status": "converged",
+    "iterations": "25",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Nh-286",
+    "Z": 113, "N": 173, "A": 286,
+    "functional": "SKM*",
+    "beta2_input": 0.0,
+    "beta2_output": "-0.000000",
+    "BE_mev": -2037.472986,
+    "pairing_n": "......",
+    "pairing_p": "-13.567757",
+    "rms_fm": "6.216937",
+    "status": "converged",
+    "iterations": "25",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Nh-287",
+    "Z": 113, "N": 174, "A": 287,
+    "functional": "SKM*",
+    "beta2_input": 0.0,
+    "beta2_output": "-0.000000",
+    "BE_mev": -2044.701448,
+    "pairing_n": "......",
+    "pairing_p": "-12.977084",
+    "rms_fm": "6.223635",
+    "status": "converged",
+    "iterations": "25",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Nh-288",
+    "Z": 113, "N": 175, "A": 288,
+    "functional": "SKM*",
+    "beta2_input": 0.0,
+    "beta2_output": "-0.000000",
+    "BE_mev": -2051.798387,
+    "pairing_n": "......",
+    "pairing_p": "-12.167267",
+    "rms_fm": "6.230247",
+    "status": "converged",
+    "iterations": "25",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Nh-289",
+    "Z": 113, "N": 176, "A": 289,
+    "functional": "SKM*",
+    "beta2_input": 0.0,
+    "beta2_output": "-0.000000",
+    "BE_mev": -2058.853112,
+    "pairing_n": "......",
+    "pairing_p": "-11.157436",
+    "rms_fm": "6.236929",
+    "status": "converged",
+    "iterations": "23",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Nh-290",
+    "Z": 113, "N": 177, "A": 290,
+    "functional": "SKM*",
+    "beta2_input": 0.0,
+    "beta2_output": "-0.000000",
+    "BE_mev": -2065.815187,
+    "pairing_n": "......",
+    "pairing_p": "-10.173258",
+    "rms_fm": "6.243590",
+    "status": "converged",
+    "iterations": "23",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Nh-291",
+    "Z": 113, "N": 178, "A": 291,
+    "functional": "SKM*",
+    "beta2_input": 0.0,
+    "beta2_output": "-0.000000",
+    "BE_mev": -2072.610031,
+    "pairing_n": "......",
+    "pairing_p": "-8.924498",
+    "rms_fm": "6.250169",
+    "status": "converged",
+    "iterations": "23",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Nh-292",
+    "Z": 113, "N": 179, "A": 292,
+    "functional": "SKM*",
+    "beta2_input": 0.0,
+    "beta2_output": "-0.000000",
+    "BE_mev": -2079.235247,
+    "pairing_n": "......",
+    "pairing_p": "-7.786377",
+    "rms_fm": "6.256724",
+    "status": "converged",
+    "iterations": "25",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Nh-293",
+    "Z": 113, "N": 180, "A": 293,
+    "functional": "SKM*",
+    "beta2_input": 0.0,
+    "beta2_output": "-0.000000",
+    "BE_mev": -2085.747746,
+    "pairing_n": "......",
+    "pairing_p": "-6.833974",
+    "rms_fm": "6.263386",
+    "status": "converged",
+    "iterations": "23",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Nh-294",
+    "Z": 113, "N": 181, "A": 294,
+    "functional": "SKM*",
+    "beta2_input": 0.0,
+    "beta2_output": "-0.000000",
+    "BE_mev": -2092.058490,
+    "pairing_n": "......",
+    "pairing_p": "-5.900338",
+    "rms_fm": "6.270059",
+    "status": "converged",
+    "iterations": "22",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Nh-295",
+    "Z": 113, "N": 182, "A": 295,
+    "functional": "SKM*",
+    "beta2_input": 0.0,
+    "beta2_output": "0.000000",
+    "BE_mev": -2098.239389,
+    "pairing_n": "......",
+    "pairing_p": "-4.730984",
+    "rms_fm": "6.276805",
+    "status": "converged",
+    "iterations": "24",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Nh-296",
+    "Z": 113, "N": 183, "A": 296,
+    "functional": "SKM*",
+    "beta2_input": 0.0,
+    "beta2_output": "0.000000",
+    "BE_mev": -2104.226409,
+    "pairing_n": "......",
+    "pairing_p": "-3.155904",
+    "rms_fm": "6.283501",
+    "status": "converged",
+    "iterations": "25",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Nh-297",
+    "Z": 113, "N": 184, "A": 297,
+    "functional": "SKM*",
+    "beta2_input": 0.0,
+    "beta2_output": "0.000000",
+    "BE_mev": -2109.999963,
+    "pairing_n": "......",
+    "pairing_p": "-0.000000",
+    "rms_fm": "6.289971",
+    "status": "converged",
+    "iterations": "29",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Nh-298",
+    "Z": 113, "N": 185, "A": 298,
+    "functional": "SKM*",
+    "beta2_input": 0.0,
+    "beta2_output": "0.000000",
+    "BE_mev": -2114.900921,
+    "pairing_n": "......",
+    "pairing_p": "-6.052898",
+    "rms_fm": "6.298708",
+    "status": "converged",
+    "iterations": "23",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Nh-299",
+    "Z": 113, "N": 186, "A": 299,
+    "functional": "SKM*",
+    "beta2_input": 0.0,
+    "beta2_output": "0.000000",
+    "BE_mev": -2119.692884,
+    "pairing_n": "......",
+    "pairing_p": "-10.497542",
+    "rms_fm": "6.307244",
+    "status": "converged",
+    "iterations": "22",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Nh-281",
+    "Z": 113, "N": 168, "A": 281,
+    "functional": "HFB9",
+    "beta2_input": 0.0,
+    "beta2_output": "-0.000000",
+    "BE_mev": -2012.614548,
+    "pairing_n": "......",
+    "pairing_p": "-11.848339",
+    "rms_fm": "6.175782",
+    "status": "converged",
+    "iterations": "23",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Nh-282",
+    "Z": 113, "N": 169, "A": 282,
+    "functional": "HFB9",
+    "beta2_input": 0.0,
+    "beta2_output": "-0.000000",
+    "BE_mev": -2020.177071,
+    "pairing_n": "......",
+    "pairing_p": "-11.810758",
+    "rms_fm": "6.182619",
+    "status": "converged",
+    "iterations": "24",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Nh-283",
+    "Z": 113, "N": 170, "A": 283,
+    "functional": "HFB9",
+    "beta2_input": 0.0,
+    "beta2_output": "-0.000000",
+    "BE_mev": -2027.613491,
+    "pairing_n": "......",
+    "pairing_p": "-11.691966",
+    "rms_fm": "6.189310",
+    "status": "converged",
+    "iterations": "24",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Nh-284",
+    "Z": 113, "N": 171, "A": 284,
+    "functional": "HFB9",
+    "beta2_input": 0.0,
+    "beta2_output": "-0.000000",
+    "BE_mev": -2034.970894,
+    "pairing_n": "......",
+    "pairing_p": "-11.661004",
+    "rms_fm": "6.195875",
+    "status": "converged",
+    "iterations": "24",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Nh-285",
+    "Z": 113, "N": 172, "A": 285,
+    "functional": "HFB9",
+    "beta2_input": 0.0,
+    "beta2_output": "-0.000000",
+    "BE_mev": -2042.215140,
+    "pairing_n": "......",
+    "pairing_p": "-11.300059",
+    "rms_fm": "6.202356",
+    "status": "converged",
+    "iterations": "24",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Nh-286",
+    "Z": 113, "N": 173, "A": 286,
+    "functional": "HFB9",
+    "beta2_input": 0.0,
+    "beta2_output": "-0.000000",
+    "BE_mev": -2049.361851,
+    "pairing_n": "......",
+    "pairing_p": "-10.796837",
+    "rms_fm": "6.208756",
+    "status": "converged",
+    "iterations": "25",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Nh-287",
+    "Z": 113, "N": 174, "A": 287,
+    "functional": "HFB9",
+    "beta2_input": 0.0,
+    "beta2_output": "0.000000",
+    "BE_mev": -2056.402883,
+    "pairing_n": "......",
+    "pairing_p": "-10.139705",
+    "rms_fm": "6.215064",
+    "status": "converged",
+    "iterations": "25",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Nh-288",
+    "Z": 113, "N": 175, "A": 288,
+    "functional": "HFB9",
+    "beta2_input": 0.0,
+    "beta2_output": "-0.000000",
+    "BE_mev": -2063.347944,
+    "pairing_n": "......",
+    "pairing_p": "-9.325018",
+    "rms_fm": "6.221304",
+    "status": "converged",
+    "iterations": "24",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Nh-289",
+    "Z": 113, "N": 176, "A": 289,
+    "functional": "HFB9",
+    "beta2_input": 0.0,
+    "beta2_output": "-0.000000",
+    "BE_mev": -2070.193873,
+    "pairing_n": "......",
+    "pairing_p": "-8.355494",
+    "rms_fm": "6.227487",
+    "status": "converged",
+    "iterations": "24",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Nh-290",
+    "Z": 113, "N": 177, "A": 290,
+    "functional": "HFB9",
+    "beta2_input": 0.0,
+    "beta2_output": "-0.000000",
+    "BE_mev": -2076.933541,
+    "pairing_n": "......",
+    "pairing_p": "-7.258520",
+    "rms_fm": "6.233631",
+    "status": "converged",
+    "iterations": "24",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Nh-291",
+    "Z": 113, "N": 178, "A": 291,
+    "functional": "HFB9",
+    "beta2_input": 0.0,
+    "beta2_output": "-0.000000",
+    "BE_mev": -2083.553331,
+    "pairing_n": "......",
+    "pairing_p": "-6.126707",
+    "rms_fm": "6.239765",
+    "status": "converged",
+    "iterations": "24",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Nh-292",
+    "Z": 113, "N": 179, "A": 292,
+    "functional": "HFB9",
+    "beta2_input": 0.0,
+    "beta2_output": "-0.000000",
+    "BE_mev": -2090.032163,
+    "pairing_n": "......",
+    "pairing_p": "-5.143994",
+    "rms_fm": "6.245951",
+    "status": "converged",
+    "iterations": "23",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Nh-293",
+    "Z": 113, "N": 180, "A": 293,
+    "functional": "HFB9",
+    "beta2_input": 0.0,
+    "beta2_output": "-0.000000",
+    "BE_mev": -2096.350921,
+    "pairing_n": "......",
+    "pairing_p": "-4.386294",
+    "rms_fm": "6.252248",
+    "status": "converged",
+    "iterations": "24",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Nh-294",
+    "Z": 113, "N": 181, "A": 294,
+    "functional": "HFB9",
+    "beta2_input": 0.0,
+    "beta2_output": "-0.000000",
+    "BE_mev": -2102.504195,
+    "pairing_n": "......",
+    "pairing_p": "-3.679949",
+    "rms_fm": "6.258657",
+    "status": "converged",
+    "iterations": "23",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Nh-295",
+    "Z": 113, "N": 182, "A": 295,
+    "functional": "HFB9",
+    "beta2_input": 0.0,
+    "beta2_output": "0.000000",
+    "BE_mev": -2108.508626,
+    "pairing_n": "......",
+    "pairing_p": "-2.827149",
+    "rms_fm": "6.265156",
+    "status": "converged",
+    "iterations": "23",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Nh-296",
+    "Z": 113, "N": 183, "A": 296,
+    "functional": "HFB9",
+    "beta2_input": 0.0,
+    "beta2_output": "0.000000",
+    "BE_mev": -2114.337690,
+    "pairing_n": "......",
+    "pairing_p": "-1.671994",
+    "rms_fm": "6.271688",
+    "status": "converged",
+    "iterations": "23",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Nh-297",
+    "Z": 113, "N": 184, "A": 297,
+    "functional": "HFB9",
+    "beta2_input": 0.0,
+    "beta2_output": "0.000000",
+    "BE_mev": -2119.999716,
+    "pairing_n": "......",
+    "pairing_p": "-0.000000",
+    "rms_fm": "6.278195",
+    "status": "converged",
+    "iterations": "25",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Nh-298",
+    "Z": 113, "N": 185, "A": 298,
+    "functional": "HFB9",
+    "beta2_input": 0.0,
+    "beta2_output": "0.000000",
+    "BE_mev": -2124.317337,
+    "pairing_n": "......",
+    "pairing_p": "-4.064168",
+    "rms_fm": "6.287200",
+    "status": "converged",
+    "iterations": "22",
+    "cpu_minutes": "minutes"
+  }
+,
+  {
+    "label": "Nh-299",
+    "Z": 113, "N": 186, "A": 299,
+    "functional": "HFB9",
+    "beta2_input": 0.0,
+    "beta2_output": "0.000000",
+    "BE_mev": -2128.562908,
+    "pairing_n": "......",
+    "pairing_p": "-7.559965",
+    "rms_fm": "6.296148",
+    "status": "converged",
+    "iterations": "22",
+    "cpu_minutes": "minutes"
+  }
+]

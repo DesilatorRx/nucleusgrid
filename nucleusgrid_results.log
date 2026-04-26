@@ -1,0 +1,189 @@
+============================================================
+NucleusGrid Phase 2 Overnight Run
+Started: Sat Apr 25 22:26:03 EDT 2026
+============================================================
+
+PHASE 1: Mc isotopes (Z=115, A=285-303)
+------------------------------------------------------------
+
+  Functional: UNE1
+  Running Mc-285 (Z=115 N=170 A=285 UNE1 β₂=0.0)... OK  BE=-2029.606260 MeV  β₂=0.000000  iters=45  CPU=minutesmin
+  Running Mc-286 (Z=115 N=171 A=286 UNE1 β₂=0.0)... OK  BE=-2037.135070 MeV  β₂=-0.000000  iters=45  CPU=minutesmin
+  Running Mc-287 (Z=115 N=172 A=287 UNE1 β₂=0.0)... OK  BE=-2044.573950 MeV  β₂=-0.000000  iters=45  CPU=minutesmin
+  Running Mc-288 (Z=115 N=173 A=288 UNE1 β₂=0.0)... OK  BE=-2051.930524 MeV  β₂=-0.000000  iters=45  CPU=minutesmin
+  Running Mc-289 (Z=115 N=174 A=289 UNE1 β₂=0.0)... OK  BE=-2059.190957 MeV  β₂=0.000000  iters=46  CPU=minutesmin
+  Running Mc-290 (Z=115 N=175 A=290 UNE1 β₂=0.0)... OK  BE=-2066.360636 MeV  β₂=0.000000  iters=48  CPU=minutesmin
+  Running Mc-291 (Z=115 N=176 A=291 UNE1 β₂=0.0)... OK  BE=-2073.445189 MeV  β₂=0.000000  iters=44  CPU=minutesmin
+  Running Mc-292 (Z=115 N=177 A=292 UNE1 β₂=0.0)... OK  BE=-2080.420351 MeV  β₂=0.000000  iters=47  CPU=minutesmin
+  Running Mc-293 (Z=115 N=178 A=293 UNE1 β₂=0.0)... OK  BE=-2087.275425 MeV  β₂=0.000000  iters=49  CPU=minutesmin
+  Running Mc-294 (Z=115 N=179 A=294 UNE1 β₂=0.0)... OK  BE=-2093.979886 MeV  β₂=0.000000  iters=52  CPU=minutesmin
+  Running Mc-295 (Z=115 N=180 A=295 UNE1 β₂=0.0)... OK  BE=-2100.492515 MeV  β₂=-0.000000  iters=46  CPU=minutesmin
+  Running Mc-296 (Z=115 N=181 A=296 UNE1 β₂=0.0)... OK  BE=-2106.829207 MeV  β₂=-0.000000  iters=46  CPU=minutesmin
+  Running Mc-297 (Z=115 N=182 A=297 UNE1 β₂=0.0)... OK  BE=-2113.014702 MeV  β₂=0.000000  iters=41  CPU=minutesmin
+  Running Mc-298 (Z=115 N=183 A=298 UNE1 β₂=0.0)... OK  BE=-2119.048590 MeV  β₂=-0.000000  iters=42  CPU=minutesmin
+  Running Mc-299 (Z=115 N=184 A=299 UNE1 β₂=0.0)... OK  BE=-2124.919151 MeV  β₂=0.000000  iters=46  CPU=minutesmin
+  Running Mc-300 (Z=115 N=185 A=300 UNE1 β₂=0.0)... OK  BE=-2129.294823 MeV  β₂=0.000000  iters=40  CPU=minutesmin
+  Running Mc-301 (Z=115 N=186 A=301 UNE1 β₂=0.0)... OK  BE=-2133.629382 MeV  β₂=0.000000  iters=42  CPU=minutesmin
+  Running Mc-302 (Z=115 N=187 A=302 UNE1 β₂=0.0)... OK  BE=-2137.938398 MeV  β₂=-0.000000  iters=42  CPU=minutesmin
+  Running Mc-303 (Z=115 N=188 A=303 UNE1 β₂=0.0)... OK  BE=-2142.195599 MeV  β₂=0.000000  iters=43  CPU=minutesmin
+
+  Functional: SLY4
+  Running Mc-285 (Z=115 N=170 A=285 SLY4 β₂=0.0)... OK  BE=-2021.027847 MeV  β₂=0.000000  iters=23  CPU=minutesmin
+  Running Mc-286 (Z=115 N=171 A=286 SLY4 β₂=0.0)... OK  BE=-2028.426320 MeV  β₂=0.000000  iters=22  CPU=minutesmin
+  Running Mc-287 (Z=115 N=172 A=287 SLY4 β₂=0.0)... OK  BE=-2035.710560 MeV  β₂=0.000000  iters=20  CPU=minutesmin
+  Running Mc-288 (Z=115 N=173 A=288 SLY4 β₂=0.0)... OK  BE=-2042.880891 MeV  β₂=-0.000000  iters=21  CPU=minutesmin
+  Running Mc-289 (Z=115 N=174 A=289 SLY4 β₂=0.0)... OK  BE=-2049.936952 MeV  β₂=-0.000000  iters=22  CPU=minutesmin
+  Running Mc-290 (Z=115 N=175 A=290 SLY4 β₂=0.0)... OK  BE=-2056.894955 MeV  β₂=-0.000000  iters=22  CPU=minutesmin
+  Running Mc-291 (Z=115 N=176 A=291 SLY4 β₂=0.0)... OK  BE=-2063.738558 MeV  β₂=-0.000000  iters=23  CPU=minutesmin
+  Running Mc-292 (Z=115 N=177 A=292 SLY4 β₂=0.0)... OK  BE=-2070.469751 MeV  β₂=-0.000000  iters=22  CPU=minutesmin
+  Running Mc-293 (Z=115 N=178 A=293 SLY4 β₂=0.0)... OK  BE=-2077.028034 MeV  β₂=-0.000000  iters=23  CPU=minutesmin
+  Running Mc-294 (Z=115 N=179 A=294 SLY4 β₂=0.0)... OK  BE=-2083.459883 MeV  β₂=-0.000000  iters=23  CPU=minutesmin
+  Running Mc-295 (Z=115 N=180 A=295 SLY4 β₂=0.0)... OK  BE=-2089.704212 MeV  β₂=-0.000000  iters=23  CPU=minutesmin
+  Running Mc-296 (Z=115 N=181 A=296 SLY4 β₂=0.0)... OK  BE=-2095.777035 MeV  β₂=-0.000000  iters=23  CPU=minutesmin
+  Running Mc-297 (Z=115 N=182 A=297 SLY4 β₂=0.0)... OK  BE=-2101.666987 MeV  β₂=-0.000000  iters=23  CPU=minutesmin
+  Running Mc-298 (Z=115 N=183 A=298 SLY4 β₂=0.0)... OK  BE=-2107.435123 MeV  β₂=0.000000  iters=23  CPU=minutesmin
+  Running Mc-299 (Z=115 N=184 A=299 SLY4 β₂=0.0)... OK  BE=-2112.839219 MeV  β₂=0.000000  iters=27  CPU=minutesmin
+  Running Mc-300 (Z=115 N=185 A=300 SLY4 β₂=0.0)... OK  BE=-2117.536008 MeV  β₂=0.000000  iters=22  CPU=minutesmin
+  Running Mc-301 (Z=115 N=186 A=301 SLY4 β₂=0.0)... OK  BE=-2122.039635 MeV  β₂=0.000000  iters=21  CPU=minutesmin
+  Running Mc-302 (Z=115 N=187 A=302 SLY4 β₂=0.0)... OK  BE=-2126.424706 MeV  β₂=0.000000  iters=20  CPU=minutesmin
+  Running Mc-303 (Z=115 N=188 A=303 SLY4 β₂=0.0)... OK  BE=-2130.696834 MeV  β₂=0.000000  iters=21  CPU=minutesmin
+
+  Functional: SKM*
+  Running Mc-285 (Z=115 N=170 A=285 SKM* β₂=0.0)... OK  BE=-2017.207167 MeV  β₂=-0.000000  iters=25  CPU=minutesmin
+  Running Mc-286 (Z=115 N=171 A=286 SKM* β₂=0.0)... OK  BE=-2024.992299 MeV  β₂=-0.000000  iters=26  CPU=minutesmin
+  Running Mc-287 (Z=115 N=172 A=287 SKM* β₂=0.0)... OK  BE=-2032.708910 MeV  β₂=-0.000000  iters=26  CPU=minutesmin
+  Running Mc-288 (Z=115 N=173 A=288 SKM* β₂=0.0)... OK  BE=-2040.301194 MeV  β₂=-0.000000  iters=26  CPU=minutesmin
+  Running Mc-289 (Z=115 N=174 A=289 SKM* β₂=0.0)... OK  BE=-2047.824225 MeV  β₂=-0.000000  iters=26  CPU=minutesmin
+  Running Mc-290 (Z=115 N=175 A=290 SKM* β₂=0.0)... OK  BE=-2055.221406 MeV  β₂=-0.000000  iters=26  CPU=minutesmin
+  Running Mc-291 (Z=115 N=176 A=291 SKM* β₂=0.0)... OK  BE=-2062.546258 MeV  β₂=-0.000000  iters=25  CPU=minutesmin
+  Running Mc-292 (Z=115 N=177 A=292 SKM* β₂=0.0)... OK  BE=-2069.780215 MeV  β₂=-0.000000  iters=23  CPU=minutesmin
+  Running Mc-293 (Z=115 N=178 A=293 SKM* β₂=0.0)... OK  BE=-2076.864691 MeV  β₂=-0.000000  iters=25  CPU=minutesmin
+  Running Mc-294 (Z=115 N=179 A=294 SKM* β₂=0.0)... OK  BE=-2083.802434 MeV  β₂=-0.000000  iters=25  CPU=minutesmin
+  Running Mc-295 (Z=115 N=180 A=295 SKM* β₂=0.0)... OK  BE=-2090.583958 MeV  β₂=-0.000000  iters=19  CPU=minutesmin
+  Running Mc-296 (Z=115 N=181 A=296 SKM* β₂=0.0)... OK  BE=-2097.220217 MeV  β₂=-0.000000  iters=23  CPU=minutesmin
+  Running Mc-297 (Z=115 N=182 A=297 SKM* β₂=0.0)... OK  BE=-2103.642873 MeV  β₂=-0.000000  iters=24  CPU=minutesmin
+  Running Mc-298 (Z=115 N=183 A=298 SKM* β₂=0.0)... OK  BE=-2109.891819 MeV  β₂=0.000000  iters=24  CPU=minutesmin
+  Running Mc-299 (Z=115 N=184 A=299 SKM* β₂=0.0)... OK  BE=-2115.960608 MeV  β₂=0.000000  iters=31  CPU=minutesmin
+  Running Mc-300 (Z=115 N=185 A=300 SKM* β₂=0.0)... OK  BE=-2121.180192 MeV  β₂=0.000000  iters=23  CPU=minutesmin
+  Running Mc-301 (Z=115 N=186 A=301 SKM* β₂=0.0)... OK  BE=-2126.278143 MeV  β₂=0.000000  iters=22  CPU=minutesmin
+  Running Mc-302 (Z=115 N=187 A=302 SKM* β₂=0.0)... OK  BE=-2131.294282 MeV  β₂=0.000000  iters=23  CPU=minutesmin
+  Running Mc-303 (Z=115 N=188 A=303 SKM* β₂=0.0)... OK  BE=-2136.231271 MeV  β₂=0.000000  iters=23  CPU=minutesmin
+
+  Functional: HFB9
+  Running Mc-285 (Z=115 N=170 A=285 HFB9 β₂=0.0)... OK  BE=-2030.744485 MeV  β₂=-0.000000  iters=24  CPU=minutesmin
+  Running Mc-286 (Z=115 N=171 A=286 HFB9 β₂=0.0)... OK  BE=-2038.392183 MeV  β₂=-0.000000  iters=24  CPU=minutesmin
+  Running Mc-287 (Z=115 N=172 A=287 HFB9 β₂=0.0)... OK  BE=-2045.936199 MeV  β₂=0.000000  iters=24  CPU=minutesmin
+  Running Mc-288 (Z=115 N=173 A=288 HFB9 β₂=0.0)... OK  BE=-2053.388944 MeV  β₂=0.000000  iters=24  CPU=minutesmin
+  Running Mc-289 (Z=115 N=174 A=289 HFB9 β₂=0.0)... OK  BE=-2060.743229 MeV  β₂=0.000000  iters=24  CPU=minutesmin
+  Running Mc-290 (Z=115 N=175 A=290 HFB9 β₂=0.0)... OK  BE=-2067.991027 MeV  β₂=0.000000  iters=24  CPU=minutesmin
+  Running Mc-291 (Z=115 N=176 A=291 HFB9 β₂=0.0)... OK  BE=-2075.136823 MeV  β₂=-0.000000  iters=24  CPU=minutesmin
+  Running Mc-292 (Z=115 N=177 A=292 HFB9 β₂=0.0)... OK  BE=-2082.173247 MeV  β₂=-0.000000  iters=24  CPU=minutesmin
+  Running Mc-293 (Z=115 N=178 A=293 HFB9 β₂=0.0)... OK  BE=-2089.085939 MeV  β₂=-0.000000  iters=24  CPU=minutesmin
+  Running Mc-294 (Z=115 N=179 A=294 HFB9 β₂=0.0)... OK  BE=-2095.852471 MeV  β₂=-0.000000  iters=24  CPU=minutesmin
+  Running Mc-295 (Z=115 N=180 A=295 HFB9 β₂=0.0)... OK  BE=-2102.453237 MeV  β₂=-0.000000  iters=24  CPU=minutesmin
+  Running Mc-296 (Z=115 N=181 A=296 HFB9 β₂=0.0)... OK  BE=-2108.883803 MeV  β₂=-0.000000  iters=23  CPU=minutesmin
+  Running Mc-297 (Z=115 N=182 A=297 HFB9 β₂=0.0)... OK  BE=-2115.147468 MeV  β₂=0.000000  iters=23  CPU=minutesmin
+  Running Mc-298 (Z=115 N=183 A=298 HFB9 β₂=0.0)... OK  BE=-2121.257008 MeV  β₂=0.000000  iters=24  CPU=minutesmin
+  Running Mc-299 (Z=115 N=184 A=299 HFB9 β₂=0.0)... OK  BE=-2127.182868 MeV  β₂=0.000000  iters=26  CPU=minutesmin
+  Running Mc-300 (Z=115 N=185 A=300 HFB9 β₂=0.0)... OK  BE=-2131.836906 MeV  β₂=0.000000  iters=22  CPU=minutesmin
+  Running Mc-301 (Z=115 N=186 A=301 HFB9 β₂=0.0)... OK  BE=-2136.416263 MeV  β₂=0.000000  iters=22  CPU=minutesmin
+  Running Mc-302 (Z=115 N=187 A=302 HFB9 β₂=0.0)... OK  BE=-2140.931681 MeV  β₂=0.000000  iters=22  CPU=minutesmin
+  Running Mc-303 (Z=115 N=188 A=303 HFB9 β₂=0.0)... OK  BE=-2145.390104 MeV  β₂=0.000000  iters=22  CPU=minutesmin
+
+PHASE 2: Nh daughter nuclei (Z=113, A=281-299)
+------------------------------------------------------------
+
+  Functional: UNE1
+  Running Nh-281 (Z=113 N=168 A=281 UNE1 β₂=0.0)... OK  BE=-2011.351807 MeV  β₂=0.000002  iters=79  CPU=minutesmin
+  Running Nh-282 (Z=113 N=169 A=282 UNE1 β₂=0.0)... OK  BE=-2018.724090 MeV  β₂=0.000001  iters=71  CPU=minutesmin
+  Running Nh-283 (Z=113 N=170 A=283 UNE1 β₂=0.0)... OK  BE=-2026.005456 MeV  β₂=0.000000  iters=56  CPU=minutesmin
+  Running Nh-284 (Z=113 N=171 A=284 UNE1 β₂=0.0)... OK  BE=-2033.208435 MeV  β₂=0.000000  iters=53  CPU=minutesmin
+  Running Nh-285 (Z=113 N=172 A=285 UNE1 β₂=0.0)... OK  BE=-2040.317580 MeV  β₂=-0.000001  iters=66  CPU=minutesmin
+  Running Nh-286 (Z=113 N=173 A=286 UNE1 β₂=0.0)... OK  BE=-2047.341854 MeV  β₂=0.000000  iters=64  CPU=minutesmin
+  Running Nh-287 (Z=113 N=174 A=287 UNE1 β₂=0.0)... OK  BE=-2054.282043 MeV  β₂=-0.000000  iters=61  CPU=minutesmin
+  Running Nh-288 (Z=113 N=175 A=288 UNE1 β₂=0.0)... OK  BE=-2061.144647 MeV  β₂=-0.000000  iters=65  CPU=minutesmin
+  Running Nh-289 (Z=113 N=176 A=289 UNE1 β₂=0.0)... OK  BE=-2067.911591 MeV  β₂=0.000001  iters=65  CPU=minutesmin
+  Running Nh-290 (Z=113 N=177 A=290 UNE1 β₂=0.0)... OK  BE=-2074.583912 MeV  β₂=0.000000  iters=62  CPU=minutesmin
+  Running Nh-291 (Z=113 N=178 A=291 UNE1 β₂=0.0)... OK  BE=-2081.150075 MeV  β₂=-0.000000  iters=66  CPU=minutesmin
+  Running Nh-292 (Z=113 N=179 A=292 UNE1 β₂=0.0)... OK  BE=-2087.570145 MeV  β₂=-0.000000  iters=51  CPU=minutesmin
+  Running Nh-293 (Z=113 N=180 A=293 UNE1 β₂=0.0)... OK  BE=-2093.808066 MeV  β₂=0.000000  iters=49  CPU=minutesmin
+  Running Nh-294 (Z=113 N=181 A=294 UNE1 β₂=0.0)... OK  BE=-2099.877100 MeV  β₂=-0.000000  iters=78  CPU=minutesmin
+  Running Nh-295 (Z=113 N=182 A=295 UNE1 β₂=0.0)... OK  BE=-2105.796751 MeV  β₂=0.000000  iters=44  CPU=minutesmin
+  Running Nh-296 (Z=113 N=183 A=296 UNE1 β₂=0.0)... OK  BE=-2111.568398 MeV  β₂=0.000000  iters=50  CPU=minutesmin
+  Running Nh-297 (Z=113 N=184 A=297 UNE1 β₂=0.0)... OK  BE=-2117.189917 MeV  β₂=-0.000000  iters=43  CPU=minutesmin
+  Running Nh-298 (Z=113 N=185 A=298 UNE1 β₂=0.0)... OK  BE=-2121.226322 MeV  β₂=-0.000000  iters=45  CPU=minutesmin
+  Running Nh-299 (Z=113 N=186 A=299 UNE1 β₂=0.0)... OK  BE=-2125.229724 MeV  β₂=0.000000  iters=46  CPU=minutesmin
+
+  Functional: SLY4
+  Running Nh-281 (Z=113 N=168 A=281 SLY4 β₂=0.0)... OK  BE=-2002.657869 MeV  β₂=0.000000  iters=22  CPU=minutesmin
+  Running Nh-282 (Z=113 N=169 A=282 SLY4 β₂=0.0)... OK  BE=-2009.974007 MeV  β₂=0.000000  iters=22  CPU=minutesmin
+  Running Nh-283 (Z=113 N=170 A=283 SLY4 β₂=0.0)... OK  BE=-2017.149092 MeV  β₂=0.000000  iters=22  CPU=minutesmin
+  Running Nh-284 (Z=113 N=171 A=284 SLY4 β₂=0.0)... OK  BE=-2024.212735 MeV  β₂=0.000000  iters=22  CPU=minutesmin
+  Running Nh-285 (Z=113 N=172 A=285 SLY4 β₂=0.0)... OK  BE=-2031.165851 MeV  β₂=0.000000  iters=22  CPU=minutesmin
+  Running Nh-286 (Z=113 N=173 A=286 SLY4 β₂=0.0)... OK  BE=-2038.030658 MeV  β₂=0.000000  iters=22  CPU=minutesmin
+  Running Nh-287 (Z=113 N=174 A=287 SLY4 β₂=0.0)... OK  BE=-2044.763254 MeV  β₂=-0.000000  iters=22  CPU=minutesmin
+  Running Nh-288 (Z=113 N=175 A=288 SLY4 β₂=0.0)... OK  BE=-2051.410467 MeV  β₂=-0.000000  iters=22  CPU=minutesmin
+  Running Nh-289 (Z=113 N=176 A=289 SLY4 β₂=0.0)... OK  BE=-2057.959363 MeV  β₂=-0.000000  iters=22  CPU=minutesmin
+  Running Nh-290 (Z=113 N=177 A=290 SLY4 β₂=0.0)... OK  BE=-2064.340281 MeV  β₂=-0.000000  iters=22  CPU=minutesmin
+  Running Nh-291 (Z=113 N=178 A=291 SLY4 β₂=0.0)... OK  BE=-2070.617109 MeV  β₂=-0.000000  iters=23  CPU=minutesmin
+  Running Nh-292 (Z=113 N=179 A=292 SLY4 β₂=0.0)... OK  BE=-2076.715613 MeV  β₂=-0.000000  iters=23  CPU=minutesmin
+  Running Nh-293 (Z=113 N=180 A=293 SLY4 β₂=0.0)... OK  BE=-2082.654645 MeV  β₂=-0.000000  iters=23  CPU=minutesmin
+  Running Nh-294 (Z=113 N=181 A=294 SLY4 β₂=0.0)... OK  BE=-2088.445484 MeV  β₂=-0.000000  iters=23  CPU=minutesmin
+  Running Nh-295 (Z=113 N=182 A=295 SLY4 β₂=0.0)... OK  BE=-2094.099433 MeV  β₂=0.000000  iters=22  CPU=minutesmin
+  Running Nh-296 (Z=113 N=183 A=296 SLY4 β₂=0.0)... OK  BE=-2099.495512 MeV  β₂=0.000000  iters=22  CPU=minutesmin
+  Running Nh-297 (Z=113 N=184 A=297 SLY4 β₂=0.0)... OK  BE=-2104.638412 MeV  β₂=0.000000  iters=33  CPU=minutesmin
+  Running Nh-298 (Z=113 N=185 A=298 SLY4 β₂=0.0)... OK  BE=-2108.984290 MeV  β₂=0.000000  iters=23  CPU=minutesmin
+  Running Nh-299 (Z=113 N=186 A=299 SLY4 β₂=0.0)... OK  BE=-2113.122106 MeV  β₂=0.000000  iters=22  CPU=minutesmin
+
+  Functional: SKM*
+  Running Nh-281 (Z=113 N=168 A=281 SKM* β₂=0.0)... OK  BE=-2000.040004 MeV  β₂=-0.000000  iters=23  CPU=minutesmin
+  Running Nh-282 (Z=113 N=169 A=282 SKM* β₂=0.0)... OK  BE=-2007.720024 MeV  β₂=-0.000000  iters=23  CPU=minutesmin
+  Running Nh-283 (Z=113 N=170 A=283 SKM* β₂=0.0)... OK  BE=-2015.328462 MeV  β₂=-0.000000  iters=25  CPU=minutesmin
+  Running Nh-284 (Z=113 N=171 A=284 SKM* β₂=0.0)... OK  BE=-2022.805045 MeV  β₂=-0.000000  iters=25  CPU=minutesmin
+  Running Nh-285 (Z=113 N=172 A=285 SKM* β₂=0.0)... OK  BE=-2030.186023 MeV  β₂=-0.000000  iters=25  CPU=minutesmin
+  Running Nh-286 (Z=113 N=173 A=286 SKM* β₂=0.0)... OK  BE=-2037.472986 MeV  β₂=-0.000000  iters=25  CPU=minutesmin
+  Running Nh-287 (Z=113 N=174 A=287 SKM* β₂=0.0)... OK  BE=-2044.701448 MeV  β₂=-0.000000  iters=25  CPU=minutesmin
+  Running Nh-288 (Z=113 N=175 A=288 SKM* β₂=0.0)... OK  BE=-2051.798387 MeV  β₂=-0.000000  iters=25  CPU=minutesmin
+  Running Nh-289 (Z=113 N=176 A=289 SKM* β₂=0.0)... OK  BE=-2058.853112 MeV  β₂=-0.000000  iters=23  CPU=minutesmin
+  Running Nh-290 (Z=113 N=177 A=290 SKM* β₂=0.0)... OK  BE=-2065.815187 MeV  β₂=-0.000000  iters=23  CPU=minutesmin
+  Running Nh-291 (Z=113 N=178 A=291 SKM* β₂=0.0)... OK  BE=-2072.610031 MeV  β₂=-0.000000  iters=23  CPU=minutesmin
+  Running Nh-292 (Z=113 N=179 A=292 SKM* β₂=0.0)... OK  BE=-2079.235247 MeV  β₂=-0.000000  iters=25  CPU=minutesmin
+  Running Nh-293 (Z=113 N=180 A=293 SKM* β₂=0.0)... OK  BE=-2085.747746 MeV  β₂=-0.000000  iters=23  CPU=minutesmin
+  Running Nh-294 (Z=113 N=181 A=294 SKM* β₂=0.0)... OK  BE=-2092.058490 MeV  β₂=-0.000000  iters=22  CPU=minutesmin
+  Running Nh-295 (Z=113 N=182 A=295 SKM* β₂=0.0)... OK  BE=-2098.239389 MeV  β₂=0.000000  iters=24  CPU=minutesmin
+  Running Nh-296 (Z=113 N=183 A=296 SKM* β₂=0.0)... OK  BE=-2104.226409 MeV  β₂=0.000000  iters=25  CPU=minutesmin
+  Running Nh-297 (Z=113 N=184 A=297 SKM* β₂=0.0)... OK  BE=-2109.999963 MeV  β₂=0.000000  iters=29  CPU=minutesmin
+  Running Nh-298 (Z=113 N=185 A=298 SKM* β₂=0.0)... OK  BE=-2114.900921 MeV  β₂=0.000000  iters=23  CPU=minutesmin
+  Running Nh-299 (Z=113 N=186 A=299 SKM* β₂=0.0)... OK  BE=-2119.692884 MeV  β₂=0.000000  iters=22  CPU=minutesmin
+
+  Functional: HFB9
+  Running Nh-281 (Z=113 N=168 A=281 HFB9 β₂=0.0)... OK  BE=-2012.614548 MeV  β₂=-0.000000  iters=23  CPU=minutesmin
+  Running Nh-282 (Z=113 N=169 A=282 HFB9 β₂=0.0)... OK  BE=-2020.177071 MeV  β₂=-0.000000  iters=24  CPU=minutesmin
+  Running Nh-283 (Z=113 N=170 A=283 HFB9 β₂=0.0)... OK  BE=-2027.613491 MeV  β₂=-0.000000  iters=24  CPU=minutesmin
+  Running Nh-284 (Z=113 N=171 A=284 HFB9 β₂=0.0)... OK  BE=-2034.970894 MeV  β₂=-0.000000  iters=24  CPU=minutesmin
+  Running Nh-285 (Z=113 N=172 A=285 HFB9 β₂=0.0)... OK  BE=-2042.215140 MeV  β₂=-0.000000  iters=24  CPU=minutesmin
+  Running Nh-286 (Z=113 N=173 A=286 HFB9 β₂=0.0)... OK  BE=-2049.361851 MeV  β₂=-0.000000  iters=25  CPU=minutesmin
+  Running Nh-287 (Z=113 N=174 A=287 HFB9 β₂=0.0)... OK  BE=-2056.402883 MeV  β₂=0.000000  iters=25  CPU=minutesmin
+  Running Nh-288 (Z=113 N=175 A=288 HFB9 β₂=0.0)... OK  BE=-2063.347944 MeV  β₂=-0.000000  iters=24  CPU=minutesmin
+  Running Nh-289 (Z=113 N=176 A=289 HFB9 β₂=0.0)... OK  BE=-2070.193873 MeV  β₂=-0.000000  iters=24  CPU=minutesmin
+  Running Nh-290 (Z=113 N=177 A=290 HFB9 β₂=0.0)... OK  BE=-2076.933541 MeV  β₂=-0.000000  iters=24  CPU=minutesmin
+  Running Nh-291 (Z=113 N=178 A=291 HFB9 β₂=0.0)... OK  BE=-2083.553331 MeV  β₂=-0.000000  iters=24  CPU=minutesmin
+  Running Nh-292 (Z=113 N=179 A=292 HFB9 β₂=0.0)... OK  BE=-2090.032163 MeV  β₂=-0.000000  iters=23  CPU=minutesmin
+  Running Nh-293 (Z=113 N=180 A=293 HFB9 β₂=0.0)... OK  BE=-2096.350921 MeV  β₂=-0.000000  iters=24  CPU=minutesmin
+  Running Nh-294 (Z=113 N=181 A=294 HFB9 β₂=0.0)... OK  BE=-2102.504195 MeV  β₂=-0.000000  iters=23  CPU=minutesmin
+  Running Nh-295 (Z=113 N=182 A=295 HFB9 β₂=0.0)... OK  BE=-2108.508626 MeV  β₂=0.000000  iters=23  CPU=minutesmin
+  Running Nh-296 (Z=113 N=183 A=296 HFB9 β₂=0.0)... OK  BE=-2114.337690 MeV  β₂=0.000000  iters=23  CPU=minutesmin
+  Running Nh-297 (Z=113 N=184 A=297 HFB9 β₂=0.0)... OK  BE=-2119.999716 MeV  β₂=0.000000  iters=25  CPU=minutesmin
+  Running Nh-298 (Z=113 N=185 A=298 HFB9 β₂=0.0)... OK  BE=-2124.317337 MeV  β₂=0.000000  iters=22  CPU=minutesmin
+  Running Nh-299 (Z=113 N=186 A=299 HFB9 β₂=0.0)... OK  BE=-2128.562908 MeV  β₂=0.000000  iters=22  CPU=minutesmin
+
+============================================================
+COMPUTING Q_ALPHA VALUES
+============================================================
+
+============================================================
+ALL DONE. Finished: Sun Apr 26 05:56:47 EDT 2026
+Results: nucleusgrid_results.json
+Q values: q_alpha_results.json
+Log: nucleusgrid_results.log
+============================================================

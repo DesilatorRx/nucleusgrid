@@ -1,0 +1,817 @@
+"""
+HFBTHO Python Wrapper for NucleusGrid Phase 2
+==============================================
+Generates HFBTHO input namelists, manages subprocess execution,
+parses output, and feeds results into the Bayesian ensemble.
+
+SETUP (run once on your machine):
+    sudo apt install gfortran liblapack-dev libblas-dev git
+    git clone https://github.com/HFBTHO/hfbtho  # see README for official source
+    cd hfbtho && make COMPILER=GFORTRAN USE_OPENMP=1
+    export HFBTHO_BIN=/path/to/hfbtho_main
+
+USAGE:
+    python hfbtho_wrapper.py --binary /path/to/hfbtho_main --isotope 299
+    python hfbtho_wrapper.py --binary /path/to/hfbtho_main --all --threads 32
+    python hfbtho_wrapper.py --binary /path/to/hfbtho_main --validate
+
+Skyrme functionals supported (each = one "model" in our ensemble):
+    SLY4    — Lyon group, well-tested for heavy nuclei
+    SKM*    — Standard reference functional
+    UNEDF1  — Optimized for deformed nuclei (Kortelainen 2012)
+    SVMIN   — Minimally parameterized (Klupfel 2009)
+    SEALL1  — Latest SeaLL1 functional (added in v4.0)
+"""
+
+import os
+import sys
+import re
+import json
+import time
+import math
+import shutil
+import tempfile
+import argparse
+import subprocess
+from pathlib import Path
+from typing import Optional, Dict, List, Tuple
+from dataclasses import dataclass, asdict
+
+# ─────────────────────────────────────────────────────────────
+# SKYRME FUNCTIONALS — our 5 "models" for the ensemble
+# Each maps to a named functional in HFBTHO
+# ─────────────────────────────────────────────────────────────
+FUNCTIONALS = {
+    "SLY4":   {"keyword": "SLY4",   "desc": "Lyon Skyrme SLy4"},
+    "UNEDF1": {"keyword": "UNEDF1", "desc": "UNEDF1 optimized for deformed SHN"},
+    "SKM*":   {"keyword": "SKM*",   "desc": "Standard SKM* reference"},
+    "SVMIN":  {"keyword": "SVMIN",  "desc": "SV-min minimal parameterization"},
+    "SEALL1": {"keyword": "SEALL1", "desc": "SeaLL1 — newest (v4.0 only)"},
+}
+
+# ─────────────────────────────────────────────────────────────
+# DEFORMATION GRID — same as Phase 2 physics.py
+# ─────────────────────────────────────────────────────────────
+BETA2_GRID = [-0.30, -0.20, -0.10, 0.00, 0.10, 0.15, 0.20,
+               0.25, 0.30, 0.35, 0.40, 0.45, 0.50, 0.55]
+# HFBTHO uses Q20 (barn) not β₂ — conversion below
+
+def beta2_to_Q20(beta2: float, A: int) -> float:
+    """
+    Convert quadrupole deformation β₂ to constrained Q20 in barns.
+    Q20 = sqrt(5/pi) * (3/5) * r0^2 * A^(5/3) * beta2
+    r0 = 1.2 fm, 1 barn = 100 fm²
+    """
+    r0 = 1.2  # fm
+    R2 = r0**2 * A**(5/3)
+    Q20_fm2 = math.sqrt(5/math.pi) * (3/5) * R2 * beta2
+    return Q20_fm2 / 100.0  # convert fm² → barn
+
+def Q20_to_beta2(Q20_barn: float, A: int) -> float:
+    """Inverse: Q20 (barn) → β₂"""
+    r0 = 1.2
+    R2 = r0**2 * A**(5/3)
+    Q20_fm2 = Q20_barn * 100.0
+    return Q20_fm2 / (math.sqrt(5/math.pi) * (3/5) * R2)
+
+# ─────────────────────────────────────────────────────────────
+# HFBTHO NAMELIST GENERATOR
+# ─────────────────────────────────────────────────────────────
+
+def generate_namelist(
+    Z: int, N: int, functional: str,
+    Q20_constraint: Optional[float] = None,
+    n_shells: int = 20,
+    max_iter: int = 600,
+    threads: int = 1,
+    odd_blocking: bool = True,
+    output_file: str = "hfbtho_NAMELIST.dat"
+) -> str:
+    """
+    Generate a complete HFBTHO v3/v4 namelist for one calculation.
+
+    Key settings for superheavy odd-Z nuclei:
+    - n_shells=20: large basis needed for SHN (standard is 14)
+    - odd_blocking=True: Equal Filling Approximation for odd proton
+    - Q20 constraint: if set, constrains deformation to explore PES
+    - max_iter=600: SHN often need more iterations to converge
+    """
+    A = Z + N
+    func = FUNCTIONALS.get(functional, FUNCTIONALS["SLY4"])
+    keyword = func["keyword"]
+
+    # Constraint section
+    if Q20_constraint is not None:
+        constraint_block = f"""
+&HFBTHO_CONSTRAINTS
+  lambda_active(1)  = 1,        ! activate Q20 constraint
+  expectation_values(1) = {Q20_constraint:.4f},  ! target Q20 in barn
+/"""
+    else:
+        constraint_block = """
+&HFBTHO_CONSTRAINTS
+  lambda_active(1)  = 0,        ! no constraint - find energy minimum
+/"""
+
+    # Blocking section for odd-Z (Z=115 has one unpaired proton)
+    if odd_blocking and Z % 2 == 1:
+        # EFA blocking: let HFBTHO find the lowest quasiparticle
+        # For Z just above 114, the unpaired proton is in a high-j orbital
+        blocking_block = f"""
+&HFBTHO_BLOCKING
+  proton_blocking(1) = 1,       ! block lowest-energy proton qp
+  proton_blocking(2) = 0,       ! (0 = EFA auto-select)
+  neutron_blocking(1)= 0,
+/"""
+    else:
+        blocking_block = """
+&HFBTHO_BLOCKING
+  proton_blocking(1) = 0,
+  neutron_blocking(1)= 0,
+/"""
+
+    namelist = f"""! NucleusGrid Phase 2 — HFBTHO input
+! Isotope: Z={Z} N={N} A={A}
+! Functional: {keyword} ({func['desc']})
+! Generated by hfbtho_wrapper.py
+
+&HFBTHO_GENERAL
+  number_of_shells = {n_shells},     ! HO basis shells (20 for SHN)
+  oscillator_length= 0.0,       ! 0 = auto from empirical formula
+  basis_deformation= 0.0,       ! 0 = spherical basis (always safe)
+  proton_number    = {Z},
+  neutron_number   = {N},
+  type_of_calculation = 1,      ! 1 = HFB
+  number_iterations= {max_iter},
+  accuracy         = 1.0E-6,    ! convergence criterion
+  restart_file     = -1,        ! -1 = start fresh
+  neck_value       = 0.0,
+  lambda_values(1) = 2,         ! constrain Q20
+  lambda_values(2) = 0,
+/
+
+&HFBTHO_FUNCTIONAL
+  functional = '{keyword}',
+  add_pairing= 1,               ! include pairing
+  type_of_coulomb = 2,          ! full Coulomb (not Slater approx)
+  pairing_cutoff   = 60.0,      ! MeV — standard for SHN
+  pairing_feature  = 0.0,
+/
+
+&HFBTHO_FEATURES
+  collective_inertia = 0,       ! skip GCM inertia (expensive)
+  fission_fragments  = 0,       ! skip fission analysis
+  use_localization   = 0,
+  print_time = 0,
+/
+{constraint_block}
+{blocking_block}
+"""
+    return namelist
+
+# ─────────────────────────────────────────────────────────────
+# OUTPUT PARSER
+# ─────────────────────────────────────────────────────────────
+
+@dataclass
+class HFBResult:
+    Z: int
+    N: int
+    A: int
+    functional: str
+    beta2: float
+    Q20_barn: float
+    binding_energy_mev: float       # total HFB binding energy
+    binding_per_nucleon: float      # MeV/A
+    Q_alpha_mev: Optional[float]    # derived from BE differences
+    pairing_energy_proton: float    # MeV
+    pairing_energy_neutron: float   # MeV
+    rms_radius_fm: float            # nuclear RMS radius
+    shell_correction_mev: float     # Strutinsky shell correction
+    converged: bool
+    iterations: int
+    compute_seconds: float
+    raw_output: str = ""            # truncated HFBTHO stdout
+
+def parse_hfbtho_output(stdout: str, Z: int, N: int,
+                          functional: str, beta2: float,
+                          Q20_barn: float,
+                          elapsed: float) -> HFBResult:
+    """
+    Parse HFBTHO stdout to extract key nuclear observables.
+    
+    HFBTHO output format (v3/v4):
+      - Binding energy: "Total HFB energy" line
+      - Deformation: "beta2" line in summary block
+      - Pairing: "Pairing energy" block
+      - Convergence: "HFBTHO converged" or iterations exhausted
+    """
+    A = Z + N
+    
+    def extract(pattern: str, text: str,
+                group: int = 1, dtype=float) -> Optional[float]:
+        m = re.search(pattern, text, re.MULTILINE | re.IGNORECASE)
+        if m:
+            try:
+                return dtype(m.group(group).replace('D','E').replace('d','e'))
+            except ValueError:
+                return None
+        return None
+
+    # ── Binding energy ──
+    # HFBTHO prints: "  Total HFB energy     :   -1756.234567 MeV"
+    BE = extract(
+        r'Total HFB energy\s*:\s*([+-]?\d+\.\d+)', stdout)
+    if BE is None:
+        # Try alternate format
+        BE = extract(
+            r'Etot\s*=\s*([+-]?\d+\.\d+(?:[Dd][+-]?\d+)?)', stdout)
+
+    # ── Deformation (actual, not constrained) ──
+    beta2_actual = extract(
+        r'beta2\s*=\s*([+-]?\d+\.\d+)', stdout)
+    if beta2_actual is None:
+        beta2_actual = extract(
+            r'<beta2>\s*=?\s*([+-]?\d+\.\d+)', stdout)
+    if beta2_actual is None:
+        beta2_actual = beta2  # fallback to input
+
+    # ── Pairing energies ──
+    pair_p = extract(
+        r'proton\s+pairing\s+energy\s*[=:]\s*([+-]?\d+\.\d+)', stdout)
+    pair_n = extract(
+        r'neutron\s+pairing\s+energy\s*[=:]\s*([+-]?\d+\.\d+)', stdout)
+    if pair_p is None:
+        pair_p = extract(
+            r'Epair_p\s*[=:]\s*([+-]?\d+\.\d+)', stdout)
+    if pair_n is None:
+        pair_n = extract(
+            r'Epair_n\s*[=:]\s*([+-]?\d+\.\d+)', stdout)
+
+    # ── RMS radius ──
+    rms = extract(
+        r'rms\s+radius\s*[=:]\s*(\d+\.\d+)', stdout)
+    if rms is None:
+        rms = extract(r'R_rms\s*=\s*(\d+\.\d+)', stdout)
+    if rms is None:
+        rms = 1.2 * A**(1/3)  # fallback estimate
+
+    # ── Shell correction ──
+    shell = extract(
+        r'shell\s+correction\s*[=:]\s*([+-]?\d+\.\d+)', stdout)
+    if shell is None:
+        shell = extract(r'E_shell\s*[=:]\s*([+-]?\d+\.\d+)', stdout)
+    if shell is None:
+        shell = 0.0
+
+    # ── Convergence ──
+    converged = bool(re.search(
+        r'HFBTHO\s+converged|converged\s+in|iter.*converged',
+        stdout, re.IGNORECASE))
+    
+    iters_m = re.search(r'Number of iterations\s*[=:]\s*(\d+)', stdout, re.IGNORECASE)
+    iters = int(iters_m.group(1)) if iters_m else -1
+
+    return HFBResult(
+        Z=Z, N=N, A=A,
+        functional=functional,
+        beta2=float(beta2_actual) if beta2_actual else beta2,
+        Q20_barn=Q20_barn,
+        binding_energy_mev=float(BE) if BE else 0.0,
+        binding_per_nucleon=float(BE)/A if BE else 0.0,
+        Q_alpha_mev=None,  # computed later from BE differences
+        pairing_energy_proton=float(pair_p) if pair_p else 0.0,
+        pairing_energy_neutron=float(pair_n) if pair_n else 0.0,
+        rms_radius_fm=float(rms) if rms else 0.0,
+        shell_correction_mev=float(shell) if shell else 0.0,
+        converged=converged,
+        iterations=iters,
+        compute_seconds=elapsed,
+        raw_output=stdout[-3000:],  # keep last 3000 chars
+    )
+
+# ─────────────────────────────────────────────────────────────
+# RUNNER — single HFBTHO calculation
+# ─────────────────────────────────────────────────────────────
+
+def run_hfbtho(
+    binary: str, Z: int, N: int, functional: str,
+    beta2: Optional[float] = None,
+    workdir: Optional[str] = None,
+    threads: int = 1,
+    timeout: int = 300,
+    verbose: bool = False,
+) -> HFBResult:
+    """
+    Run one HFBTHO calculation in an isolated temp directory.
+    Returns parsed HFBResult.
+    """
+    A = Z + N
+    Q20 = beta2_to_Q20(beta2, A) if beta2 is not None else None
+    beta2_val = beta2 if beta2 is not None else 0.0
+
+    # Work in isolated temp dir so parallel runs don't conflict
+    tmpdir = workdir or tempfile.mkdtemp(
+        prefix=f"hfbtho_Z{Z}N{N}_{functional}_")
+    tmpdir = Path(tmpdir)
+    tmpdir.mkdir(parents=True, exist_ok=True)
+
+    # Write namelist
+    namelist = generate_namelist(
+        Z=Z, N=N, functional=functional,
+        Q20_constraint=Q20,
+        threads=threads,
+    )
+    (tmpdir / "hfbtho_NAMELIST.dat").write_text(namelist)
+
+    # Set OpenMP threads
+    env = os.environ.copy()
+    env["OMP_NUM_THREADS"] = str(threads)
+
+    t0 = time.time()
+    try:
+        proc = subprocess.run(
+            [binary],
+            cwd=tmpdir,
+            capture_output=True,
+            text=True,
+            timeout=timeout,
+            env=env,
+        )
+        stdout = proc.stdout + proc.stderr
+    except subprocess.TimeoutExpired:
+        stdout = f"TIMEOUT after {timeout}s"
+    except FileNotFoundError:
+        raise RuntimeError(
+            f"HFBTHO binary not found: {binary}\n"
+            f"Compile with: make COMPILER=GFORTRAN USE_OPENMP=1"
+        )
+    elapsed = time.time() - t0
+
+    if verbose:
+        print(f"  [{functional}] Z={Z} N={N} β₂={beta2_val:.2f} "
+              f"→ {elapsed:.1f}s {'OK' if 'converged' in stdout.lower() else 'FAIL'}")
+
+    result = parse_hfbtho_output(
+        stdout, Z, N, functional, beta2_val, Q20 or 0.0, elapsed)
+
+    # Cleanup temp dir unless debugging
+    if not verbose:
+        shutil.rmtree(tmpdir, ignore_errors=True)
+
+    return result
+
+# ─────────────────────────────────────────────────────────────
+# Q_ALPHA COMPUTATION from BE table
+# ─────────────────────────────────────────────────────────────
+
+def compute_q_alpha_from_results(
+    results: Dict[Tuple[int,int], HFBResult]
+) -> Dict[Tuple[int,int], float]:
+    """
+    Compute Q_alpha for each isotope using ground-state BE differences.
+    
+    Q_alpha(Z,A) = BE(Z,A) - BE(Z-2, A-4) - BE(2,4)
+    BE(alpha) = 28.2957 MeV (experimental)
+    
+    Uses the fully-converged ground state (minimum BE) for each (Z,A).
+    """
+    E_alpha = 28.2957  # MeV
+    Q_values = {}
+
+    for (Z, A), r in results.items():
+        if r.binding_energy_mev == 0:
+            continue
+        # Find daughter ground state
+        daughter_key = (Z-2, A-4)
+        if daughter_key in results:
+            d = results[daughter_key]
+            if d.binding_energy_mev != 0:
+                Q = r.binding_energy_mev - d.binding_energy_mev - E_alpha
+                Q_values[(Z, A)] = Q
+
+    return Q_values
+
+# ─────────────────────────────────────────────────────────────
+# FULL SWEEP — all isotopes, all functionals, all deformations
+# ─────────────────────────────────────────────────────────────
+
+def run_full_sweep(
+    binary: str,
+    Z: int = 115,
+    A_range: range = range(285, 304),
+    functionals: List[str] = None,
+    beta2_grid: List[float] = None,
+    threads: int = 1,
+    output_file: str = "hfbtho_results.json",
+    verbose: bool = True,
+) -> List[dict]:
+    """
+    Run the complete NucleusGrid Phase 2 sweep using real HFBTHO.
+    
+    For each (A, functional, β₂):
+      1. Run HFBTHO with Q20 constraint
+      2. Parse binding energy, pairing, deformation
+      3. Find ground state (minimum energy) per (A, functional)
+      4. Compute Q_alpha from BE differences
+      5. Feed into Bayesian ensemble
+    
+    Runtime estimate on 5950X (32 threads):
+      ~30-120s per work unit → 285-1140 hrs total
+      → Use --beta2_range focused on ground state region
+      → Typical: 3-5 β₂ values × 19 isotopes × 5 functionals = 285-475 WUs
+      → At 60s/WU: 5-8 hours on 32 threads
+    """
+    if functionals is None:
+        functionals = list(FUNCTIONALS.keys())
+    if beta2_grid is None:
+        beta2_grid = BETA2_GRID
+
+    all_results = []
+    total = len(A_range) * len(functionals) * len(beta2_grid)
+    done = 0
+    t_start = time.time()
+
+    print(f"\nNucleusGrid Phase 2 — Full HFB Sweep")
+    print(f"{'='*60}")
+    print(f"  Binary:      {binary}")
+    print(f"  Z={Z}, A: {min(A_range)}–{max(A_range)}")
+    print(f"  Functionals: {', '.join(functionals)}")
+    print(f"  β₂ points:   {len(beta2_grid)}")
+    print(f"  Threads:     {threads} (OMP_NUM_THREADS)")
+    print(f"  Total WUs:   {total:,}")
+    print(f"  Est. time:   {total*60/3600:.1f}–{total*120/3600:.1f} hrs")
+    print(f"{'='*60}\n")
+
+    for A in A_range:
+        N = A - Z
+        for func in functionals:
+            for beta2 in beta2_grid:
+                done += 1
+                pct = done / total * 100
+                elapsed = time.time() - t_start
+                eta = (elapsed / done * (total - done)) / 3600 if done > 1 else 0
+
+                print(f"[{done:4d}/{total}  {pct:5.1f}%  ETA:{eta:.1f}hr] "
+                      f"Mc-{A} N={N} {func} β₂={beta2:+.2f}", end="  ", flush=True)
+
+                try:
+                    r = run_hfbtho(
+                        binary=binary, Z=Z, N=N,
+                        functional=func, beta2=beta2,
+                        threads=threads, verbose=False,
+                    )
+                    status = "✓" if r.converged else "?"
+                    print(f"BE={r.binding_energy_mev:.2f} MeV  "
+                          f"β₂_out={r.beta2:.3f}  {status}")
+                except Exception as e:
+                    print(f"ERROR: {e}")
+                    r = HFBResult(
+                        Z=Z, N=N, A=A, functional=func,
+                        beta2=beta2, Q20_barn=0,
+                        binding_energy_mev=0, binding_per_nucleon=0,
+                        Q_alpha_mev=None,
+                        pairing_energy_proton=0, pairing_energy_neutron=0,
+                        rms_radius_fm=0, shell_correction_mev=0,
+                        converged=False, iterations=0,
+                        compute_seconds=0,
+                    )
+
+                all_results.append(asdict(r))
+
+                # Save incrementally — don't lose work
+                if done % 10 == 0:
+                    with open(output_file, "w") as f:
+                        json.dump(all_results, f, indent=2)
+
+    # Final save
+    with open(output_file, "w") as f:
+        json.dump(all_results, f, indent=2)
+
+    print(f"\nDone. {done} calculations in {(time.time()-t_start)/3600:.2f} hrs")
+    print(f"Results: {output_file}")
+    return all_results
+
+# ─────────────────────────────────────────────────────────────
+# VALIDATION against experimental Mc-286 to Mc-290
+# ─────────────────────────────────────────────────────────────
+
+def validate_against_experiment(binary: str, threads: int = 1):
+    """
+    Run HFBTHO for known Mc-286–290 isotopes and compare Q_alpha
+    against AME2020 experimental values.
+    Produces model weights for Bayesian ensemble.
+    """
+    EXPERIMENTAL = {
+        286: (10.33, 0.020, 0.09),  # (Q_mev, t_half_s, Q_uncertainty)
+        287: (10.59, 0.037, 0.06),
+        288: (10.01, 0.164, 0.05),
+        289: (9.95,  0.330, 0.08),
+        290: (9.78,  0.650, 0.07),
+    }
+
+    print("\nValidation against AME2020 experimental data")
+    print("="*60)
+    
+    weights = {}
+    for func in FUNCTIONALS:
+        errors = []
+        print(f"\n  {func} ({FUNCTIONALS[func]['desc']}):")
+
+        # Need daughter nuclei too: Nh-282 through Nh-286
+        be_cache = {}
+        for A in range(282, 291):
+            N = A - 115
+            if N < 0:
+                A_nh = A; N_nh = A - 113
+                r = run_hfbtho(binary, 113, N_nh, func,
+                                beta2=0.2, threads=threads)
+            else:
+                r = run_hfbtho(binary, 115, N, func,
+                                beta2=0.2, threads=threads)
+            be_cache[(r.Z, r.A)] = r.binding_energy_mev
+
+        for A_mc, (Q_exp, _, Q_unc) in EXPERIMENTAL.items():
+            BE_mc = be_cache.get((115, A_mc), 0)
+            BE_nh = be_cache.get((113, A_mc-4), 0)
+            if BE_mc and BE_nh:
+                Q_calc = BE_mc - BE_nh - 28.2957
+                err = abs(Q_calc - Q_exp)
+                errors.append(err)
+                print(f"    Mc-{A_mc}: Q_calc={Q_calc:.3f}  "
+                      f"Q_exp={Q_exp:.2f}±{Q_unc:.2f}  Δ={err:+.3f}")
+            else:
+                print(f"    Mc-{A_mc}: calculation failed")
+
+        if errors:
+            rmse = math.sqrt(sum(e**2 for e in errors) / len(errors))
+            w = math.exp(-rmse**2 / (2 * 0.5**2))
+            weights[func] = w
+            print(f"    RMSE={rmse:.3f} MeV  raw_weight={w:.4f}")
+
+    # Normalize weights
+    total_w = sum(weights.values())
+    norm_weights = {k: v/total_w for k,v in weights.items()}
+    
+    print(f"\nNormalized Bayesian weights:")
+    for func, w in sorted(norm_weights.items(), key=lambda x: -x[1]):
+        print(f"  {func:<10}: {w:.4f}")
+    
+    with open("model_weights.json", "w") as f:
+        json.dump(norm_weights, f, indent=2)
+    print("\nWeights saved to model_weights.json")
+    return norm_weights
+
+# ─────────────────────────────────────────────────────────────
+# INTEGRATION with Phase 2 Bayesian ensemble
+# ─────────────────────────────────────────────────────────────
+
+def convert_to_phase2_format(
+    hfbtho_results_file: str,
+    model_weights_file: str,
+    output_file: str = "phase2_hfbtho_integrated.json"
+):
+    """
+    Convert HFBTHO results into Phase 2 ensemble format.
+    Computes ground states, Q_alpha, stability indices,
+    and Bayesian-averaged uncertainty bands.
+    Directly replaces the macroscopic BE from physics.py.
+    """
+    with open(hfbtho_results_file) as f:
+        raw = json.load(f)
+    with open(model_weights_file) as f:
+        weights = json.load(f)
+
+    E_alpha = 28.2957
+
+    # Group by (A, functional) → find ground state (max |BE|)
+    by_A_func = {}
+    for r in raw:
+        if not r["converged"] or r["binding_energy_mev"] == 0:
+            continue
+        key = (r["A"], r["functional"])
+        if key not in by_A_func:
+            by_A_func[key] = []
+        by_A_func[key].append(r)
+
+    ground_states = {}
+    for (A, func), results in by_A_func.items():
+        # Ground state = most negative (largest magnitude) binding energy
+        gs = min(results, key=lambda r: r["binding_energy_mev"])
+        ground_states[(A, func)] = gs
+
+    # Compute Q_alpha
+    for (A, func), gs in ground_states.items():
+        daughter_key = (A-4, func)
+        if daughter_key in ground_states:
+            d = ground_states[daughter_key]
+            Q = gs["binding_energy_mev"] - d["binding_energy_mev"] - E_alpha
+            gs["Q_alpha_mev"] = round(Q, 4)
+
+    # Build per-isotope ensemble statistics
+    all_A = sorted(set(A for (A,_) in ground_states.keys()))
+    output = []
+
+    for A in all_A:
+        func_results = {}
+        for func in FUNCTIONALS:
+            if (A, func) in ground_states:
+                func_results[func] = ground_states[(A, func)]
+
+        if not func_results:
+            continue
+
+        # Bayesian weighted average
+        total_w = sum(weights.get(f, 0) for f in func_results)
+        if total_w == 0:
+            continue
+
+        def wavg(key):
+            vals = [func_results[f][key] for f in func_results
+                    if func_results[f].get(key) is not None]
+            ws   = [weights.get(f, 0) for f in func_results
+                    if func_results[f].get(key) is not None]
+            if not vals or sum(ws) == 0: return None
+            return sum(v*w for v,w in zip(vals,ws)) / sum(ws)
+
+        def wstd(key, mean):
+            if mean is None: return 0
+            vals = [func_results[f][key] for f in func_results
+                    if func_results[f].get(key) is not None]
+            ws   = [weights.get(f, 0) for f in func_results
+                    if func_results[f].get(key) is not None]
+            if not vals or sum(ws) == 0: return 0
+            return math.sqrt(sum(w*(v-mean)**2 for v,w in zip(vals,ws)) / sum(ws))
+
+        BE_mean  = wavg("binding_energy_mev")
+        Q_mean   = wavg("Q_alpha_mev")
+        sh_mean  = wavg("shell_correction_mev")
+        b2_mean  = wavg("beta2")
+        pair_mean= wavg("pairing_energy_proton")
+
+        BE_std  = wstd("binding_energy_mev", BE_mean)
+        Q_std   = wstd("Q_alpha_mev", Q_mean)
+        sh_std  = wstd("shell_correction_mev", sh_mean)
+
+        # Convergence rate
+        n_converged = sum(1 for r in func_results.values() if r["converged"])
+        
+        entry = {
+            "A": A, "N": A-115, "Z": 115,
+            "source": "HFBTHO",
+            "BE_mean_mev": round(BE_mean, 4) if BE_mean else None,
+            "BE_std_mev": round(BE_std, 4),
+            "Q_alpha_mean": round(Q_mean, 4) if Q_mean else None,
+            "Q_alpha_std": round(Q_std, 4),
+            "shell_mean": round(sh_mean, 4) if sh_mean else None,
+            "shell_std": round(sh_std, 4),
+            "beta2_mean": round(b2_mean, 4) if b2_mean else None,
+            "pairing_p_mean": round(pair_mean, 4) if pair_mean else None,
+            "n_functionals": len(func_results),
+            "n_converged": n_converged,
+            "by_functional": {
+                f: {
+                    "BE": r["binding_energy_mev"],
+                    "Q_alpha": r.get("Q_alpha_mev"),
+                    "beta2": r["beta2"],
+                    "shell": r["shell_correction_mev"],
+                    "converged": r["converged"],
+                    "weight": weights.get(f, 0),
+                }
+                for f, r in func_results.items()
+            }
+        }
+        output.append(entry)
+
+    with open(output_file, "w") as f:
+        json.dump(output, f, indent=2)
+    
+    print(f"Integrated results: {len(output)} isotopes → {output_file}")
+    return output
+
+# ─────────────────────────────────────────────────────────────
+# QUICK SMOKE TEST (no HFBTHO needed — just tests the wrapper)
+# ─────────────────────────────────────────────────────────────
+
+def smoke_test():
+    """Test namelist generation and output parsing without HFBTHO."""
+    print("NucleusGrid HFBTHO Wrapper — Smoke Test")
+    print("="*50)
+
+    # Test namelist generation
+    print("\n[1/3] Namelist generation (Mc-299, UNEDF1, β₂=0.0)...")
+    nl = generate_namelist(Z=115, N=184, functional="UNEDF1",
+                            Q20_constraint=None, n_shells=20)
+    assert "proton_number    = 115" in nl
+    assert "neutron_number   = 184" in nl
+    assert "UNEDF1" in nl
+    assert "proton_blocking(1) = 1" in nl  # odd-Z blocking
+    print("  ✓ Namelist OK")
+    print(f"  First 200 chars: {nl[:200].strip()[:100]}...")
+
+    # Test β₂ ↔ Q20 conversion
+    print("\n[2/3] Deformation conversion...")
+    for b2 in [-0.2, 0.0, 0.2, 0.4]:
+        Q20 = beta2_to_Q20(b2, 299)
+        b2_back = Q20_to_beta2(Q20, 299)
+        assert abs(b2 - b2_back) < 1e-10
+    print(f"  ✓ β₂↔Q20 roundtrip OK for A=299")
+
+    # Test output parser with synthetic HFBTHO-like output
+    print("\n[3/3] Output parser...")
+    fake_output = """
+ HFBTHO v4.0 - Nuclear HFB solver
+ proton_number = 115  neutron_number = 184
+ 
+ Iteration   1:  E_tot = -1748.234567  delta_E = 1.234E-01
+ Iteration  42:  E_tot = -1756.891234  delta_E = 8.712E-07
+ HFBTHO converged in 42 iterations
+ 
+ Total HFB energy     :   -1756.891234 MeV
+ beta2                =   0.023456
+ proton pairing energy:     -4.234567 MeV
+ neutron pairing energy:    -5.678901 MeV
+ rms radius           =    6.234567 fm
+ shell correction     :    -9.123456 MeV
+ Number of iterations :    42
+"""
+    r = parse_hfbtho_output(fake_output, 115, 184, "UNEDF1", 0.0, 0.0, 1.23)
+    assert r.converged == True
+    assert abs(r.binding_energy_mev - (-1756.891234)) < 0.001
+    assert r.iterations == 42
+    assert abs(r.beta2 - 0.023456) < 0.001
+    print(f"  ✓ Parser OK: BE={r.binding_energy_mev:.3f} MeV, "
+          f"converged={r.converged}, iters={r.iterations}")
+
+    print("\n✓ All smoke tests passed.")
+    print("\nTo run real calculations:")
+    print("  python hfbtho_wrapper.py --binary /path/to/hfbtho_main --validate")
+    print("  python hfbtho_wrapper.py --binary /path/to/hfbtho_main --all")
+
+# ─────────────────────────────────────────────────────────────
+# CLI
+# ─────────────────────────────────────────────────────────────
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(
+        description="NucleusGrid HFBTHO wrapper for Mc stability study"
+    )
+    parser.add_argument("--binary", default=None,
+        help="Path to compiled hfbtho_main binary")
+    parser.add_argument("--isotope", type=int, default=None,
+        help="Single isotope A to run (e.g. 299)")
+    parser.add_argument("--all", action="store_true",
+        help="Run full sweep Mc-285 to Mc-303")
+    parser.add_argument("--validate", action="store_true",
+        help="Validate models against Mc-286–290 experiment")
+    parser.add_argument("--integrate", action="store_true",
+        help="Convert hfbtho_results.json → phase2 format")
+    parser.add_argument("--test", action="store_true",
+        help="Run smoke test (no binary needed)")
+    parser.add_argument("--threads", type=int, default=1,
+        help="OMP_NUM_THREADS per calculation (default: 1)")
+    parser.add_argument("--functional", default=None,
+        help="Single functional to use (default: all)")
+    parser.add_argument("--output", default="hfbtho_results.json",
+        help="Output file for results")
+    parser.add_argument("--verbose", action="store_true")
+    args = parser.parse_args()
+
+    if args.test or args.binary is None:
+        smoke_test()
+
+    elif args.validate:
+        validate_against_experiment(args.binary, args.threads)
+
+    elif args.isotope:
+        Z = 115; N = args.isotope - Z
+        funcs = [args.functional] if args.functional else list(FUNCTIONALS.keys())
+        print(f"\nRunning Mc-{args.isotope} (N={N}) with {len(funcs)} functionals...")
+        results = []
+        for func in funcs:
+            for b2 in BETA2_GRID:
+                r = run_hfbtho(args.binary, Z, N, func,
+                                beta2=b2, threads=args.threads,
+                                verbose=args.verbose)
+                print(f"  {func} β₂={b2:+.2f}: BE={r.binding_energy_mev:.3f} "
+                      f"converged={r.converged}")
+                results.append(asdict(r))
+        with open(args.output, "w") as f:
+            json.dump(results, f, indent=2)
+        print(f"Saved {len(results)} results → {args.output}")
+
+    elif args.all:
+        funcs = [args.functional] if args.functional else list(FUNCTIONALS.keys())
+        run_full_sweep(
+            binary=args.binary,
+            functionals=funcs,
+            threads=args.threads,
+            output_file=args.output,
+            verbose=args.verbose,
+        )
+
+    elif args.integrate:
+        convert_to_phase2_format(
+            hfbtho_results_file=args.output,
+            model_weights_file="model_weights.json",
+        )
