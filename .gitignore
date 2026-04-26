@@ -1,0 +1,8 @@
+hfbtho/hfbtho_main
+hfbtho/thoout.dat
+hfbtho/hfbtho_output.hel
+__pycache__/
+*.pyc
+*.log
+nucleusgrid_results.json
+q_alpha_results.json
