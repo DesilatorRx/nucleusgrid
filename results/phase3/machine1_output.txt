@@ -119,3 +119,56 @@ Mc PES sweep: Mc-285..290 (full 8-pt) + Mc-291..299 (7-pt, no β₂=0)
 [98/888 11%] Mc-298 (Z=115 N=183 A=298 UNE1 β₂=-0.2)... FAILED (exit=134)
 [99/888 11%] Mc-298 (Z=115 N=183 A=298 UNE1 β₂=-0.1)... OK BE=-2116.917458 β₂=-0.000019 iters=110 CPU=minutesmin
 [100/888 11%] Mc-298 (Z=115 N=183 A=298 UNE1 β₂=0.1)... OK BE=-2116.917456 β₂=-0.000000 iters=93 CPU=minutesmin
+  [progress: pushed 100/888 to GitHub]
+[101/888 11%] Mc-298 (Z=115 N=183 A=298 UNE1 β₂=0.15)... OK BE=-2116.917457 β₂=0.000010 iters=91 CPU=minutesmin
+[102/888 11%] Mc-298 (Z=115 N=183 A=298 UNE1 β₂=0.2)... OK BE=-2106.646409 β₂=0.269843 iters=453 CPU=minutesmin
+[103/888 11%] Mc-298 (Z=115 N=183 A=298 UNE1 β₂=0.25)... OK BE=-2106.646408 β₂=0.269865 iters=186 CPU=minutesmin
+[104/888 11%] Mc-298 (Z=115 N=183 A=298 UNE1 β₂=0.3)... OK BE=-2114.759094 β₂=0.490358 iters=91 CPU=minutesmin
+[105/888 11%] Mc-299 (Z=115 N=184 A=299 UNE1 β₂=-0.2)... OK BE=-2118.672789 β₂=-0.167998 iters=92 CPU=minutesmin
+[106/888 11%] Mc-299 (Z=115 N=184 A=299 UNE1 β₂=-0.1)... OK BE=-2122.776035 β₂=-0.000007 iters=79 CPU=minutesmin
+[107/888 12%] Mc-299 (Z=115 N=184 A=299 UNE1 β₂=0.1)... OK BE=-2122.776035 β₂=0.000012 iters=55 CPU=minutesmin
+[108/888 12%] Mc-299 (Z=115 N=184 A=299 UNE1 β₂=0.15)... OK BE=-2122.776034 β₂=0.000004 iters=75 CPU=minutesmin
+[109/888 12%] Mc-299 (Z=115 N=184 A=299 UNE1 β₂=0.2)... FAILED (exit=0)
+[110/888 12%] Mc-299 (Z=115 N=184 A=299 UNE1 β₂=0.25)... OK BE=-2112.394376 β₂=0.264933 iters=204 CPU=minutesmin
+[111/888 12%] Mc-299 (Z=115 N=184 A=299 UNE1 β₂=0.3)... OK BE=-2120.430212 β₂=0.497633 iters=102 CPU=minutesmin
+
+  Functional: SLY4 (Mc-285..290 full sweep)
+[112/888 12%] Mc-285 (Z=115 N=170 A=285 SLY4 β₂=-0.2)... OK BE=-2022.036510 β₂=-0.145146 iters=28 CPU=minutesmin
+[113/888 12%] Mc-285 (Z=115 N=170 A=285 SLY4 β₂=-0.1)... OK BE=-2022.036520 β₂=-0.145129 iters=27 CPU=minutesmin
+[114/888 12%] Mc-285 (Z=115 N=170 A=285 SLY4 β₂=0.0)... OK BE=-2019.590037 β₂=0.000000 iters=18 CPU=minutesmin
+[115/888 12%] Mc-285 (Z=115 N=170 A=285 SLY4 β₂=0.1)... OK BE=-2023.537517 β₂=0.161086 iters=32 CPU=minutesmin
+[116/888 13%] Mc-285 (Z=115 N=170 A=285 SLY4 β₂=0.15)... OK BE=-2023.537503 β₂=0.161076 iters=34 CPU=minutesmin
+[117/888 13%] Mc-285 (Z=115 N=170 A=285 SLY4 β₂=0.2)... OK BE=-2023.537477 β₂=0.161075 iters=29 CPU=minutesmin
+[118/888 13%] Mc-285 (Z=115 N=170 A=285 SLY4 β₂=0.25)... OK BE=-2023.537532 β₂=0.161096 iters=48 CPU=minutesmin
+[119/888 13%] Mc-285 (Z=115 N=170 A=285 SLY4 β₂=0.3)... OK BE=-2020.826858 β₂=0.478849 iters=80 CPU=minutesmin
+[120/888 13%] Mc-286 (Z=115 N=171 A=286 SLY4 β₂=-0.2)... OK BE=-2029.334048 β₂=-0.141564 iters=27 CPU=minutesmin
+[121/888 13%] Mc-286 (Z=115 N=171 A=286 SLY4 β₂=-0.1)... OK BE=-2029.334058 β₂=-0.141544 iters=28 CPU=minutesmin
+[122/888 13%] Mc-286 (Z=115 N=171 A=286 SLY4 β₂=0.0)... OK BE=-2027.013728 β₂=0.000000 iters=17 CPU=minutesmin
+[123/888 13%] Mc-286 (Z=115 N=171 A=286 SLY4 β₂=0.1)... OK BE=-2030.523319 β₂=0.150576 iters=27 CPU=minutesmin
+[124/888 13%] Mc-286 (Z=115 N=171 A=286 SLY4 β₂=0.15)... OK BE=-2030.523327 β₂=0.150576 iters=28 CPU=minutesmin
+[125/888 14%] Mc-286 (Z=115 N=171 A=286 SLY4 β₂=0.2)... OK BE=-2030.523348 β₂=0.150590 iters=25 CPU=minutesmin
+[126/888 14%] Mc-286 (Z=115 N=171 A=286 SLY4 β₂=0.25)... OK BE=-2030.523364 β₂=0.150605 iters=53 CPU=minutesmin
+[127/888 14%] Mc-286 (Z=115 N=171 A=286 SLY4 β₂=0.3)... OK BE=-2027.768637 β₂=0.479539 iters=51 CPU=minutesmin
+[128/888 14%] Mc-287 (Z=115 N=172 A=287 SLY4 β₂=-0.2)... OK BE=-2036.476792 β₂=-0.136395 iters=27 CPU=minutesmin
+[129/888 14%] Mc-287 (Z=115 N=172 A=287 SLY4 β₂=-0.1)... OK BE=-2036.476800 β₂=-0.136374 iters=28 CPU=minutesmin
+[130/888 14%] Mc-287 (Z=115 N=172 A=287 SLY4 β₂=0.0)... OK BE=-2034.356540 β₂=0.000000 iters=17 CPU=minutesmin
+[131/888 14%] Mc-287 (Z=115 N=172 A=287 SLY4 β₂=0.1)... OK BE=-2037.451489 β₂=0.141367 iters=28 CPU=minutesmin
+[132/888 14%] Mc-287 (Z=115 N=172 A=287 SLY4 β₂=0.15)... OK BE=-2037.451485 β₂=0.141365 iters=29 CPU=minutesmin
+[133/888 14%] Mc-287 (Z=115 N=172 A=287 SLY4 β₂=0.2)... OK BE=-2037.451514 β₂=0.141370 iters=25 CPU=minutesmin
+[134/888 15%] Mc-287 (Z=115 N=172 A=287 SLY4 β₂=0.25)... OK BE=-2037.451520 β₂=0.141377 iters=62 CPU=minutesmin
+[135/888 15%] Mc-287 (Z=115 N=172 A=287 SLY4 β₂=0.3)... OK BE=-2034.592495 β₂=0.479923 iters=34 CPU=minutesmin
+[136/888 15%] Mc-288 (Z=115 N=173 A=288 SLY4 β₂=-0.2)... OK BE=-2043.472820 β₂=-0.129235 iters=26 CPU=minutesmin
+[137/888 15%] Mc-288 (Z=115 N=173 A=288 SLY4 β₂=-0.1)... OK BE=-2043.472832 β₂=-0.129219 iters=31 CPU=minutesmin
+[138/888 15%] Mc-288 (Z=115 N=173 A=288 SLY4 β₂=0.0)... OK BE=-2041.614496 β₂=0.000000 iters=17 CPU=minutesmin
+[139/888 15%] Mc-288 (Z=115 N=173 A=288 SLY4 β₂=0.1)... OK BE=-2044.255347 β₂=0.134112 iters=29 CPU=minutesmin
+[140/888 15%] Mc-288 (Z=115 N=173 A=288 SLY4 β₂=0.15)... OK BE=-2044.255356 β₂=0.134113 iters=28 CPU=minutesmin
+[141/888 15%] Mc-288 (Z=115 N=173 A=288 SLY4 β₂=0.2)... OK BE=-2044.255366 β₂=0.134101 iters=25 CPU=minutesmin
+[142/888 15%] Mc-288 (Z=115 N=173 A=288 SLY4 β₂=0.25)... OK BE=-2044.255396 β₂=0.134115 iters=62 CPU=minutesmin
+[143/888 16%] Mc-288 (Z=115 N=173 A=288 SLY4 β₂=0.3)... OK BE=-2041.298536 β₂=0.479844 iters=32 CPU=minutesmin
+[144/888 16%] Mc-289 (Z=115 N=174 A=289 SLY4 β₂=-0.2)... OK BE=-2050.354376 β₂=-0.121337 iters=27 CPU=minutesmin
+[145/888 16%] Mc-289 (Z=115 N=174 A=289 SLY4 β₂=-0.1)... OK BE=-2050.354388 β₂=-0.121321 iters=30 CPU=minutesmin
+[146/888 16%] Mc-289 (Z=115 N=174 A=289 SLY4 β₂=0.0)... OK BE=-2048.700671 β₂=0.000000 iters=17 CPU=minutesmin
+[147/888 16%] Mc-289 (Z=115 N=174 A=289 SLY4 β₂=0.1)... OK BE=-2050.870167 β₂=0.126548 iters=29 CPU=minutesmin
+[148/888 16%] Mc-289 (Z=115 N=174 A=289 SLY4 β₂=0.15)... OK BE=-2050.870177 β₂=0.126563 iters=30 CPU=minutesmin
+[149/888 16%] Mc-289 (Z=115 N=174 A=289 SLY4 β₂=0.2)... OK BE=-2050.870184 β₂=0.126556 iters=28 CPU=minutesmin
+[150/888 16%] Mc-289 (Z=115 N=174 A=289 SLY4 β₂=0.25)... OK BE=-2050.870222 β₂=0.126579 iters=66 CPU=minutesmin
