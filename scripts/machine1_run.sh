@@ -46,10 +46,110 @@ echo "Total planned:  $TOTAL runs"
 echo "Progress push:  every $PUSH_INTERVAL runs (set PUSH_INTERVAL=0 to disable)"
 echo "============================================================"
 
-echo "[" > "$JSONFILE"
-> "$JSONLFILE"
+# ============================================================
+# Resume support: if $JSONFILE already exists with converged
+# entries, keep them, drop failed entries, and skip those keys
+# during this run. Otherwise start a fresh JSON array. The
+# streaming JSONL is truncated on fresh start and preserved on
+# resume so it stays aligned with whatever JSONFILE entries we
+# keep.
+# ============================================================
+SKIP_KEYS_FILE="$(mktemp)"
+trap 'rm -f "$SKIP_KEYS_FILE"' EXIT
+
 FIRST_ENTRY=1
 RUN_COUNT=0
+SKIP_COUNT=0
+
+if [ -s "$JSONFILE" ]; then
+    echo ""
+    echo "Found existing $JSONFILE — scanning for converged entries..."
+    if python3 - "$JSONFILE" "$SKIP_KEYS_FILE" "$JSONFILE.resume.tmp" << 'PYEOF'
+import json, sys
+from pathlib import Path
+
+src = Path(sys.argv[1])
+keys_out = Path(sys.argv[2])
+json_out = Path(sys.argv[3])
+
+raw = src.read_text().rstrip()
+# The script writes entries as "  {...}\n,\n  {...}\n" with no trailing ].
+# Recover by trimming any trailing comma/whitespace and appending ].
+recovered = raw.rstrip(',').rstrip()
+if not recovered.endswith(']'):
+    recovered += '\n]'
+
+try:
+    entries = json.loads(recovered)
+except json.JSONDecodeError:
+    # Last entry may be partially written; truncate at last complete '}'
+    last = recovered.rfind('}')
+    if last < 0:
+        sys.exit(2)
+    truncated = recovered[:last+1].rstrip().rstrip(',') + '\n]'
+    entries = json.loads(truncated)
+
+converged = [e for e in entries if e.get('status') == 'converged']
+dropped   = len(entries) - len(converged)
+
+with keys_out.open('w') as f:
+    for e in converged:
+        b2 = e['beta2_input']
+        # Match the bash literal: "0.0", "-0.2", "0.15", etc.
+        b2_str = repr(b2) if isinstance(b2, float) else str(b2)
+        f.write(f"{e['Z']}|{e['N']}|{e['functional']}|{b2_str}\n")
+
+# Re-emit JSON with only converged entries, no trailing ] (so bash can append).
+with json_out.open('w') as f:
+    f.write('[')
+    for i, e in enumerate(converged):
+        if i > 0:
+            f.write('\n,')
+        be = e["BE_mev"]
+        be_str = "null" if be is None else repr(be)
+        f.write(f'''
+  {{
+    "label": "{e['label']}",
+    "Z": {e['Z']}, "N": {e['N']}, "A": {e['A']},
+    "functional": "{e['functional']}",
+    "beta2_input": {repr(e['beta2_input'])},
+    "beta2_output": "{e['beta2_output']}",
+    "BE_mev": {be_str},
+    "pairing_n": "{e['pairing_n']}",
+    "pairing_p": "{e['pairing_p']}",
+    "rms_fm": "{e['rms_fm']}",
+    "status": "{e['status']}",
+    "iterations": "{e['iterations']}",
+    "cpu_minutes": "{e['cpu_minutes']}",
+    "phase": "{e['phase']}",
+    "chain_parent": "{e['chain_parent']}"
+  }}''')
+
+print(f"  resume scan: {len(converged)} converged kept, {dropped} failed dropped (will retry)")
+PYEOF
+    then
+        mv "$JSONFILE.resume.tmp" "$JSONFILE"
+        SKIP_COUNT=$(wc -l < "$SKIP_KEYS_FILE")
+        if [ "$SKIP_COUNT" -gt 0 ]; then
+            FIRST_ENTRY=0
+            echo "  will skip $SKIP_COUNT already-converged calculations on this run"
+            # JSONL preserved as-is (streaming continues from prior session)
+        else
+            FIRST_ENTRY=1
+            echo "[" > "$JSONFILE"
+            > "$JSONLFILE"
+            echo "  no converged entries found — starting fresh"
+        fi
+    else
+        echo "  WARNING: resume scan failed — starting fresh"
+        echo "[" > "$JSONFILE"
+        > "$JSONLFILE"
+        FIRST_ENTRY=1
+    fi
+else
+    echo "[" > "$JSONFILE"
+    > "$JSONLFILE"
+fi
 
 push_progress() {
     [ "$PUSH_INTERVAL" -eq 0 ] && return 0
@@ -76,6 +176,14 @@ push_progress() {
 run_hfbtho() {
     local Z=$1 N=$2 FUNC=$3 BETA2=$4 LABEL=$5 PHASE=$6 CHAIN_PARENT=$7
     local A=$((Z + N))
+
+    # Resume: skip if this exact (Z, N, functional, beta2) already converged.
+    local KEY="$Z|$N|$FUNC|$BETA2"
+    if [ "$SKIP_COUNT" -gt 0 ] && grep -qxF "$KEY" "$SKIP_KEYS_FILE"; then
+        RUN_COUNT=$((RUN_COUNT + 1))
+        echo "[$RUN_COUNT] $LABEL (Z=$Z N=$N A=$A $FUNC β₂=$BETA2)... SKIP (already converged)"
+        return 0
+    fi
 
     cat > hfbtho_NAMELIST.dat << NAMELIST
 &HFBTHO_GENERAL
