@@ -79,12 +79,12 @@ run_hfbtho() {
 
     cat > hfbtho_NAMELIST.dat << NAMELIST
 &HFBTHO_GENERAL
- number_of_shells = 20, oscillator_length = -1.0, basis_deformation = 0.0,
+ number_of_shells = 16, oscillator_length = -1.0, basis_deformation = 0.0,
  proton_number = $Z, neutron_number = $N, type_of_calculation = 1 /
 &HFBTHO_INITIAL
  beta2_deformation = $BETA2, beta4_deformation = 0.0 /
 &HFBTHO_ITERATIONS
- number_iterations = 600, accuracy = 1.E-5, restart_file = 1 /
+ number_iterations = 600, accuracy = 1.E-4, restart_file = 1 /
 &HFBTHO_FUNCTIONAL
  functional = '$FUNC', add_initial_pairing = F, type_of_coulomb = 2 /
 &HFBTHO_PAIRING
