@@ -19,6 +19,15 @@ HFBTHO_DIR="$PROJECT_ROOT/hfbtho"
 HFBTHO_BIN="$HFBTHO_DIR/hfbtho_main"
 RESULTS_DIR="$PROJECT_ROOT/results/phase3"
 JSONFILE="$RESULTS_DIR/machine1_all.json"
+JSONLFILE="$RESULTS_DIR/machine1_all.jsonl"
+OUTPUTFILE="$RESULTS_DIR/machine1_output.txt"
+
+# 4 functionals × (6 nuclei × 8 β₂ points + 9 nuclei × 7 β₂ points) × 2 sides (Mc, Nh)
+TOTAL=$((  4 * (6*8 + 9*7) * 2 ))
+
+# Push progress to GitHub every PUSH_INTERVAL completed runs.
+# Set PUSH_INTERVAL=0 to disable progress pushes.
+PUSH_INTERVAL=${PUSH_INTERVAL:-50}
 
 mkdir -p "$RESULTS_DIR"
 cd "$HFBTHO_DIR" || { echo "FATAL: cannot cd to $HFBTHO_DIR"; exit 1; }
@@ -29,14 +38,40 @@ declare -A SYMBOL=( [115]=Mc [113]=Nh )
 STARTTIME=$(date)
 echo "============================================================"
 echo "NucleusGrid Phase 3 — Machine 1"
-echo "Started: $STARTTIME"
-echo "Binary:  $HFBTHO_BIN"
-echo "Output:  $JSONFILE"
+echo "Started:        $STARTTIME"
+echo "Binary:         $HFBTHO_BIN"
+echo "Output (JSON):  $JSONFILE  (finalised at end of run)"
+echo "Output (JSONL): $JSONLFILE (always-valid streaming)"
+echo "Total planned:  $TOTAL runs"
+echo "Progress push:  every $PUSH_INTERVAL runs (set PUSH_INTERVAL=0 to disable)"
 echo "============================================================"
 
 echo "[" > "$JSONFILE"
+> "$JSONLFILE"
 FIRST_ENTRY=1
 RUN_COUNT=0
+
+push_progress() {
+    [ "$PUSH_INTERVAL" -eq 0 ] && return 0
+    local PR="$PROJECT_ROOT" msg
+    git -C "$PR" add results/phase3/machine1_all.jsonl 2>/dev/null || true
+    [ -f "$OUTPUTFILE" ] && git -C "$PR" add results/phase3/machine1_output.txt 2>/dev/null || true
+    if git -C "$PR" diff --cached --quiet 2>/dev/null; then
+        return 0
+    fi
+    msg="Machine 1 progress: $RUN_COUNT/$TOTAL ($((100*RUN_COUNT/TOTAL))%)"
+    git -C "$PR" commit -m "$msg" --quiet 2>/dev/null || { echo "  [progress: commit failed]"; return 1; }
+    if ! git -C "$PR" pull --rebase --autostash origin main >/dev/null 2>&1; then
+        git -C "$PR" rebase --abort >/dev/null 2>&1 || true
+        echo "  [progress: rebase failed, skipping push this cycle]"
+        return 1
+    fi
+    if ! git -C "$PR" push origin main >/dev/null 2>&1; then
+        echo "  [progress: push failed (auth?), will retry next cycle]"
+        return 1
+    fi
+    echo "  [progress: pushed $RUN_COUNT/$TOTAL to GitHub]"
+}
 
 run_hfbtho() {
     local Z=$1 N=$2 FUNC=$3 BETA2=$4 LABEL=$5 PHASE=$6 CHAIN_PARENT=$7
@@ -82,7 +117,7 @@ run_hfbtho() {
 NAMELIST
 
     RUN_COUNT=$((RUN_COUNT + 1))
-    echo -n "[$RUN_COUNT] $LABEL (Z=$Z N=$N A=$A $FUNC β₂=$BETA2)... "
+    echo -n "[$RUN_COUNT/$TOTAL $((100*RUN_COUNT/TOTAL))%] $LABEL (Z=$Z N=$N A=$A $FUNC β₂=$BETA2)... "
 
     OUTPUT=$("$HFBTHO_BIN" 2>&1)
     EXIT=$?
@@ -128,6 +163,18 @@ NAMELIST
     "chain_parent": "$CHAIN_PARENT"
   }
 JSON
+
+    # Always-valid streaming companion: one compact JSON object per line.
+    {
+        cat << JSONL | tr -d '\n'
+{"label":"$LABEL","Z":$Z,"N":$N,"A":$A,"functional":"$FUNC","beta2_input":$BETA2,"beta2_output":"${BETA2_OUT:-null}","BE_mev":${BE:-null},"pairing_n":"${PAIR_N:-null}","pairing_p":"${PAIR_P:-null}","rms_fm":"${RMS:-null}","status":"$STATUS","iterations":"${ITERS:-null}","cpu_minutes":"${CPU:-null}","phase":"$PHASE","chain_parent":"$CHAIN_PARENT"}
+JSONL
+        echo
+    } >> "$JSONLFILE"
+
+    if [ "$PUSH_INTERVAL" -gt 0 ] && [ $((RUN_COUNT % PUSH_INTERVAL)) -eq 0 ]; then
+        push_progress
+    fi
 }
 
 FUNCTIONALS=("UNE1" "SLY4" "SKM*" "HFB9")
@@ -195,6 +242,21 @@ echo "]" >> "$JSONFILE"
 echo ""
 echo "============================================================"
 echo "Machine 1 finished: $(date)"
-echo "Total runs: $RUN_COUNT"
-echo "Results:    $JSONFILE"
+echo "Total runs: $RUN_COUNT/$TOTAL"
+echo "Results:    $JSONFILE  (final)"
+echo "Streaming:  $JSONLFILE"
 echo "============================================================"
+
+# Final push including the finalised .json array
+if [ "$PUSH_INTERVAL" -gt 0 ]; then
+    git -C "$PROJECT_ROOT" add results/phase3/machine1_all.json results/phase3/machine1_all.jsonl 2>/dev/null || true
+    [ -f "$OUTPUTFILE" ] && git -C "$PROJECT_ROOT" add results/phase3/machine1_output.txt 2>/dev/null || true
+    if ! git -C "$PROJECT_ROOT" diff --cached --quiet 2>/dev/null; then
+        git -C "$PROJECT_ROOT" commit -m "Machine 1 finished: $RUN_COUNT/$TOTAL runs complete" --quiet || true
+        git -C "$PROJECT_ROOT" pull --rebase --autostash origin main >/dev/null 2>&1 \
+            || git -C "$PROJECT_ROOT" rebase --abort >/dev/null 2>&1 || true
+        git -C "$PROJECT_ROOT" push origin main >/dev/null 2>&1 \
+            && echo "  [final push: results delivered to GitHub]" \
+            || echo "  [final push: failed — push manually]"
+    fi
+fi
