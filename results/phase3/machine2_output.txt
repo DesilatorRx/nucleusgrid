@@ -1,0 +1,356 @@
+============================================================
+NucleusGrid Phase 3 — Machine 2
+Started: Sun Apr 26 12:18:42 EDT 2026
+Binary:  /home/jordandesilets/nucleusgrid/hfbtho/hfbtho_main
+Output:  /home/jordandesilets/nucleusgrid/results/phase3/machine2_all.json
+============================================================
+
+------------------------------------------------------------
+PART 1: alpha decay chains Mc-291..299 (6 nuclei deep)
+------------------------------------------------------------
+
+  Functional: UNE1
+[1] Mc-291 (Z=115 N=176 A=291 UNE1 β₂=0.0)... OK BE=-2073.445189 β₂=0.000000 iters=44 CPU=minutesmin
+[2] Nh-287 (Z=113 N=174 A=287 UNE1 β₂=0.0)... OK BE=-2054.282043 β₂=-0.000000 iters=61 CPU=minutesmin
+[3] Rg-283 (Z=111 N=172 A=283 UNE1 β₂=0.0)... OK BE=-2034.129604 β₂=0.000000 iters=47 CPU=minutesmin
+[4] Mt-279 (Z=109 N=170 A=279 UNE1 β₂=0.0)... OK BE=-2013.512424 β₂=0.000000 iters=45 CPU=minutesmin
+[5] Bh-275 (Z=107 N=168 A=275 UNE1 β₂=0.0)... OK BE=-1992.507801 β₂=0.000001 iters=53 CPU=minutesmin
+[6] Db-271 (Z=105 N=166 A=271 UNE1 β₂=0.0)... OK BE=-1971.125884 β₂=0.000000 iters=54 CPU=minutesmin
+[7] Mc-292 (Z=115 N=177 A=292 UNE1 β₂=0.0)... OK BE=-2080.420351 β₂=0.000000 iters=47 CPU=minutesmin
+[8] Nh-288 (Z=113 N=175 A=288 UNE1 β₂=0.0)... OK BE=-2061.144647 β₂=-0.000000 iters=65 CPU=minutesmin
+[9] Rg-284 (Z=111 N=173 A=284 UNE1 β₂=0.0)... OK BE=-2040.869460 β₂=0.000000 iters=44 CPU=minutesmin
+[10] Mt-280 (Z=109 N=171 A=280 UNE1 β₂=0.0)... OK BE=-2020.113575 β₂=0.000000 iters=45 CPU=minutesmin
+[11] Bh-276 (Z=107 N=169 A=276 UNE1 β₂=0.0)... OK BE=-1998.974207 β₂=0.000000 iters=49 CPU=minutesmin
+[12] Db-272 (Z=105 N=167 A=272 UNE1 β₂=0.0)... OK BE=-1977.481094 β₂=0.000000 iters=53 CPU=minutesmin
+[13] Mc-293 (Z=115 N=178 A=293 UNE1 β₂=0.0)... OK BE=-2087.275425 β₂=0.000000 iters=49 CPU=minutesmin
+[14] Nh-289 (Z=113 N=176 A=289 UNE1 β₂=0.0)... OK BE=-2067.911591 β₂=0.000001 iters=65 CPU=minutesmin
+[15] Rg-285 (Z=111 N=174 A=285 UNE1 β₂=0.0)... OK BE=-2047.539448 β₂=0.000000 iters=44 CPU=minutesmin
+[16] Mt-281 (Z=109 N=172 A=281 UNE1 β₂=0.0)... OK BE=-2026.652019 β₂=0.000000 iters=46 CPU=minutesmin
+[17] Bh-277 (Z=107 N=170 A=277 UNE1 β₂=0.0)... OK BE=-2005.376398 β₂=-0.000000 iters=46 CPU=minutesmin
+[18] Db-273 (Z=105 N=168 A=273 UNE1 β₂=0.0)... OK BE=-1983.732093 β₂=0.000001 iters=52 CPU=minutesmin
+[19] Mc-294 (Z=115 N=179 A=294 UNE1 β₂=0.0)... OK BE=-2093.979886 β₂=0.000000 iters=52 CPU=minutesmin
+[20] Nh-290 (Z=113 N=177 A=290 UNE1 β₂=0.0)... OK BE=-2074.583912 β₂=0.000000 iters=62 CPU=minutesmin
+[21] Rg-286 (Z=111 N=175 A=286 UNE1 β₂=0.0)... OK BE=-2054.112712 β₂=0.000000 iters=43 CPU=minutesmin
+[22] Mt-282 (Z=109 N=173 A=282 UNE1 β₂=0.0)... OK BE=-2033.096166 β₂=0.000000 iters=45 CPU=minutesmin
+[23] Bh-278 (Z=107 N=171 A=278 UNE1 β₂=0.0)... OK BE=-2011.693165 β₂=0.000000 iters=46 CPU=minutesmin
+[24] Db-274 (Z=105 N=169 A=274 UNE1 β₂=0.0)... OK BE=-1989.906916 β₂=0.000001 iters=50 CPU=minutesmin
+[25] Mc-295 (Z=115 N=180 A=295 UNE1 β₂=0.0)... OK BE=-2100.492515 β₂=-0.000000 iters=46 CPU=minutesmin
+[26] Nh-291 (Z=113 N=178 A=291 UNE1 β₂=0.0)... OK BE=-2081.150075 β₂=-0.000000 iters=66 CPU=minutesmin
+[27] Rg-287 (Z=111 N=176 A=287 UNE1 β₂=0.0)... OK BE=-2060.602317 β₂=-0.000000 iters=45 CPU=minutesmin
+[28] Mt-283 (Z=109 N=174 A=283 UNE1 β₂=0.0)... OK BE=-2039.463307 β₂=0.000000 iters=40 CPU=minutesmin
+[29] Bh-279 (Z=107 N=172 A=279 UNE1 β₂=0.0)... OK BE=-2017.920920 β₂=0.000000 iters=43 CPU=minutesmin
+[30] Db-275 (Z=105 N=170 A=275 UNE1 β₂=0.0)... OK BE=-1996.006054 β₂=0.000000 iters=47 CPU=minutesmin
+[31] Mc-296 (Z=115 N=181 A=296 UNE1 β₂=0.0)... OK BE=-2106.829207 β₂=-0.000000 iters=46 CPU=minutesmin
+[32] Nh-292 (Z=113 N=179 A=292 UNE1 β₂=0.0)... OK BE=-2087.570145 β₂=-0.000000 iters=51 CPU=minutesmin
+[33] Rg-288 (Z=111 N=177 A=288 UNE1 β₂=0.0)... OK BE=-2067.014378 β₂=-0.000001 iters=47 CPU=minutesmin
+[34] Mt-284 (Z=109 N=175 A=284 UNE1 β₂=0.0)... OK BE=-2045.760853 β₂=-0.000000 iters=45 CPU=minutesmin
+[35] Bh-280 (Z=107 N=173 A=280 UNE1 β₂=0.0)... OK BE=-2024.073790 β₂=0.000000 iters=43 CPU=minutesmin
+[36] Db-276 (Z=105 N=171 A=276 UNE1 β₂=0.0)... OK BE=-2002.014618 β₂=-0.000000 iters=48 CPU=minutesmin
+[37] Mc-297 (Z=115 N=182 A=297 UNE1 β₂=0.0)... OK BE=-2113.014702 β₂=0.000000 iters=41 CPU=minutesmin
+[38] Nh-293 (Z=113 N=180 A=293 UNE1 β₂=0.0)... OK BE=-2093.808066 β₂=0.000000 iters=49 CPU=minutesmin
+[39] Rg-289 (Z=111 N=178 A=289 UNE1 β₂=0.0)... OK BE=-2073.310975 β₂=0.000000 iters=48 CPU=minutesmin
+[40] Mt-285 (Z=109 N=176 A=285 UNE1 β₂=0.0)... OK BE=-2051.975384 β₂=-0.000000 iters=43 CPU=minutesmin
+[41] Bh-281 (Z=107 N=174 A=281 UNE1 β₂=0.0)... OK BE=-2030.167535 β₂=-0.000000 iters=43 CPU=minutesmin
+[42] Db-277 (Z=105 N=172 A=277 UNE1 β₂=0.0)... OK BE=-2007.949311 β₂=-0.000000 iters=45 CPU=minutesmin
+[43] Mc-298 (Z=115 N=183 A=298 UNE1 β₂=0.0)... OK BE=-2119.048590 β₂=-0.000000 iters=42 CPU=minutesmin
+[44] Nh-294 (Z=113 N=181 A=294 UNE1 β₂=0.0)... OK BE=-2099.877100 β₂=-0.000000 iters=78 CPU=minutesmin
+[45] Rg-290 (Z=111 N=179 A=290 UNE1 β₂=0.0)... OK BE=-2079.476680 β₂=-0.000000 iters=56 CPU=minutesmin
+[46] Mt-286 (Z=109 N=177 A=286 UNE1 β₂=0.0)... OK BE=-2058.112596 β₂=-0.000000 iters=51 CPU=minutesmin
+[47] Bh-282 (Z=107 N=175 A=282 UNE1 β₂=0.0)... OK BE=-2036.171844 β₂=-0.000000 iters=44 CPU=minutesmin
+[48] Db-278 (Z=105 N=173 A=278 UNE1 β₂=0.0)... OK BE=-2013.838627 β₂=0.000000 iters=48 CPU=minutesmin
+[49] Mc-299 (Z=115 N=184 A=299 UNE1 β₂=0.0)... OK BE=-2124.919151 β₂=0.000000 iters=46 CPU=minutesmin
+[50] Nh-295 (Z=113 N=182 A=295 UNE1 β₂=0.0)... OK BE=-2105.796751 β₂=0.000000 iters=44 CPU=minutesmin
+[51] Rg-291 (Z=111 N=180 A=291 UNE1 β₂=0.0)... OK BE=-2085.472523 β₂=0.000000 iters=49 CPU=minutesmin
+[52] Mt-287 (Z=109 N=178 A=287 UNE1 β₂=0.0)... OK BE=-2064.144038 β₂=0.000000 iters=46 CPU=minutesmin
+[53] Bh-283 (Z=107 N=176 A=283 UNE1 β₂=0.0)... OK BE=-2042.107110 β₂=-0.000000 iters=45 CPU=minutesmin
+[54] Db-279 (Z=105 N=174 A=279 UNE1 β₂=0.0)... OK BE=-2019.629057 β₂=-0.000000 iters=43 CPU=minutesmin
+
+  Functional: SLY4
+[55] Mc-291 (Z=115 N=176 A=291 SLY4 β₂=0.0)... OK BE=-2063.738558 β₂=-0.000000 iters=23 CPU=minutesmin
+[56] Nh-287 (Z=113 N=174 A=287 SLY4 β₂=0.0)... OK BE=-2044.763254 β₂=-0.000000 iters=22 CPU=minutesmin
+[57] Rg-283 (Z=111 N=172 A=283 SLY4 β₂=0.0)... OK BE=-2025.146654 β₂=0.000000 iters=22 CPU=minutesmin
+[58] Mt-279 (Z=109 N=170 A=279 SLY4 β₂=0.0)... OK BE=-2004.999459 β₂=0.000000 iters=23 CPU=minutesmin
+[59] Bh-275 (Z=107 N=168 A=275 SLY4 β₂=0.0)... OK BE=-1984.383052 β₂=0.000000 iters=21 CPU=minutesmin
+[60] Db-271 (Z=105 N=166 A=271 SLY4 β₂=0.0)... OK BE=-1963.432548 β₂=0.000000 iters=20 CPU=minutesmin
+[61] Mc-292 (Z=115 N=177 A=292 SLY4 β₂=0.0)... OK BE=-2070.469751 β₂=-0.000000 iters=22 CPU=minutesmin
+[62] Nh-288 (Z=113 N=175 A=288 SLY4 β₂=0.0)... OK BE=-2051.410467 β₂=-0.000000 iters=22 CPU=minutesmin
+[63] Rg-284 (Z=111 N=173 A=284 SLY4 β₂=0.0)... OK BE=-2031.698450 β₂=0.000000 iters=22 CPU=minutesmin
+[64] Mt-280 (Z=109 N=171 A=280 SLY4 β₂=0.0)... OK BE=-2011.437748 β₂=0.000000 iters=22 CPU=minutesmin
+[65] Bh-276 (Z=107 N=169 A=276 SLY4 β₂=0.0)... OK BE=-1990.686404 β₂=0.000000 iters=21 CPU=minutesmin
+[66] Db-272 (Z=105 N=167 A=272 SLY4 β₂=0.0)... OK BE=-1969.589105 β₂=0.000000 iters=22 CPU=minutesmin
+[67] Mc-293 (Z=115 N=178 A=293 SLY4 β₂=0.0)... OK BE=-2077.028034 β₂=-0.000000 iters=23 CPU=minutesmin
+[68] Nh-289 (Z=113 N=176 A=289 SLY4 β₂=0.0)... OK BE=-2057.959363 β₂=-0.000000 iters=22 CPU=minutesmin
+[69] Rg-285 (Z=111 N=174 A=285 SLY4 β₂=0.0)... OK BE=-2038.111031 β₂=0.000000 iters=22 CPU=minutesmin
+[70] Mt-281 (Z=109 N=172 A=281 SLY4 β₂=0.0)... OK BE=-2017.736166 β₂=0.000000 iters=22 CPU=minutesmin
+[71] Bh-277 (Z=107 N=170 A=277 SLY4 β₂=0.0)... OK BE=-1996.895841 β₂=0.000000 iters=22 CPU=minutesmin
+[72] Db-273 (Z=105 N=168 A=273 SLY4 β₂=0.0)... OK BE=-1975.656368 β₂=0.000000 iters=21 CPU=minutesmin
+[73] Mc-294 (Z=115 N=179 A=294 SLY4 β₂=0.0)... OK BE=-2083.459883 β₂=-0.000000 iters=23 CPU=minutesmin
+[74] Nh-290 (Z=113 N=177 A=290 SLY4 β₂=0.0)... OK BE=-2064.340281 β₂=-0.000000 iters=22 CPU=minutesmin
+[75] Rg-286 (Z=111 N=175 A=286 SLY4 β₂=0.0)... OK BE=-2044.469786 β₂=-0.000000 iters=22 CPU=minutesmin
+[76] Mt-282 (Z=109 N=173 A=282 SLY4 β₂=0.0)... OK BE=-2023.932496 β₂=0.000000 iters=22 CPU=minutesmin
+[77] Bh-278 (Z=107 N=171 A=278 SLY4 β₂=0.0)... OK BE=-2002.965066 β₂=0.000000 iters=22 CPU=minutesmin
+[78] Db-274 (Z=105 N=169 A=274 SLY4 β₂=0.0)... OK BE=-1981.583373 β₂=0.000000 iters=21 CPU=minutesmin
+[79] Mc-295 (Z=115 N=180 A=295 SLY4 β₂=0.0)... OK BE=-2089.704212 β₂=-0.000000 iters=23 CPU=minutesmin
+[80] Nh-291 (Z=113 N=178 A=291 SLY4 β₂=0.0)... OK BE=-2070.617109 β₂=-0.000000 iters=23 CPU=minutesmin
+[81] Rg-287 (Z=111 N=176 A=287 SLY4 β₂=0.0)... OK BE=-2050.697737 β₂=-0.000000 iters=22 CPU=minutesmin
+[82] Mt-283 (Z=109 N=174 A=283 SLY4 β₂=0.0)... OK BE=-2030.089684 β₂=0.000000 iters=22 CPU=minutesmin
+[83] Bh-279 (Z=107 N=172 A=279 SLY4 β₂=0.0)... OK BE=-2009.006402 β₂=0.000000 iters=22 CPU=minutesmin
+[84] Db-275 (Z=105 N=170 A=275 SLY4 β₂=0.0)... OK BE=-1987.415105 β₂=0.000000 iters=21 CPU=minutesmin
+[85] Mc-296 (Z=115 N=181 A=296 SLY4 β₂=0.0)... OK BE=-2095.777035 β₂=-0.000000 iters=23 CPU=minutesmin
+[86] Nh-292 (Z=113 N=179 A=292 SLY4 β₂=0.0)... OK BE=-2076.715613 β₂=-0.000000 iters=23 CPU=minutesmin
+[87] Rg-288 (Z=111 N=177 A=288 SLY4 β₂=0.0)... OK BE=-2056.768901 β₂=-0.000000 iters=22 CPU=minutesmin
+[88] Mt-284 (Z=109 N=175 A=284 SLY4 β₂=0.0)... OK BE=-2036.120664 β₂=-0.000000 iters=22 CPU=minutesmin
+[89] Bh-280 (Z=107 N=173 A=280 SLY4 β₂=0.0)... OK BE=-2014.926601 β₂=0.000000 iters=22 CPU=minutesmin
+[90] Db-276 (Z=105 N=171 A=276 SLY4 β₂=0.0)... OK BE=-1993.278383 β₂=0.000000 iters=21 CPU=minutesmin
+[91] Mc-297 (Z=115 N=182 A=297 SLY4 β₂=0.0)... OK BE=-2101.666987 β₂=-0.000000 iters=23 CPU=minutesmin
+[92] Nh-293 (Z=113 N=180 A=293 SLY4 β₂=0.0)... OK BE=-2082.654645 β₂=-0.000000 iters=23 CPU=minutesmin
+[93] Rg-289 (Z=111 N=178 A=289 SLY4 β₂=0.0)... OK BE=-2062.709083 β₂=-0.000000 iters=22 CPU=minutesmin
+[94] Mt-285 (Z=109 N=176 A=285 SLY4 β₂=0.0)... OK BE=-2041.999691 β₂=-0.000000 iters=22 CPU=minutesmin
+[95] Bh-281 (Z=107 N=174 A=281 SLY4 β₂=0.0)... OK BE=-2020.700049 β₂=0.000000 iters=23 CPU=minutesmin
+[96] Db-277 (Z=105 N=172 A=277 SLY4 β₂=0.0)... OK BE=-1998.920954 β₂=0.000000 iters=22 CPU=minutesmin
+[97] Mc-298 (Z=115 N=183 A=298 SLY4 β₂=0.0)... OK BE=-2107.435123 β₂=0.000000 iters=23 CPU=minutesmin
+[98] Nh-294 (Z=113 N=181 A=294 SLY4 β₂=0.0)... OK BE=-2088.445484 β₂=-0.000000 iters=23 CPU=minutesmin
+[99] Rg-290 (Z=111 N=179 A=290 SLY4 β₂=0.0)... OK BE=-2068.505274 β₂=-0.000000 iters=22 CPU=minutesmin
+[100] Mt-286 (Z=109 N=177 A=286 SLY4 β₂=0.0)... OK BE=-2047.762162 β₂=-0.000000 iters=22 CPU=minutesmin
+[101] Bh-282 (Z=107 N=175 A=282 SLY4 β₂=0.0)... OK BE=-2026.371937 β₂=-0.000000 iters=22 CPU=minutesmin
+[102] Db-278 (Z=105 N=173 A=278 SLY4 β₂=0.0)... OK BE=-2004.468966 β₂=0.000000 iters=22 CPU=minutesmin
+[103] Mc-299 (Z=115 N=184 A=299 SLY4 β₂=0.0)... OK BE=-2112.839219 β₂=0.000000 iters=27 CPU=minutesmin
+[104] Nh-295 (Z=113 N=182 A=295 SLY4 β₂=0.0)... OK BE=-2094.099433 β₂=0.000000 iters=22 CPU=minutesmin
+[105] Rg-291 (Z=111 N=180 A=291 SLY4 β₂=0.0)... OK BE=-2074.196342 β₂=-0.000000 iters=22 CPU=minutesmin
+[106] Mt-287 (Z=109 N=178 A=287 SLY4 β₂=0.0)... OK BE=-2053.453354 β₂=-0.000000 iters=22 CPU=minutesmin
+[107] Bh-283 (Z=107 N=176 A=283 SLY4 β₂=0.0)... OK BE=-2031.972815 β₂=-0.000000 iters=21 CPU=minutesmin
+[108] Db-279 (Z=105 N=174 A=279 SLY4 β₂=0.0)... OK BE=-2009.921260 β₂=0.000000 iters=22 CPU=minutesmin
+
+  Functional: SKM*
+[109] Mc-291 (Z=115 N=176 A=291 SKM* β₂=0.0)... OK BE=-2062.546258 β₂=-0.000000 iters=25 CPU=minutesmin
+[110] Nh-287 (Z=113 N=174 A=287 SKM* β₂=0.0)... OK BE=-2044.701448 β₂=-0.000000 iters=25 CPU=minutesmin
+[111] Rg-283 (Z=111 N=172 A=283 SKM* β₂=0.0)... OK BE=-2026.111138 β₂=-0.000000 iters=23 CPU=minutesmin
+[112] Mt-279 (Z=109 N=170 A=279 SKM* β₂=0.0)... OK BE=-2006.949471 β₂=-0.000000 iters=23 CPU=minutesmin
+[113] Bh-275 (Z=107 N=168 A=275 SKM* β₂=0.0)... OK BE=-1987.243772 β₂=-0.000000 iters=23 CPU=minutesmin
+[114] Db-271 (Z=105 N=166 A=271 SKM* β₂=0.0)... OK BE=-1966.989056 β₂=-0.000000 iters=23 CPU=minutesmin
+[115] Mc-292 (Z=115 N=177 A=292 SKM* β₂=0.0)... OK BE=-2069.780215 β₂=-0.000000 iters=23 CPU=minutesmin
+[116] Nh-288 (Z=113 N=175 A=288 SKM* β₂=0.0)... OK BE=-2051.798387 β₂=-0.000000 iters=25 CPU=minutesmin
+[117] Rg-284 (Z=111 N=173 A=284 SKM* β₂=0.0)... OK BE=-2033.142931 β₂=-0.000000 iters=23 CPU=minutesmin
+[118] Mt-280 (Z=109 N=171 A=280 SKM* β₂=0.0)... OK BE=-2013.827415 β₂=-0.000000 iters=23 CPU=minutesmin
+[119] Bh-276 (Z=107 N=169 A=276 SKM* β₂=0.0)... OK BE=-1994.020794 β₂=-0.000000 iters=23 CPU=minutesmin
+[120] Db-272 (Z=105 N=167 A=272 SKM* β₂=0.0)... OK BE=-1973.691476 β₂=-0.000000 iters=22 CPU=minutesmin
+[121] Mc-293 (Z=115 N=178 A=293 SKM* β₂=0.0)... OK BE=-2076.864691 β₂=-0.000000 iters=25 CPU=minutesmin
+[122] Nh-289 (Z=113 N=176 A=289 SKM* β₂=0.0)... OK BE=-2058.853112 β₂=-0.000000 iters=23 CPU=minutesmin
+[123] Rg-285 (Z=111 N=174 A=285 SKM* β₂=0.0)... OK BE=-2040.039188 β₂=-0.000000 iters=23 CPU=minutesmin
+[124] Mt-281 (Z=109 N=172 A=281 SKM* β₂=0.0)... OK BE=-2020.662759 β₂=-0.000000 iters=23 CPU=minutesmin
+[125] Bh-277 (Z=107 N=170 A=277 SKM* β₂=0.0)... OK BE=-2000.753836 β₂=-0.000000 iters=23 CPU=minutesmin
+[126] Db-273 (Z=105 N=168 A=273 SKM* β₂=0.0)... OK BE=-1980.276950 β₂=-0.000000 iters=22 CPU=minutesmin
+[127] Mc-294 (Z=115 N=179 A=294 SKM* β₂=0.0)... OK BE=-2083.802434 β₂=-0.000000 iters=25 CPU=minutesmin
+[128] Nh-290 (Z=113 N=177 A=290 SKM* β₂=0.0)... OK BE=-2065.815187 β₂=-0.000000 iters=23 CPU=minutesmin
+[129] Rg-286 (Z=111 N=175 A=286 SKM* β₂=0.0)... OK BE=-2046.841200 β₂=-0.000000 iters=24 CPU=minutesmin
+[130] Mt-282 (Z=109 N=173 A=282 SKM* β₂=0.0)... OK BE=-2027.356757 β₂=-0.000000 iters=23 CPU=minutesmin
+[131] Bh-278 (Z=107 N=171 A=278 SKM* β₂=0.0)... OK BE=-2007.335713 β₂=-0.000000 iters=23 CPU=minutesmin
+[132] Db-274 (Z=105 N=169 A=274 SKM* β₂=0.0)... OK BE=-1986.816246 β₂=-0.000000 iters=23 CPU=minutesmin
+[133] Mc-295 (Z=115 N=180 A=295 SKM* β₂=0.0)... OK BE=-2090.583958 β₂=-0.000000 iters=19 CPU=minutesmin
+[134] Nh-291 (Z=113 N=178 A=291 SKM* β₂=0.0)... OK BE=-2072.610031 β₂=-0.000000 iters=23 CPU=minutesmin
+[135] Rg-287 (Z=111 N=176 A=287 SKM* β₂=0.0)... OK BE=-2053.673926 β₂=-0.000000 iters=23 CPU=minutesmin
+[136] Mt-283 (Z=109 N=174 A=283 SKM* β₂=0.0)... OK BE=-2033.995830 β₂=-0.000000 iters=23 CPU=minutesmin
+[137] Bh-279 (Z=107 N=172 A=279 SKM* β₂=0.0)... OK BE=-2013.826251 β₂=-0.000000 iters=23 CPU=minutesmin
+[138] Db-275 (Z=105 N=170 A=275 SKM* β₂=0.0)... OK BE=-1993.196544 β₂=-0.000000 iters=23 CPU=minutesmin
+[139] Mc-296 (Z=115 N=181 A=296 SKM* β₂=0.0)... OK BE=-2097.220217 β₂=-0.000000 iters=23 CPU=minutesmin
+[140] Nh-292 (Z=113 N=179 A=292 SKM* β₂=0.0)... OK BE=-2079.235247 β₂=-0.000000 iters=25 CPU=minutesmin
+[141] Rg-288 (Z=111 N=177 A=288 SKM* β₂=0.0)... OK BE=-2060.306765 β₂=-0.000000 iters=24 CPU=minutesmin
+[142] Mt-284 (Z=109 N=175 A=284 SKM* β₂=0.0)... OK BE=-2040.616209 β₂=-0.000000 iters=23 CPU=minutesmin
+[143] Bh-280 (Z=107 N=173 A=280 SKM* β₂=0.0)... OK BE=-2020.297360 β₂=-0.000000 iters=23 CPU=minutesmin
+[144] Db-276 (Z=105 N=171 A=276 SKM* β₂=0.0)... OK BE=-1999.483556 β₂=-0.000000 iters=23 CPU=minutesmin
+[145] Mc-297 (Z=115 N=182 A=297 SKM* β₂=0.0)... OK BE=-2103.642873 β₂=-0.000000 iters=24 CPU=minutesmin
+[146] Nh-293 (Z=113 N=180 A=293 SKM* β₂=0.0)... OK BE=-2085.747746 β₂=-0.000000 iters=23 CPU=minutesmin
+[147] Rg-289 (Z=111 N=178 A=289 SKM* β₂=0.0)... OK BE=-2066.786906 β₂=-0.000000 iters=25 CPU=minutesmin
+[148] Mt-285 (Z=109 N=176 A=285 SKM* β₂=0.0)... OK BE=-2047.069346 β₂=-0.000000 iters=23 CPU=minutesmin
+[149] Bh-281 (Z=107 N=174 A=281 SKM* β₂=0.0)... OK BE=-2026.739458 β₂=-0.000000 iters=23 CPU=minutesmin
+[150] Db-277 (Z=105 N=172 A=277 SKM* β₂=0.0)... OK BE=-2005.754079 β₂=-0.000000 iters=23 CPU=minutesmin
+[151] Mc-298 (Z=115 N=183 A=298 SKM* β₂=0.0)... OK BE=-2109.891819 β₂=0.000000 iters=24 CPU=minutesmin
+[152] Nh-294 (Z=113 N=181 A=294 SKM* β₂=0.0)... OK BE=-2092.058490 β₂=-0.000000 iters=22 CPU=minutesmin
+[153] Rg-290 (Z=111 N=179 A=290 SKM* β₂=0.0)... OK BE=-2073.198625 β₂=-0.000000 iters=23 CPU=minutesmin
+[154] Mt-286 (Z=109 N=177 A=286 SKM* β₂=0.0)... OK BE=-2053.380062 β₂=-0.000000 iters=23 CPU=minutesmin
+[155] Bh-282 (Z=107 N=175 A=282 SKM* β₂=0.0)... OK BE=-2032.959648 β₂=-0.000000 iters=23 CPU=minutesmin
+[156] Db-278 (Z=105 N=173 A=278 SKM* β₂=0.0)... OK BE=-2012.000000 β₂=-0.000000 iters=23 CPU=minutesmin
+[157] Mc-299 (Z=115 N=184 A=299 SKM* β₂=0.0)... OK BE=-2115.960608 β₂=0.000000 iters=31 CPU=minutesmin
+[158] Nh-295 (Z=113 N=182 A=295 SKM* β₂=0.0)... OK BE=-2098.239389 β₂=0.000000 iters=24 CPU=minutesmin
+[159] Rg-291 (Z=111 N=180 A=291 SKM* β₂=0.0)... OK BE=-2079.393557 β₂=-0.000000 iters=23 CPU=minutesmin
+[160] Mt-287 (Z=109 N=178 A=287 SKM* β₂=0.0)... OK BE=-2059.633653 β₂=-0.000000 iters=23 CPU=minutesmin
+[161] Bh-283 (Z=107 N=176 A=283 SKM* β₂=0.0)... OK BE=-2039.148638 β₂=-0.000000 iters=24 CPU=minutesmin
+[162] Db-279 (Z=105 N=174 A=279 SKM* β₂=0.0)... OK BE=-2018.020153 β₂=-0.000000 iters=23 CPU=minutesmin
+
+  Functional: HFB9
+[163] Mc-291 (Z=115 N=176 A=291 HFB9 β₂=0.0)... OK BE=-2075.136823 β₂=-0.000000 iters=24 CPU=minutesmin
+[164] Nh-287 (Z=113 N=174 A=287 HFB9 β₂=0.0)... OK BE=-2056.402883 β₂=0.000000 iters=25 CPU=minutesmin
+[165] Rg-283 (Z=111 N=172 A=283 HFB9 β₂=0.0)... OK BE=-2036.913519 β₂=-0.000000 iters=24 CPU=minutesmin
+[166] Mt-279 (Z=109 N=170 A=279 HFB9 β₂=0.0)... OK BE=-2016.847578 β₂=-0.000000 iters=23 CPU=minutesmin
+[167] Bh-275 (Z=107 N=168 A=275 HFB9 β₂=0.0)... OK BE=-1996.305955 β₂=-0.000000 iters=23 CPU=minutesmin
+[168] Db-271 (Z=105 N=166 A=271 HFB9 β₂=0.0)... OK BE=-1975.317215 β₂=-0.000000 iters=23 CPU=minutesmin
+[169] Mc-292 (Z=115 N=177 A=292 HFB9 β₂=0.0)... OK BE=-2082.173247 β₂=-0.000000 iters=24 CPU=minutesmin
+[170] Nh-288 (Z=113 N=175 A=288 HFB9 β₂=0.0)... OK BE=-2063.347944 β₂=-0.000000 iters=24 CPU=minutesmin
+[171] Rg-284 (Z=111 N=173 A=284 HFB9 β₂=0.0)... OK BE=-2043.746037 β₂=-0.000000 iters=24 CPU=minutesmin
+[172] Mt-280 (Z=109 N=171 A=280 HFB9 β₂=0.0)... OK BE=-2023.590679 β₂=-0.000000 iters=24 CPU=minutesmin
+[173] Bh-276 (Z=107 N=169 A=276 HFB9 β₂=0.0)... OK BE=-2002.910331 β₂=-0.000000 iters=23 CPU=minutesmin
+[174] Db-272 (Z=105 N=167 A=272 HFB9 β₂=0.0)... OK BE=-1981.804376 β₂=-0.000000 iters=24 CPU=minutesmin
+[175] Mc-293 (Z=115 N=178 A=293 HFB9 β₂=0.0)... OK BE=-2089.085939 β₂=-0.000000 iters=24 CPU=minutesmin
+[176] Nh-289 (Z=113 N=176 A=289 HFB9 β₂=0.0)... OK BE=-2070.193873 β₂=-0.000000 iters=24 CPU=minutesmin
+[177] Rg-285 (Z=111 N=174 A=285 HFB9 β₂=0.0)... OK BE=-2050.486912 β₂=-0.000000 iters=24 CPU=minutesmin
+[178] Mt-281 (Z=109 N=172 A=281 HFB9 β₂=0.0)... OK BE=-2030.207490 β₂=-0.000000 iters=24 CPU=minutesmin
+[179] Bh-277 (Z=107 N=170 A=277 HFB9 β₂=0.0)... OK BE=-2009.398982 β₂=-0.000000 iters=23 CPU=minutesmin
+[180] Db-273 (Z=105 N=168 A=273 HFB9 β₂=0.0)... OK BE=-1988.166799 β₂=-0.000000 iters=23 CPU=minutesmin
+[181] Mc-294 (Z=115 N=179 A=294 HFB9 β₂=0.0)... OK BE=-2095.852471 β₂=-0.000000 iters=24 CPU=minutesmin
+[182] Nh-290 (Z=113 N=177 A=290 HFB9 β₂=0.0)... OK BE=-2076.933541 β₂=-0.000000 iters=24 CPU=minutesmin
+[183] Rg-286 (Z=111 N=175 A=286 HFB9 β₂=0.0)... OK BE=-2057.155916 β₂=-0.000000 iters=24 CPU=minutesmin
+[184] Mt-282 (Z=109 N=173 A=282 HFB9 β₂=0.0)... OK BE=-2036.735016 β₂=-0.000000 iters=24 CPU=minutesmin
+[185] Bh-278 (Z=107 N=171 A=278 HFB9 β₂=0.0)... OK BE=-2015.796520 β₂=-0.000000 iters=23 CPU=minutesmin
+[186] Db-274 (Z=105 N=169 A=274 HFB9 β₂=0.0)... OK BE=-1994.432375 β₂=-0.000000 iters=23 CPU=minutesmin
+[187] Mc-295 (Z=115 N=180 A=295 HFB9 β₂=0.0)... OK BE=-2102.453237 β₂=-0.000000 iters=24 CPU=minutesmin
+[188] Nh-291 (Z=113 N=178 A=291 HFB9 β₂=0.0)... OK BE=-2083.553331 β₂=-0.000000 iters=24 CPU=minutesmin
+[189] Rg-287 (Z=111 N=176 A=287 HFB9 β₂=0.0)... OK BE=-2063.706620 β₂=-0.000000 iters=24 CPU=minutesmin
+[190] Mt-283 (Z=109 N=174 A=283 HFB9 β₂=0.0)... OK BE=-2043.174102 β₂=-0.000000 iters=24 CPU=minutesmin
+[191] Bh-279 (Z=107 N=172 A=279 HFB9 β₂=0.0)... OK BE=-2022.106170 β₂=-0.000000 iters=23 CPU=minutesmin
+[192] Db-275 (Z=105 N=170 A=275 HFB9 β₂=0.0)... OK BE=-2000.605890 β₂=-0.000000 iters=23 CPU=minutesmin
+[193] Mc-296 (Z=115 N=181 A=296 HFB9 β₂=0.0)... OK BE=-2108.883803 β₂=-0.000000 iters=23 CPU=minutesmin
+[194] Nh-292 (Z=113 N=179 A=292 HFB9 β₂=0.0)... OK BE=-2090.032163 β₂=-0.000000 iters=23 CPU=minutesmin
+[195] Rg-288 (Z=111 N=177 A=288 HFB9 β₂=0.0)... OK BE=-2070.154651 β₂=-0.000000 iters=24 CPU=minutesmin
+[196] Mt-284 (Z=109 N=175 A=284 HFB9 β₂=0.0)... OK BE=-2049.523967 β₂=-0.000000 iters=24 CPU=minutesmin
+[197] Bh-280 (Z=107 N=173 A=280 HFB9 β₂=0.0)... OK BE=-2028.329973 β₂=-0.000000 iters=23 CPU=minutesmin
+[198] Db-276 (Z=105 N=171 A=276 HFB9 β₂=0.0)... OK BE=-2006.691606 β₂=-0.000000 iters=22 CPU=minutesmin
+[199] Mc-297 (Z=115 N=182 A=297 HFB9 β₂=0.0)... OK BE=-2115.147468 β₂=0.000000 iters=23 CPU=minutesmin
+[200] Nh-293 (Z=113 N=180 A=293 HFB9 β₂=0.0)... OK BE=-2096.350921 β₂=-0.000000 iters=24 CPU=minutesmin
+[201] Rg-289 (Z=111 N=178 A=289 HFB9 β₂=0.0)... OK BE=-2076.487162 β₂=-0.000000 iters=24 CPU=minutesmin
+[202] Mt-285 (Z=109 N=176 A=285 HFB9 β₂=0.0)... OK BE=-2055.781549 β₂=-0.000000 iters=24 CPU=minutesmin
+[203] Bh-281 (Z=107 N=174 A=281 HFB9 β₂=0.0)... OK BE=-2034.468681 β₂=-0.000000 iters=23 CPU=minutesmin
+[204] Db-277 (Z=105 N=172 A=277 HFB9 β₂=0.0)... OK BE=-2012.692497 β₂=-0.000000 iters=23 CPU=minutesmin
+[205] Mc-298 (Z=115 N=183 A=298 HFB9 β₂=0.0)... OK BE=-2121.257008 β₂=0.000000 iters=24 CPU=minutesmin
+[206] Nh-294 (Z=113 N=181 A=294 HFB9 β₂=0.0)... OK BE=-2102.504195 β₂=-0.000000 iters=23 CPU=minutesmin
+[207] Rg-290 (Z=111 N=179 A=290 HFB9 β₂=0.0)... OK BE=-2082.684438 β₂=-0.000000 iters=23 CPU=minutesmin
+[208] Mt-286 (Z=109 N=177 A=286 HFB9 β₂=0.0)... OK BE=-2061.940244 β₂=-0.000000 iters=24 CPU=minutesmin
+[209] Bh-282 (Z=107 N=175 A=282 HFB9 β₂=0.0)... OK BE=-2040.549337 β₂=-0.000000 iters=23 CPU=minutesmin
+[210] Db-278 (Z=105 N=173 A=278 HFB9 β₂=0.0)... OK BE=-2018.610417 β₂=-0.000000 iters=23 CPU=minutesmin
+[211] Mc-299 (Z=115 N=184 A=299 HFB9 β₂=0.0)... OK BE=-2127.182868 β₂=0.000000 iters=26 CPU=minutesmin
+[212] Nh-295 (Z=113 N=182 A=295 HFB9 β₂=0.0)... OK BE=-2108.508626 β₂=0.000000 iters=23 CPU=minutesmin
+[213] Rg-291 (Z=111 N=180 A=291 HFB9 β₂=0.0)... OK BE=-2088.745736 β₂=-0.000000 iters=23 CPU=minutesmin
+[214] Mt-287 (Z=109 N=178 A=287 HFB9 β₂=0.0)... OK BE=-2067.987865 β₂=-0.000000 iters=23 CPU=minutesmin
+[215] Bh-283 (Z=107 N=176 A=283 HFB9 β₂=0.0)... OK BE=-2046.510183 β₂=-0.000000 iters=23 CPU=minutesmin
+[216] Db-279 (Z=105 N=174 A=279 HFB9 β₂=0.0)... OK BE=-2024.445994 β₂=-0.000000 iters=23 CPU=minutesmin
+
+------------------------------------------------------------
+PART 2: extended Mc-300..311 + Nh-296..307
+------------------------------------------------------------
+
+  Functional: UNE1 (Mc-300..311)
+[217] Mc-300 (Z=115 N=185 A=300 UNE1 β₂=0.0)... OK BE=-2129.294823 β₂=0.000000 iters=40 CPU=minutesmin
+[218] Mc-301 (Z=115 N=186 A=301 UNE1 β₂=0.0)... OK BE=-2133.629382 β₂=0.000000 iters=42 CPU=minutesmin
+[219] Mc-302 (Z=115 N=187 A=302 UNE1 β₂=0.0)... OK BE=-2137.938398 β₂=-0.000000 iters=42 CPU=minutesmin
+[220] Mc-303 (Z=115 N=188 A=303 UNE1 β₂=0.0)... OK BE=-2142.195599 β₂=0.000000 iters=43 CPU=minutesmin
+[221] Mc-304 (Z=115 N=189 A=304 UNE1 β₂=0.0)... OK BE=-2146.419819 β₂=0.000000 iters=43 CPU=minutesmin
+[222] Mc-305 (Z=115 N=190 A=305 UNE1 β₂=0.0)... OK BE=-2150.604946 β₂=-0.000000 iters=43 CPU=minutesmin
+[223] Mc-306 (Z=115 N=191 A=306 UNE1 β₂=0.0)... OK BE=-2154.752275 β₂=-0.000000 iters=43 CPU=minutesmin
+[224] Mc-307 (Z=115 N=192 A=307 UNE1 β₂=0.0)... OK BE=-2158.861929 β₂=-0.000000 iters=43 CPU=minutesmin
+[225] Mc-308 (Z=115 N=193 A=308 UNE1 β₂=0.0)... OK BE=-2162.936317 β₂=-0.000000 iters=41 CPU=minutesmin
+[226] Mc-309 (Z=115 N=194 A=309 UNE1 β₂=0.0)... OK BE=-2166.976080 β₂=-0.000000 iters=38 CPU=minutesmin
+[227] Mc-310 (Z=115 N=195 A=310 UNE1 β₂=0.0)... OK BE=-2170.981776 β₂=-0.000000 iters=41 CPU=minutesmin
+[228] Mc-311 (Z=115 N=196 A=311 UNE1 β₂=0.0)... OK BE=-2174.953902 β₂=-0.000000 iters=41 CPU=minutesmin
+
+  Functional: UNE1 (Nh-296..307)
+[229] Nh-296 (Z=113 N=183 A=296 UNE1 β₂=0.0)... OK BE=-2111.568398 β₂=0.000000 iters=50 CPU=minutesmin
+[230] Nh-297 (Z=113 N=184 A=297 UNE1 β₂=0.0)... OK BE=-2117.189917 β₂=-0.000000 iters=43 CPU=minutesmin
+[231] Nh-298 (Z=113 N=185 A=298 UNE1 β₂=0.0)... OK BE=-2121.226322 β₂=-0.000000 iters=45 CPU=minutesmin
+[232] Nh-299 (Z=113 N=186 A=299 UNE1 β₂=0.0)... OK BE=-2125.229724 β₂=0.000000 iters=46 CPU=minutesmin
+[233] Nh-300 (Z=113 N=187 A=300 UNE1 β₂=0.0)... OK BE=-2129.189985 β₂=0.000000 iters=43 CPU=minutesmin
+[234] Nh-301 (Z=113 N=188 A=301 UNE1 β₂=0.0)... OK BE=-2133.126555 β₂=0.000000 iters=43 CPU=minutesmin
+[235] Nh-302 (Z=113 N=189 A=302 UNE1 β₂=0.0)... OK BE=-2137.024055 β₂=-0.000000 iters=42 CPU=minutesmin
+[236] Nh-303 (Z=113 N=190 A=303 UNE1 β₂=0.0)... OK BE=-2140.899356 β₂=-0.000000 iters=42 CPU=minutesmin
+[237] Nh-304 (Z=113 N=191 A=304 UNE1 β₂=0.0)... OK BE=-2144.721220 β₂=-0.000000 iters=42 CPU=minutesmin
+[238] Nh-305 (Z=113 N=192 A=305 UNE1 β₂=0.0)... OK BE=-2148.516938 β₂=-0.000000 iters=42 CPU=minutesmin
+[239] Nh-306 (Z=113 N=193 A=306 UNE1 β₂=0.0)... OK BE=-2152.278151 β₂=-0.000000 iters=42 CPU=minutesmin
+[240] Nh-307 (Z=113 N=194 A=307 UNE1 β₂=0.0)... OK BE=-2155.999849 β₂=-0.000000 iters=43 CPU=minutesmin
+
+  Functional: SLY4 (Mc-300..311)
+[241] Mc-300 (Z=115 N=185 A=300 SLY4 β₂=0.0)... OK BE=-2117.536008 β₂=0.000000 iters=22 CPU=minutesmin
+[242] Mc-301 (Z=115 N=186 A=301 SLY4 β₂=0.0)... OK BE=-2122.039635 β₂=0.000000 iters=21 CPU=minutesmin
+[243] Mc-302 (Z=115 N=187 A=302 SLY4 β₂=0.0)... OK BE=-2126.424706 β₂=0.000000 iters=20 CPU=minutesmin
+[244] Mc-303 (Z=115 N=188 A=303 SLY4 β₂=0.0)... OK BE=-2130.696834 β₂=0.000000 iters=21 CPU=minutesmin
+[245] Mc-304 (Z=115 N=189 A=304 SLY4 β₂=0.0)... OK BE=-2134.889125 β₂=0.000000 iters=21 CPU=minutesmin
+[246] Mc-305 (Z=115 N=190 A=305 SLY4 β₂=0.0)... OK BE=-2139.001776 β₂=0.000000 iters=21 CPU=minutesmin
+[247] Mc-306 (Z=115 N=191 A=306 SLY4 β₂=0.0)... OK BE=-2143.046281 β₂=0.000000 iters=21 CPU=minutesmin
+[248] Mc-307 (Z=115 N=192 A=307 SLY4 β₂=0.0)... OK BE=-2147.027936 β₂=0.000000 iters=20 CPU=minutesmin
+[249] Mc-308 (Z=115 N=193 A=308 SLY4 β₂=0.0)... OK BE=-2150.950971 β₂=0.000000 iters=21 CPU=minutesmin
+[250] Mc-309 (Z=115 N=194 A=309 SLY4 β₂=0.0)... OK BE=-2155.018437 β₂=0.000000 iters=21 CPU=minutesmin
+[251] Mc-310 (Z=115 N=195 A=310 SLY4 β₂=0.0)... OK BE=-2158.843342 β₂=0.000000 iters=21 CPU=minutesmin
+[252] Mc-311 (Z=115 N=196 A=311 SLY4 β₂=0.0)... OK BE=-2162.617461 β₂=0.000000 iters=21 CPU=minutesmin
+
+  Functional: SLY4 (Nh-296..307)
+[253] Nh-296 (Z=113 N=183 A=296 SLY4 β₂=0.0)... OK BE=-2099.495512 β₂=0.000000 iters=22 CPU=minutesmin
+[254] Nh-297 (Z=113 N=184 A=297 SLY4 β₂=0.0)... OK BE=-2104.638412 β₂=0.000000 iters=33 CPU=minutesmin
+[255] Nh-298 (Z=113 N=185 A=298 SLY4 β₂=0.0)... OK BE=-2108.984290 β₂=0.000000 iters=23 CPU=minutesmin
+[256] Nh-299 (Z=113 N=186 A=299 SLY4 β₂=0.0)... OK BE=-2113.122106 β₂=0.000000 iters=22 CPU=minutesmin
+[257] Nh-300 (Z=113 N=187 A=300 SLY4 β₂=0.0)... OK BE=-2117.141701 β₂=0.000000 iters=21 CPU=minutesmin
+[258] Nh-301 (Z=113 N=188 A=301 SLY4 β₂=0.0)... OK BE=-2121.158950 β₂=0.000000 iters=20 CPU=minutesmin
+[259] Nh-302 (Z=113 N=189 A=302 SLY4 β₂=0.0)... OK BE=-2125.015833 β₂=0.000000 iters=21 CPU=minutesmin
+[260] Nh-303 (Z=113 N=190 A=303 SLY4 β₂=0.0)... OK BE=-2128.798649 β₂=0.000000 iters=21 CPU=minutesmin
+[261] Nh-304 (Z=113 N=191 A=304 SLY4 β₂=0.0)... OK BE=-2132.514230 β₂=0.000000 iters=21 CPU=minutesmin
+[262] Nh-305 (Z=113 N=192 A=305 SLY4 β₂=0.0)... OK BE=-2136.167855 β₂=0.000000 iters=21 CPU=minutesmin
+[263] Nh-306 (Z=113 N=193 A=306 SLY4 β₂=0.0)... OK BE=-2139.763757 β₂=0.000000 iters=21 CPU=minutesmin
+[264] Nh-307 (Z=113 N=194 A=307 SLY4 β₂=0.0)... OK BE=-2143.305422 β₂=0.000000 iters=21 CPU=minutesmin
+
+  Functional: SKM* (Mc-300..311)
+[265] Mc-300 (Z=115 N=185 A=300 SKM* β₂=0.0)... OK BE=-2121.180192 β₂=0.000000 iters=23 CPU=minutesmin
+[266] Mc-301 (Z=115 N=186 A=301 SKM* β₂=0.0)... OK BE=-2126.278143 β₂=0.000000 iters=22 CPU=minutesmin
+[267] Mc-302 (Z=115 N=187 A=302 SKM* β₂=0.0)... OK BE=-2131.294282 β₂=0.000000 iters=23 CPU=minutesmin
+[268] Mc-303 (Z=115 N=188 A=303 SKM* β₂=0.0)... OK BE=-2136.231271 β₂=0.000000 iters=23 CPU=minutesmin
+[269] Mc-304 (Z=115 N=189 A=304 SKM* β₂=0.0)... OK BE=-2141.159252 β₂=0.000000 iters=23 CPU=minutesmin
+[270] Mc-305 (Z=115 N=190 A=305 SKM* β₂=0.0)... OK BE=-2145.979670 β₂=0.000000 iters=23 CPU=minutesmin
+[271] Mc-306 (Z=115 N=191 A=306 SKM* β₂=0.0)... OK BE=-2150.744608 β₂=0.000000 iters=23 CPU=minutesmin
+[272] Mc-307 (Z=115 N=192 A=307 SKM* β₂=0.0)... OK BE=-2155.498575 β₂=0.000000 iters=23 CPU=minutesmin
+[273] Mc-308 (Z=115 N=193 A=308 SKM* β₂=0.0)... OK BE=-2160.165075 β₂=0.000000 iters=23 CPU=minutesmin
+[274] Mc-309 (Z=115 N=194 A=309 SKM* β₂=0.0)... OK BE=-2164.784352 β₂=0.000000 iters=22 CPU=minutesmin
+[275] Mc-310 (Z=115 N=195 A=310 SKM* β₂=0.0)... OK BE=-2169.421006 β₂=0.000000 iters=22 CPU=minutesmin
+[276] Mc-311 (Z=115 N=196 A=311 SKM* β₂=0.0)... OK BE=-2173.987297 β₂=0.000000 iters=23 CPU=minutesmin
+
+  Functional: SKM* (Nh-296..307)
+[277] Nh-296 (Z=113 N=183 A=296 SKM* β₂=0.0)... OK BE=-2104.226409 β₂=0.000000 iters=25 CPU=minutesmin
+[278] Nh-297 (Z=113 N=184 A=297 SKM* β₂=0.0)... OK BE=-2109.999963 β₂=0.000000 iters=29 CPU=minutesmin
+[279] Nh-298 (Z=113 N=185 A=298 SKM* β₂=0.0)... OK BE=-2114.900921 β₂=0.000000 iters=23 CPU=minutesmin
+[280] Nh-299 (Z=113 N=186 A=299 SKM* β₂=0.0)... OK BE=-2119.692884 β₂=0.000000 iters=22 CPU=minutesmin
+[281] Nh-300 (Z=113 N=187 A=300 SKM* β₂=0.0)... OK BE=-2124.434625 β₂=0.000000 iters=24 CPU=minutesmin
+[282] Nh-301 (Z=113 N=188 A=301 SKM* β₂=0.0)... OK BE=-2129.073373 β₂=0.000000 iters=23 CPU=minutesmin
+[283] Nh-302 (Z=113 N=189 A=302 SKM* β₂=0.0)... OK BE=-2133.647513 β₂=0.000000 iters=23 CPU=minutesmin
+[284] Nh-303 (Z=113 N=190 A=303 SKM* β₂=0.0)... OK BE=-2138.162793 β₂=0.000000 iters=23 CPU=minutesmin
+[285] Nh-304 (Z=113 N=191 A=304 SKM* β₂=0.0)... OK BE=-2142.623505 β₂=0.000000 iters=22 CPU=minutesmin
+[286] Nh-305 (Z=113 N=192 A=305 SKM* β₂=0.0)... OK BE=-2147.110806 β₂=0.000000 iters=23 CPU=minutesmin
+[287] Nh-306 (Z=113 N=193 A=306 SKM* β₂=0.0)... OK BE=-2151.477750 β₂=0.000000 iters=24 CPU=minutesmin
+[288] Nh-307 (Z=113 N=194 A=307 SKM* β₂=0.0)... OK BE=-2155.845413 β₂=0.000000 iters=24 CPU=minutesmin
+
+  Functional: HFB9 (Mc-300..311)
+[289] Mc-300 (Z=115 N=185 A=300 HFB9 β₂=0.0)... OK BE=-2131.836906 β₂=0.000000 iters=22 CPU=minutesmin
+[290] Mc-301 (Z=115 N=186 A=301 HFB9 β₂=0.0)... OK BE=-2136.416263 β₂=0.000000 iters=22 CPU=minutesmin
+[291] Mc-302 (Z=115 N=187 A=302 HFB9 β₂=0.0)... OK BE=-2140.931681 β₂=0.000000 iters=22 CPU=minutesmin
+[292] Mc-303 (Z=115 N=188 A=303 HFB9 β₂=0.0)... OK BE=-2145.390104 β₂=0.000000 iters=22 CPU=minutesmin
+[293] Mc-304 (Z=115 N=189 A=304 HFB9 β₂=0.0)... OK BE=-2149.796558 β₂=0.000000 iters=24 CPU=minutesmin
+[294] Mc-305 (Z=115 N=190 A=305 HFB9 β₂=0.0)... OK BE=-2154.164201 β₂=0.000000 iters=24 CPU=minutesmin
+[295] Mc-306 (Z=115 N=191 A=306 HFB9 β₂=0.0)... OK BE=-2158.477450 β₂=0.000000 iters=23 CPU=minutesmin
+[296] Mc-307 (Z=115 N=192 A=307 HFB9 β₂=0.0)... OK BE=-2162.758087 β₂=0.000000 iters=21 CPU=minutesmin
+[297] Mc-308 (Z=115 N=193 A=308 HFB9 β₂=0.0)... OK BE=-2167.001433 β₂=0.000000 iters=21 CPU=minutesmin
+[298] Mc-309 (Z=115 N=194 A=309 HFB9 β₂=0.0)... OK BE=-2171.193567 β₂=0.000000 iters=21 CPU=minutesmin
+[299] Mc-310 (Z=115 N=195 A=310 HFB9 β₂=0.0)... OK BE=-2175.349169 β₂=0.000000 iters=21 CPU=minutesmin
+[300] Mc-311 (Z=115 N=196 A=311 HFB9 β₂=0.0)... OK BE=-2179.539300 β₂=0.000000 iters=22 CPU=minutesmin
+
+  Functional: HFB9 (Nh-296..307)
+[301] Nh-296 (Z=113 N=183 A=296 HFB9 β₂=0.0)... OK BE=-2114.337690 β₂=0.000000 iters=23 CPU=minutesmin
+[302] Nh-297 (Z=113 N=184 A=297 HFB9 β₂=0.0)... OK BE=-2119.999716 β₂=0.000000 iters=25 CPU=minutesmin
+[303] Nh-298 (Z=113 N=185 A=298 HFB9 β₂=0.0)... OK BE=-2124.317337 β₂=0.000000 iters=22 CPU=minutesmin
+[304] Nh-299 (Z=113 N=186 A=299 HFB9 β₂=0.0)... OK BE=-2128.562908 β₂=0.000000 iters=22 CPU=minutesmin
+[305] Nh-300 (Z=113 N=187 A=300 HFB9 β₂=0.0)... OK BE=-2132.746415 β₂=0.000000 iters=22 CPU=minutesmin
+[306] Nh-301 (Z=113 N=188 A=301 HFB9 β₂=0.0)... OK BE=-2136.874500 β₂=0.000000 iters=22 CPU=minutesmin
+[307] Nh-302 (Z=113 N=189 A=302 HFB9 β₂=0.0)... OK BE=-2140.964617 β₂=-0.000000 iters=23 CPU=minutesmin
+[308] Nh-303 (Z=113 N=190 A=303 HFB9 β₂=0.0)... OK BE=-2145.007014 β₂=-0.000000 iters=23 CPU=minutesmin
+[309] Nh-304 (Z=113 N=191 A=304 HFB9 β₂=0.0)... OK BE=-2149.011420 β₂=0.000000 iters=23 CPU=minutesmin
+[310] Nh-305 (Z=113 N=192 A=305 HFB9 β₂=0.0)... OK BE=-2152.956879 β₂=0.000000 iters=23 CPU=minutesmin
+[311] Nh-306 (Z=113 N=193 A=306 HFB9 β₂=0.0)... OK BE=-2156.863459 β₂=0.000000 iters=21 CPU=minutesmin
+[312] Nh-307 (Z=113 N=194 A=307 HFB9 β₂=0.0)... OK BE=-2160.733071 β₂=0.000000 iters=21 CPU=minutesmin
+
+============================================================
+Machine 2 finished: Mon Apr 27 05:52:49 EDT 2026
+Total runs: 312
+Results:    /home/jordandesilets/nucleusgrid/results/phase3/machine2_all.json
+============================================================
