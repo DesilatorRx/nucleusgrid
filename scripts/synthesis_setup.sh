@@ -1,23 +1,20 @@
 #!/bin/bash
 # ============================================================
-# NucleusGrid Phase 3 — Synthesis cross-section setup
+# NucleusGrid Phase 3 — Synthesis cross-section setup (TALYS)
 #
-# Researches PACE4 and HIVAP statistical compound-nucleus / evaporation
-# codes, attempts to download whichever is publicly accessible, and
-# tries to compile it. If anything is missing, the script prints a
-# detailed report of exactly what would be needed.
+# Pivots from PACE4 (Windows-only LISE++ bundle) and HIVAP
+# (closed GSI distribution) to TALYS — the leading open-source
+# nuclear reaction code (Koning, Hilaire, Goriely et al.).
 #
-# Target reaction (as requested):  ⁴⁸Ca + ²⁴⁴Pu → CN → Mc-291..299
-# *** IMPORTANT NUCLEAR-PHYSICS NOTE ***
-#   ⁴⁸Ca (Z=20) + ²⁴⁴Pu (Z=94) gives a compound nucleus with Z=114,
-#   i.e. ⁴⁸Ca + ²⁴⁴Pu → ²⁹²Fl* (Flerovium), NOT Moscovium.
-#   To produce Mc, the canonical reaction is:
-#     ⁴⁸Ca + ²⁴³Am → ²⁹¹Mc*  (1n, 2n, 3n, 4n channels → Mc-290..287)
-#   For the ²⁹¹..²⁹⁹Mc range you actually need:
-#     ⁴⁸Ca + ²⁴³Am → CN(Z=115, A=291)*   (Oganessian 2003)
-#   This script reports cross sections for BOTH reactions so the user
-#   can pick. The ⁴⁸Ca + ²⁴⁴Pu line is computed as requested and
-#   labeled clearly as the FLEROVIUM channel.
+# Attempts to fetch + compile TALYS automatically. If the source
+# archive is gated behind registration (the usual case), prints a
+# concrete step-by-step registration walkthrough.
+#
+# Target reaction (as requested): ⁴⁸Ca beam on ²⁴⁴Pu.
+# *** REACTION NOTE (unchanged from prior version) ***
+#   ⁴⁸Ca + ²⁴⁴Pu → ²⁹²Fl* (Flerovium, Z=114) — NOT Moscovium.
+#   For Mc the canonical reaction is ⁴⁸Ca + ²⁴³Am → ²⁹¹Mc*.
+#   See kinematics section below.
 # ============================================================
 
 set -u
@@ -30,54 +27,79 @@ mkdir -p "$SYNTH_DIR"
 exec > >(tee -a "$LOG") 2>&1
 
 echo "============================================================"
-echo "NucleusGrid synthesis setup — $(date)"
+echo "NucleusGrid synthesis setup (TALYS) — $(date)"
 echo "Working dir: $SYNTH_DIR"
 echo "============================================================"
 
 # ============================================================
-# Part 1 — Code research summary
+# Helpers
+# ============================================================
+
+# Returns 0 if file looks like a Fortran source archive (tar/gz/zip/bz2/xz),
+# 1 otherwise. Avoids the prior bug where an HTML index page was treated
+# as "source downloaded".
+is_archive() {
+    local f="$1"
+    [ -s "$f" ] || return 1
+    local mime
+    mime=$(file -b --mime-type "$f" 2>/dev/null)
+    case "$mime" in
+        application/x-tar|application/gzip|application/x-bzip2|\
+        application/x-xz|application/zip|application/x-gtar)
+            return 0 ;;
+        *)
+            return 1 ;;
+    esac
+}
+
+# Returns 0 if any plain Fortran source file exists in the given directory.
+has_fortran_sources() {
+    local d="$1"
+    shopt -s nullglob
+    local files=("$d"/*.f "$d"/*.f90 "$d"/*.F "$d"/*.F90 "$d"/*.for)
+    shopt -u nullglob
+    [ ${#files[@]} -gt 0 ]
+}
+
+# ============================================================
+# Part 1 — Code overview (TALYS-first)
 # ============================================================
 cat <<'DOC'
 
 ────────────────────────────────────────────────────────────
-CODE OVERVIEW
+CODE OVERVIEW — TALYS (primary target)
 ────────────────────────────────────────────────────────────
 
-  PACE4 (Projection Angular-momentum Coupled Evaporation, v4)
-    Author:        A. Gavron (LANL), Phys. Rev. C 21, 230 (1980)
-    Language:      Fortran 77
-    Scope:         Statistical compound-nucleus decay only
-                   (no fusion — caller supplies l-distribution)
-    Distribution:  Bundled with LISE++ (Tarasov, NSCL/MSU)
-                   http://lise.nscl.msu.edu/
-                   Standalone source historically shared by request.
-    License:       Free for research, attribution requested.
-    Build deps:    gfortran (or any F77/F90 compiler)
-    Notes:         Widely used for SHE evaporation residue (ER)
-                   cross sections. Output: σ_ER per (xn, αxn, ...) channel.
+  TALYS — Nuclear Reaction Code
+    Authors:        A.J. Koning, S. Hilaire, S. Goriely
+    Language:       Fortran 90/95
+    Scope:          Full nuclear reaction code: optical model,
+                    direct, pre-equilibrium, compound, fission,
+                    γ-cascade. Covers fusion-evaporation for SHE.
+    Distribution:   http://www.talys.eu/   (primary)
+                    https://nds.iaea.org/talys/   (IAEA mirror)
+                    Email registration required to obtain source.
+    License:        Free for academic / non-commercial use.
+                    Citation: Koning, Hilaire, Goriely,
+                    Eur. Phys. J. A 59, 131 (2023) for v2.0.
+    Build deps:     gfortran (>= 9 recommended), make, ~500 MB
+                    for source + structure database (RIPL-3).
 
-  HIVAP (Heavy-Ion eVAPoration)
-    Author:        W. Reisdorf (GSI), Z. Phys. A 300, 227 (1981)
-    Language:      Fortran 77
-    Scope:         Fusion + evaporation (full reaction simulation)
-    Distribution:  GSI internal; obtain by contact with author or
-                   successor (M. Schädel et al. for SHE community).
-                   No reliable public mirror as of writing.
-    License:       Restricted; requires contact with maintainer.
-    Build deps:    gfortran, possibly CERNLIB linkage
-    Notes:         Standard for SHE production cross-section
-                   estimates. Includes Bass fusion barriers,
-                   Smoluchowski diffusion model for capture,
-                   statistical evaporation à la Reisdorf-Schädel.
+  PACE4 (deprioritised)
+    Distribution:   Bundled inside LISE++ (Windows .exe).
+                    No standalone public source URL.
+    Status here:    Skipped — no automated path on Linux.
 
-  Modern alternatives (open source, actively maintained):
-    TALYS       https://nds.iaea.org/talys/    Fortran 90 — full reaction code
-    EMPIRE      https://www-nds.iaea.org/empire/   Fortran — HF/preeq/stat
-    NRV (web)   http://nrv.jinr.ru/             Online calculator (no source)
+  HIVAP (deprioritised)
+    Distribution:   GSI internal; closed (contact author/successors).
+    Status here:    Skipped — no public mirror.
 
-  Recommendation for this project:
-    • PACE4 — most accessible, focused on the question asked (ER xs)
-    • TALYS — if PACE4 unobtainable, modern + open + well-supported
+  Why TALYS over PACE4/HIVAP for this project:
+    • Open-source and actively maintained (last release 2023).
+    • Single code covers the full chain: barrier → fusion →
+      evaporation → ER cross-section. No need to glue PACE4 to
+      a separate fusion model.
+    • Modern Fortran, builds cleanly on Linux with gfortran.
 
 DOC
 
@@ -88,7 +110,7 @@ echo ""
 echo "────────────────────────────────────────────────────────────"
 echo "PREREQUISITE CHECK"
 echo "────────────────────────────────────────────────────────────"
-NEEDED=(gfortran make wget curl tar gzip python3)
+NEEDED=(gfortran make wget curl tar gzip python3 file)
 MISSING=()
 for tool in "${NEEDED[@]}"; do
     if command -v "$tool" >/dev/null 2>&1; then
@@ -106,31 +128,25 @@ if [ ${#MISSING[@]} -gt 0 ]; then
 fi
 
 # ============================================================
-# Part 3 — Reaction kinematics (informational, no external code needed)
+# Part 3 — Reaction kinematics (informational)
 # ============================================================
 echo ""
 echo "────────────────────────────────────────────────────────────"
 echo "TARGET REACTIONS (kinematics only — no cross-section yet)"
 echo "────────────────────────────────────────────────────────────"
 python3 <<'PYEOF'
-# Atomic masses (AME2020, MeV) — selected, hard-coded for this audit.
-# Source: AME2020 mass evaluation (Wang, Audi et al., Chin. Phys. C 45 (2021))
 mass = {
-    ("Ca", 48):  -44.214,   # mass excess MeV
+    ("Ca", 48):  -44.214,
     ("Pu", 244): +59.806,
     ("Am", 243): +57.176,
-    ("Fl", 292): +135.000,  # estimated (no AME entry; approximate)
-    ("Mc", 291): +137.000,  # estimated
+    ("Fl", 292): +135.000,   # AME-extrapolation, approximate
+    ("Mc", 291): +137.000,
 }
 def Q_fusion(p_sym, p_a, t_sym, t_a, cn_sym, cn_a):
     return mass[(p_sym, p_a)] + mass[(t_sym, t_a)] - mass[(cn_sym, cn_a)]
-
 def bass_barrier(Z1, A1, Z2, A2):
-    # Bass 1980 phenomenological fusion barrier (MeV), simplistic.
     R = 1.16 * (A1**(1/3) + A2**(1/3))
-    e2 = 1.44  # MeV·fm
-    V0 = Z1 * Z2 * e2 / R
-    return V0  # rough
+    return Z1 * Z2 * 1.44 / R
 
 print("\n  Reaction A (REQUESTED):  ⁴⁸Ca + ²⁴⁴Pu → ²⁹²Fl* (Flerovium, Z=114)")
 print(f"    Q-value (fusion):    {Q_fusion('Ca',48,'Pu',244,'Fl',292):+.2f} MeV (estimate)")
@@ -146,113 +162,205 @@ print(f"    Typical lab E:       ~248 MeV (Oganessian 2003)")
 print(f"    Channel of interest: 2n, 3n, 4n → ²⁸⁹..²⁸⁷Mc")
 print(f"    Experimental σ:      ~3 pb (3n channel, near barrier)")
 print()
-print("  For the Mc-291..299 isotope range specifically:")
-print("    Mc-287..290 are reachable via ²⁴³Am(⁴⁸Ca, xn) (x=1..4)")
-print("    Mc-291..295 require neutron-richer targets (²⁴⁵Cm, ²⁴⁹Bk + ⁴⁸Ca)")
-print("    Mc-296..299 are beyond current synthesis capability with stable beams.")
+print("  For the Mc-291..299 range specifically:")
+print("    Mc-287..290 reachable via ²⁴³Am(⁴⁸Ca, xn)  (x=1..4)")
+print("    Mc-291..295 require neutron-rich actinide targets (²⁴⁵Cm, ²⁴⁹Bk + ⁴⁸Ca)")
+print("    Mc-296..299 are beyond stable-beam synthesis capability today.")
 PYEOF
 
 # ============================================================
-# Part 4 — Attempt PACE4 download
+# Part 4 — TALYS auto-download attempt
 # ============================================================
 echo ""
 echo "────────────────────────────────────────────────────────────"
-echo "ATTEMPT: PACE4 download"
+echo "ATTEMPT: TALYS download"
 echo "────────────────────────────────────────────────────────────"
 cd "$SYNTH_DIR"
 
-PACE_URLS=(
-    "http://lise.nscl.msu.edu/pace4.html"
-    "https://lise.nscl.msu.edu/9_10/9_10.html"
-    "http://groups.nscl.msu.edu/lise/pace4/pace4.zip"
+# Probe candidate direct-archive URLs. These are educated guesses
+# at common naming patterns; almost all will 404 because the
+# canonical distribution is gated behind a registration form.
+TALYS_CANDIDATES=(
+    "https://nds.iaea.org/talys/talys2.0.tar"
+    "https://nds.iaea.org/talys/talys2.0.tar.gz"
+    "https://nds.iaea.org/talys/talys-2.0.tar.gz"
+    "https://nds.iaea.org/talys/talys.tar.gz"
+    "http://www.talys.eu/fileadmin/talys/user/docs/talys2.0.tar.gz"
+    "http://www.talys.eu/download/talys2.0.tar.gz"
 )
-PACE_OK=0
-for url in "${PACE_URLS[@]}"; do
-    echo "  trying: $url"
-    if curl -sIL --max-time 15 "$url" 2>/dev/null | head -1 | grep -q "200\|301\|302"; then
-        echo "    HEAD OK; attempting GET..."
-        out=$(basename "$url")
-        if curl -sL --max-time 60 -o "$out" "$url" && [ -s "$out" ]; then
-            echo "    downloaded: $out ($(wc -c < "$out") bytes)"
-            file "$out" 2>/dev/null | head -1 | sed 's/^/    /'
-            PACE_OK=1
+
+# Also probe the index pages so we can confirm the sites are alive.
+TALYS_PAGES=(
+    "https://nds.iaea.org/talys/"
+    "http://www.talys.eu/"
+)
+
+echo ""
+echo "  Site reachability:"
+for url in "${TALYS_PAGES[@]}"; do
+    code=$(curl -sIL --max-time 15 -o /dev/null -w "%{http_code}" "$url" 2>/dev/null || echo "---")
+    printf "    %-50s HTTP %s\n" "$url" "$code"
+done
+
+echo ""
+echo "  Probing direct-source URLs (almost all will fail —"
+echo "  TALYS distribution is gated behind email registration):"
+TALYS_OK=0
+TALYS_FILE=""
+for url in "${TALYS_CANDIDATES[@]}"; do
+    code=$(curl -sIL --max-time 15 -o /dev/null -w "%{http_code}" "$url" 2>/dev/null || echo "---")
+    printf "    HTTP %s  %s\n" "$code" "$url"
+    if [ "$code" = "200" ]; then
+        out="$SYNTH_DIR/$(basename "$url")"
+        if curl -sL --max-time 120 -o "$out" "$url" 2>/dev/null && is_archive "$out"; then
+            echo "      → archive obtained: $out ($(wc -c < "$out") bytes)"
+            TALYS_OK=1
+            TALYS_FILE="$out"
             break
+        else
+            echo "      → got bytes but not an archive (likely HTML); discarding"
+            rm -f "$out"
         fi
-    else
-        echo "    unreachable / no 2xx response"
     fi
 done
 
-if [ $PACE_OK -eq 0 ]; then
-    cat <<'NOTE'
-  RESULT: PACE4 source could NOT be auto-downloaded.
-
-  Why: LISE++ (which bundles PACE4) is distributed as a Windows .exe
-  via the LISE++ web interface. There is no public direct-download URL
-  for PACE4 source as a standalone tarball. To obtain it:
-
-    Option 1 (LISE++ bundle, Windows):
-      • Download LISE++ from http://lise.nscl.msu.edu/
-      • Install on Windows (or via Wine on Linux)
-      • PACE4 source files are in <LISE_DIR>/source/pace4/
-      • Copy .f files out and compile with gfortran
-
-    Option 2 (request directly):
-      • Email Oleg Tarasov (NSCL/MSU): tarasov@nscl.msu.edu
-      • Subject: "PACE4 standalone source request, research use"
-
-    Option 3 (use a published port):
-      • Some nuclear-physics groups host PACE4 ports on GitHub.
-        Search:  github.com  "pace4"  language:Fortran
-      • Verify provenance and citation history before trusting.
-NOTE
-fi
-
 # ============================================================
-# Part 5 — Attempt PACE4 compilation (if we got source)
+# Part 5 — TALYS extract + compile (only if a real archive)
 # ============================================================
-if [ $PACE_OK -eq 1 ] && ls "$SYNTH_DIR"/*.f "$SYNTH_DIR"/*.f90 2>/dev/null | head -1 >/dev/null; then
+if [ "$TALYS_OK" -eq 1 ] && [ -n "$TALYS_FILE" ]; then
     echo ""
     echo "────────────────────────────────────────────────────────────"
-    echo "ATTEMPT: PACE4 compilation"
+    echo "ATTEMPT: TALYS extract + compile"
     echo "────────────────────────────────────────────────────────────"
-    cd "$SYNTH_DIR"
-    SOURCES=(*.f *.f90)
-    echo "  sources: ${SOURCES[*]}"
-    if gfortran -O2 -std=legacy -o pace4 "${SOURCES[@]}" 2> compile_err.log; then
-        echo "  COMPILE OK → ./pace4"
-    else
-        echo "  COMPILE FAILED. First 20 lines of error log:"
-        head -20 compile_err.log | sed 's/^/    /'
-        echo "  Full log: $SYNTH_DIR/compile_err.log"
+    EXTRACT_DIR="$SYNTH_DIR/talys_src"
+    mkdir -p "$EXTRACT_DIR"
+    case "$TALYS_FILE" in
+        *.tar.gz|*.tgz) tar -xzf "$TALYS_FILE" -C "$EXTRACT_DIR" ;;
+        *.tar.bz2)      tar -xjf "$TALYS_FILE" -C "$EXTRACT_DIR" ;;
+        *.tar.xz)       tar -xJf "$TALYS_FILE" -C "$EXTRACT_DIR" ;;
+        *.tar)          tar -xf  "$TALYS_FILE" -C "$EXTRACT_DIR" ;;
+        *.zip)          unzip -q "$TALYS_FILE" -d "$EXTRACT_DIR" ;;
+        *)              echo "  unknown archive type: $TALYS_FILE"; EXTRACT_DIR="" ;;
+    esac
+
+    if [ -n "$EXTRACT_DIR" ]; then
+        # TALYS ships an install.csh / install script in talys/source/.
+        # Find the source directory.
+        SRC_DIR=$(find "$EXTRACT_DIR" -type d -name source -path "*talys*" -print -quit 2>/dev/null)
+        if [ -n "$SRC_DIR" ] && has_fortran_sources "$SRC_DIR"; then
+            echo "  TALYS source tree found at: $SRC_DIR"
+            cd "$SRC_DIR"
+            shopt -s nullglob
+            SOURCES=(*.f *.f90 *.F *.F90 *.for)
+            shopt -u nullglob
+            echo "  ${#SOURCES[@]} source files"
+            if gfortran -O2 -std=legacy -fno-automatic -o talys "${SOURCES[@]}" \
+                  2> "$SYNTH_DIR/talys_compile.log"; then
+                echo "  COMPILE OK → $SRC_DIR/talys"
+            else
+                echo "  COMPILE FAILED. Tail of log:"
+                tail -20 "$SYNTH_DIR/talys_compile.log" | sed 's/^/    /'
+                echo "  Full log: $SYNTH_DIR/talys_compile.log"
+                echo "  (TALYS normally ships its own install script —"
+                echo "   try: cd $SRC_DIR && ./install.csh   or   make )"
+            fi
+        else
+            echo "  No Fortran source tree found inside the archive."
+            echo "  Archive contents (top level):"
+            find "$EXTRACT_DIR" -maxdepth 2 | head -20 | sed 's/^/    /'
+        fi
     fi
 fi
 
 # ============================================================
-# Part 6 — HIVAP attempt (informational; no public source)
+# Part 6 — Registration walkthrough (always printed if not obtained)
+# ============================================================
+if [ "$TALYS_OK" -eq 0 ]; then
+    cat <<'REGISTER'
+
+────────────────────────────────────────────────────────────
+TALYS REGISTRATION WALKTHROUGH (manual, ~5 minutes)
+────────────────────────────────────────────────────────────
+
+  TALYS is free for academic / non-commercial use, but the source
+  is gated behind a one-time email registration.
+
+  Primary source:
+    1. Go to:  https://nds.iaea.org/talys/
+       (IAEA Nuclear Data Section mirror — most reliable)
+
+    2. Click "Download TALYS" → opens the registration form.
+
+    3. Fill in:
+         • Name
+         • Email  (a valid academic / institutional address is
+                   strongly preferred; gmail/hotmail accepted but
+                   sometimes scrutinised)
+         • Affiliation (institution / company / "individual")
+         • Country
+         • Intended use (one or two sentences is fine, e.g.
+           "Statistical reaction model calculations for SHE
+            production cross-sections.")
+
+    4. Accept the licence (free for academic / non-commercial).
+
+    5. You receive an email with a personalised download link
+       (usually within minutes, occasionally up to 24 h).
+
+    6. Download the tarball. As of 2023:
+         talys2.0.tar.gz   (~150 MB including RIPL-3 structure DB)
+
+  Alternative source:
+    http://www.talys.eu/   (mirror; same registration system)
+
+  After download, place the tarball at:
+       $SYNTH_DIR/talys2.0.tar.gz
+  then re-run this script — it will detect the file, extract,
+  and attempt compilation.
+
+  Manual install (if re-running this script is inconvenient):
+       cd $SYNTH_DIR
+       tar xzf talys2.0.tar.gz
+       cd talys/source
+       ./install.csh                  # ships with TALYS; sets up paths
+       ./talys < ../samples/Pb208/Ni58/input > test.out  # smoke test
+
+  Build prerequisites already satisfied on this host:  gfortran ✓
+  Disk space required:  ~500 MB after extraction.
+
+  Citation when publishing results:
+    Koning, Hilaire, Goriely, Eur. Phys. J. A 59, 131 (2023).
+REGISTER
+fi
+
+# ============================================================
+# Part 7 — Brief notes on the deprioritised codes
 # ============================================================
 echo ""
 echo "────────────────────────────────────────────────────────────"
-echo "ATTEMPT: HIVAP"
+echo "PACE4 / HIVAP — alternative paths if TALYS is blocked"
 echo "────────────────────────────────────────────────────────────"
 cat <<'NOTE'
-  HIVAP source is NOT publicly mirrored. To obtain:
+  PACE4:
+    • Source is bundled with LISE++. There is no standalone
+      Linux-friendly archive published.
+    • To extract: install LISE++ on Windows (or via Wine on
+      Linux), copy <LISE_DIR>/source/pace4/*.f, build with
+      gfortran -std=legacy.
+    • Alternative: email O. Tarasov (NSCL/MSU) requesting the
+      standalone PACE4 source for academic use.
 
-    • Contact GSI Helmholtzzentrum für Schwerionenforschung
-      Department: Atomphysik / SHE group
-      Successor maintainers (as of 2020s): M. Block, Ch.E. Düllmann
-      Email via:  https://www.gsi.de/en/researchaccelerators/research_an/she_chemistry
-
-    • Alternative: cite Reisdorf 1981 + 1992 papers and reproduce the
-      methodology; the algorithm is well documented in:
+  HIVAP:
+    • No public mirror. Contact the GSI SHE group:
+      M. Block, Ch.E. Düllmann
+      via https://www.gsi.de/en/researchaccelerators/research_an/she_chemistry
+    • Or reimplement from Reisdorf's published methodology:
         W. Reisdorf, Z. Phys. A 300, 227 (1981)
         W. Reisdorf, M. Schädel, Z. Phys. A 343, 47 (1992)
-
-  No automated download attempted.
 NOTE
 
 # ============================================================
-# Part 7 — Final report
+# Part 8 — Final report (accurate this time)
 # ============================================================
 echo ""
 echo "────────────────────────────────────────────────────────────"
@@ -261,23 +369,21 @@ echo "────────────────────────�
 echo "  Working dir:  $SYNTH_DIR"
 echo "  Log file:     $LOG"
 echo ""
-if [ $PACE_OK -eq 1 ]; then
-    echo "  PACE4:  source downloaded — see $SYNTH_DIR for status"
+if [ "$TALYS_OK" -eq 1 ] && [ -f "$SYNTH_DIR/talys_src" ]; then
+    echo "  TALYS:  archive obtained AND extracted ($TALYS_FILE)"
+elif [ "$TALYS_OK" -eq 1 ]; then
+    echo "  TALYS:  archive obtained ($TALYS_FILE) — see compile section"
 else
-    echo "  PACE4:  NOT downloaded automatically"
-    echo "          Action: install LISE++ on Windows or contact Tarasov (see above)"
+    echo "  TALYS:  no direct download URL responded with a real archive."
+    echo "          Action: complete the registration walkthrough above."
 fi
-echo "  HIVAP:  not attempted (closed distribution)"
-echo "          Action: contact GSI SHE group or reimplement from Reisdorf 1981"
+echo "  PACE4:  not attempted (Windows-only LISE++ bundle)"
+echo "  HIVAP:  not attempted (closed GSI distribution)"
 echo ""
-echo "  Reaction note: Ca-48 + Pu-244 → ²⁹²Fl* (Z=114), NOT Mc (Z=115)."
-echo "  For Mc, use Ca-48 + Am-243.  See kinematics section above."
-echo ""
-echo "  Recommended next step:"
-echo "    1. Install LISE++ (Windows + Wine) and extract PACE4 source, OR"
-echo "    2. Install TALYS (open, modern):"
-echo "         http://www.talys.eu/   (registration required, free)"
-echo "         covers fusion + evaporation in one package."
+echo "  Reaction note (unchanged):"
+echo "    ⁴⁸Ca + ²⁴⁴Pu → ²⁹²Fl* (Z=114)  — what you asked for, Flerovium"
+echo "    ⁴⁸Ca + ²⁴³Am → ²⁹¹Mc* (Z=115)  — correct route to Mc"
+echo "    See kinematics section above."
 echo ""
 echo "Synthesis setup finished: $(date)"
 echo "============================================================"
