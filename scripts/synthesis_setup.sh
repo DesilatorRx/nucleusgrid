@@ -177,16 +177,28 @@ echo "ATTEMPT: TALYS download"
 echo "────────────────────────────────────────────────────────────"
 cd "$SYNTH_DIR"
 
-# Probe candidate direct-archive URLs. These are educated guesses
-# at common naming patterns; almost all will 404 because the
-# canonical distribution is gated behind a registration form.
+# First check for any pre-existing archive in $SYNTH_DIR — lets the
+# user drop a tarball here manually (or download it via this script)
+# and have re-runs pick it up without re-downloading.
+TALYS_OK=0
+TALYS_FILE=""
+for f in "$SYNTH_DIR"/talys.tar "$SYNTH_DIR"/talys2.2.tar \
+         "$SYNTH_DIR"/talys2.0.tar "$SYNTH_DIR"/talys*.tar \
+         "$SYNTH_DIR"/talys*.tar.gz "$SYNTH_DIR"/talys*.tgz; do
+    if [ -f "$f" ] && is_archive "$f"; then
+        echo "  pre-existing archive found: $f ($(wc -c < "$f") bytes)"
+        TALYS_OK=1
+        TALYS_FILE="$f"
+        break
+    fi
+done
+
+# Direct-archive URLs hosted by IAEA NDS. talys.tar is the current
+# release (TALYS-2.2 as of 2024). Older versions live under codes/versions/.
+# These are open-access — no registration required.
 TALYS_CANDIDATES=(
-    "https://nds.iaea.org/talys/talys2.0.tar"
-    "https://nds.iaea.org/talys/talys2.0.tar.gz"
-    "https://nds.iaea.org/talys/talys-2.0.tar.gz"
-    "https://nds.iaea.org/talys/talys.tar.gz"
-    "http://www.talys.eu/fileadmin/talys/user/docs/talys2.0.tar.gz"
-    "http://www.talys.eu/download/talys2.0.tar.gz"
+    "https://nds.iaea.org/talys/codes/talys.tar"
+    "https://nds.iaea.org/talys/codes/versions/talys2.0.tar"
 )
 
 # Also probe the index pages so we can confirm the sites are alive.
@@ -202,27 +214,29 @@ for url in "${TALYS_PAGES[@]}"; do
     printf "    %-50s HTTP %s\n" "$url" "$code"
 done
 
-echo ""
-echo "  Probing direct-source URLs (almost all will fail —"
-echo "  TALYS distribution is gated behind email registration):"
-TALYS_OK=0
-TALYS_FILE=""
-for url in "${TALYS_CANDIDATES[@]}"; do
-    code=$(curl -sIL --max-time 15 -o /dev/null -w "%{http_code}" "$url" 2>/dev/null || echo "---")
-    printf "    HTTP %s  %s\n" "$code" "$url"
-    if [ "$code" = "200" ]; then
-        out="$SYNTH_DIR/$(basename "$url")"
-        if curl -sL --max-time 120 -o "$out" "$url" 2>/dev/null && is_archive "$out"; then
-            echo "      → archive obtained: $out ($(wc -c < "$out") bytes)"
-            TALYS_OK=1
-            TALYS_FILE="$out"
-            break
-        else
-            echo "      → got bytes but not an archive (likely HTML); discarding"
-            rm -f "$out"
+if [ "$TALYS_OK" -eq 0 ]; then
+    echo ""
+    echo "  Probing direct-source URLs at IAEA NDS:"
+    for url in "${TALYS_CANDIDATES[@]}"; do
+        code=$(curl -sIL --max-time 15 -o /dev/null -w "%{http_code}" "$url" 2>/dev/null || echo "---")
+        size=$(curl -sIL --max-time 15 "$url" 2>/dev/null | grep -i '^content-length:' | tail -1 | awk '{print $2}' | tr -d '\r')
+        printf "    HTTP %s  %15s bytes  %s\n" "$code" "${size:--}" "$url"
+        if [ "$code" = "200" ]; then
+            out="$SYNTH_DIR/$(basename "$url")"
+            echo "      downloading → $out (this may take several minutes)..."
+            # Long timeout (30 min) — TALYS-2.2 is ~1.9 GB.
+            if curl -L --max-time 1800 -o "$out" "$url" 2>/dev/null && is_archive "$out"; then
+                echo "      → archive obtained: $out ($(wc -c < "$out") bytes)"
+                TALYS_OK=1
+                TALYS_FILE="$out"
+                break
+            else
+                echo "      → got bytes but not a real archive; discarding"
+                rm -f "$out"
+            fi
         fi
-    fi
-done
+    done
+fi
 
 # ============================================================
 # Part 5 — TALYS extract + compile (only if a real archive)
@@ -250,6 +264,18 @@ if [ "$TALYS_OK" -eq 1 ] && [ -n "$TALYS_FILE" ]; then
         if [ -n "$SRC_DIR" ] && has_fortran_sources "$SRC_DIR"; then
             echo "  TALYS source tree found at: $SRC_DIR"
             cd "$SRC_DIR"
+
+            # Run TALYS's path_change.bash to patch machine.f90 with the
+            # actual install dir. Without this, the binary compiles but
+            # tries to read structure data from the original developer's
+            # /Users/koning/talys/ path at runtime.
+            PATH_CHANGE="$(dirname "$SRC_DIR")/path_change.bash"
+            if [ -x "$PATH_CHANGE" ]; then
+                echo "  patching install path via $(basename "$PATH_CHANGE")..."
+                bash "$PATH_CHANGE" > "$SYNTH_DIR/talys_path_change.log" 2>&1
+                grep -E "codedir = " machine.f90 | head -1 | sed 's/^/    /'
+            fi
+
             shopt -s nullglob
             SOURCES=(*.f *.f90 *.F *.F90 *.for)
             shopt -u nullglob
@@ -257,12 +283,26 @@ if [ "$TALYS_OK" -eq 1 ] && [ -n "$TALYS_FILE" ]; then
             if gfortran -O2 -std=legacy -fno-automatic -o talys "${SOURCES[@]}" \
                   2> "$SYNTH_DIR/talys_compile.log"; then
                 echo "  COMPILE OK → $SRC_DIR/talys"
+                # Smoke test: n + Fe-56 at 14 MeV. Should run in ~2 s and
+                # print "successful calculation" if structure DB is reachable.
+                echo "  smoke test: n + ⁵⁶Fe at 14 MeV..."
+                if echo -e "projectile n\nelement fe\nmass 56\nenergy 14.0" | \
+                       timeout 120 ./talys > "$SYNTH_DIR/talys_smoke.log" 2>&1; then
+                    if grep -q "successful calculation" "$SYNTH_DIR/talys_smoke.log"; then
+                        et=$(grep "Execution time" "$SYNTH_DIR/talys_smoke.log" | tail -1 | sed 's/^[[:space:]]*//')
+                        echo "    SMOKE TEST PASSED ($et)"
+                        TALYS_BIN="$SRC_DIR/talys"
+                    else
+                        echo "    SMOKE TEST FAILED — last 5 lines:"
+                        tail -5 "$SYNTH_DIR/talys_smoke.log" | sed 's/^/      /'
+                    fi
+                else
+                    echo "    SMOKE TEST timed out or errored — see $SYNTH_DIR/talys_smoke.log"
+                fi
             else
                 echo "  COMPILE FAILED. Tail of log:"
                 tail -20 "$SYNTH_DIR/talys_compile.log" | sed 's/^/    /'
                 echo "  Full log: $SYNTH_DIR/talys_compile.log"
-                echo "  (TALYS normally ships its own install script —"
-                echo "   try: cd $SRC_DIR && ./install.csh   or   make )"
             fi
         else
             echo "  No Fortran source tree found inside the archive."
@@ -369,13 +409,14 @@ echo "────────────────────────�
 echo "  Working dir:  $SYNTH_DIR"
 echo "  Log file:     $LOG"
 echo ""
-if [ "$TALYS_OK" -eq 1 ] && [ -f "$SYNTH_DIR/talys_src" ]; then
-    echo "  TALYS:  archive obtained AND extracted ($TALYS_FILE)"
+if [ -n "${TALYS_BIN:-}" ] && [ -x "${TALYS_BIN:-}" ]; then
+    echo "  TALYS:  built and smoke-tested → $TALYS_BIN"
 elif [ "$TALYS_OK" -eq 1 ]; then
-    echo "  TALYS:  archive obtained ($TALYS_FILE) — see compile section"
+    echo "  TALYS:  archive obtained ($TALYS_FILE) — see compile section above"
 else
-    echo "  TALYS:  no direct download URL responded with a real archive."
-    echo "          Action: complete the registration walkthrough above."
+    echo "  TALYS:  no archive obtained."
+    echo "          Action: download from https://nds.iaea.org/talys/codes/talys.tar"
+    echo "          to $SYNTH_DIR/ and re-run this script."
 fi
 echo "  PACE4:  not attempted (Windows-only LISE++ bundle)"
 echo "  HIVAP:  not attempted (closed GSI distribution)"
