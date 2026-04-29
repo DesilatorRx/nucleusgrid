@@ -1,0 +1,41 @@
+20		// Projectile charge (Ca)
+48		// Projectile mass
+95		// Target charge (Am)
+243		// Target mass
+1  		// Shell correction (0: not used, 1: used)
+1.		// Shell-correction factor (between 0 and 1)
+0.1		// Stepsize for the kinetic energy (MeV)
+1		// Level-density parameter (1: Ignatyuk default)
+19.		// Shell-damping energy (MeV)
+1.		// af/an ratio
+0.4		// Correction factor for the moment of inertia
+0		// Mass table (0: Moller-Nix, 1: User-defined file)
+1		// Pairing Effect (0: not used, 1: used)
+1		// Kramers factor (0: not used, 1: used)
+1		// Collective-enhancement factor (0: not used, 1: used)
+5e21		// Reduced friction coefficient (s^-1)
+1.		// Potential curvature in the ground state (MeV)
+1.		// Potential curvature at the saddle point (MeV)
+1		// Evaporation calculation (0: HF, 1: WE)
+0		// Optical model for nucleons (0: Varner, 1: Koning)
+0		// Hill-Wheeler penetration factor (0: not used, 1: used)
+1		// Fission-barrier model (0: User-defined, 1: TF, 2: LSD)
+10.		// Minimum excitation energy (MeV) — covers up to 1n channel
+55.		// Maximum excitation energy (MeV) — covers up to 4n channel
+0.1		// Stepsize for the energy discretization (MeV)
+1.		// Stepsize for plotting the excitation function (MeV)
+0		// Minimum angular momentum (hbar)
+80		// Maximum angular momentum (hbar) — appropriate for SHE
+4		// Total number of emitted neutrons (covers up to 4n)
+0		// Total number of emitted protons
+1	 	// Types of emitted particles (1: neutrons only)
+0		// Gamma emission (0: not used, 1: used)
+1		// Gamma-ray strength function (0: EGLO, 1: SMLO)
+0		// Fission-time calculation (0: not used, 1: used)
+1.1		// Time factor for the fission-time calculation
+0e-21		// Transient time related to the fission process
+1e-6		// Cut-off for the transmission coefficient
+1e-50		// Cut-off for the decay width (MeV)
+1		// Fusion model (0: WKB, 1: EBD, 2: fusion file)
+0. 0.		// Barrier-distribution parameters (mean shift, width)
+Ca48_Am243_Mc291.dat
