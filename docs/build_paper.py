@@ -699,6 +699,19 @@ add_para(
 )
 
 # ---------------------------------------------------------------------------
+# Acknowledgments
+# ---------------------------------------------------------------------------
+doc.add_heading("Acknowledgments", level=1)
+
+add_para(
+    "The author thanks the open-source nuclear physics community for HFBTHO, "
+    "TALYS, and KEWPIE2. Calculations were performed on consumer hardware "
+    "(AMD Ryzen 9 5950X and AMD Ryzen 7 3800X) using the NucleusGrid distributed "
+    "framework. All data, scripts, and results are publicly available at "
+    "https://github.com/DesilatorRx/nucleusgrid."
+)
+
+# ---------------------------------------------------------------------------
 # References
 # ---------------------------------------------------------------------------
 doc.add_heading("References", level=1)
