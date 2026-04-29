@@ -1,36 +1,31 @@
 #!/usr/bin/env python3
-"""NucleusGrid Phase 3 — Machine 2 analysis.
+"""NucleusGrid Phase 3 — calibrated SHE chain analysis.
 
-Loads HFBTHO results, finds ground states per (Z, A, functional), applies
-per-functional calibration offsets, derives Bayesian model weights from RMSE
-against experimental Q_alpha for Mc-286..290, and prints:
-  - calibration RMSE & weights
-  - full stability surface (BE per functional, weighted average, spread)
-  - per-chain Q_alpha tables (Mc-291..299, 5 alpha steps each)
-  - model agreement / disagreement summary
-  - N=184 magic and N=179 minimum highlights
-The full structured analysis is dumped to JSON.
+Loads HFBTHO results, picks ground states per (Z, A, functional), derives
+per-functional calibration offsets from a user-specified experimental cohort,
+applies inverse-variance Bayesian model weighting, and emits the full
+stability surface + per-chain Q_α tables for the requested parent element.
+
+Defaults reproduce the Mc (Z=115) Machine-2 analysis. Override with:
+  --parent-Z, --cohort-A, --cohort-Q, --chain-A, --cohort-source
+to analyze a different element (e.g. Ts at Z=117).
 """
 from __future__ import annotations
 import argparse
 import json
 import math
+import sys
 from collections import defaultdict
 from pathlib import Path
 
 E_ALPHA = 28.2957  # MeV
 
-CALIBRATION_OFFSETS = {
-    "UNE1": 57.146,
-    "SLY4": 57.091,
-    "SKM*": 55.935,
-    "HFB9": 56.850,
+# Z → element symbol for the SHN region (Z=104..118).
+SYMBOL_FULL = {
+    104: "Rf", 105: "Db", 106: "Sg", 107: "Bh", 108: "Hs",
+    109: "Mt", 110: "Ds", 111: "Rg", 112: "Cn", 113: "Nh",
+    114: "Fl", 115: "Mc", 116: "Lv", 117: "Ts", 118: "Og",
 }
-
-# Experimental Q_alpha for the calibration cohort (MeV)
-EXP_Q_ALPHA = {286: 10.33, 287: 10.59, 288: 10.01, 289: 9.95, 290: 9.78}
-
-SYMBOL = {115: "Mc", 113: "Nh", 111: "Rg", 109: "Mt", 107: "Bh", 105: "Db"}
 
 FUNCTIONALS = ["UNE1", "SLY4", "SKM*", "HFB9"]
 
@@ -39,13 +34,13 @@ N_MIN = 179
 AGREEMENT_THRESHOLD_MEV = 0.5
 
 
-def load_runs(path: Path) -> list[dict]:
+def load_runs(path):
     with open(path) as f:
         return json.load(f)
 
 
-def ground_states(runs: list[dict]) -> dict[tuple[int, int, str], dict]:
-    grouped: dict[tuple[int, int, str], list[dict]] = defaultdict(list)
+def ground_states(runs):
+    grouped = defaultdict(list)
     for r in runs:
         if r.get("status") != "converged" or r.get("BE_mev") in (None, "null"):
             continue
@@ -53,28 +48,47 @@ def ground_states(runs: list[dict]) -> dict[tuple[int, int, str], dict]:
     return {k: min(v, key=lambda r: float(r["BE_mev"])) for k, v in grouped.items()}
 
 
-def calibrate(machine1_gs: dict) -> dict[str, tuple[float, list]]:
+def derive_offsets(cohort_q, parent_Z, gs):
+    """For each functional, offset = mean(Q_exp − (BE_p − BE_d − E_α))
+    over cohort points where both parent and daughter are present."""
+    out = {}
+    for f in FUNCTIONALS:
+        diffs = []
+        for A_p, q_exp in cohort_q.items():
+            kp = (parent_Z, A_p, f)
+            kd = (parent_Z - 2, A_p - 4, f)
+            if kp in gs and kd in gs:
+                be_p = float(gs[kp]["BE_mev"])
+                be_d = float(gs[kd]["BE_mev"])
+                diffs.append(q_exp - (be_p - be_d - E_ALPHA))
+        if diffs:
+            out[f] = sum(diffs) / len(diffs)
+    return out
+
+
+def calibrate_residuals(cohort_q, parent_Z, gs, offsets):
     out = {}
     for f in FUNCTIONALS:
         residuals = []
-        for A_mc, q_exp in EXP_Q_ALPHA.items():
-            kp, kd = (115, A_mc, f), (113, A_mc - 4, f)
-            if kp not in machine1_gs or kd not in machine1_gs:
+        for A_p, q_exp in cohort_q.items():
+            kp, kd = (parent_Z, A_p, f), (parent_Z - 2, A_p - 4, f)
+            if kp not in gs or kd not in gs or f not in offsets:
                 continue
-            be_p = float(machine1_gs[kp]["BE_mev"])
-            be_d = float(machine1_gs[kd]["BE_mev"])
-            q_pred = be_p - be_d - E_ALPHA + CALIBRATION_OFFSETS[f]
-            residuals.append((A_mc, q_pred, q_exp, q_pred - q_exp))
+            be_p = float(gs[kp]["BE_mev"])
+            be_d = float(gs[kd]["BE_mev"])
+            q_pred = be_p - be_d - E_ALPHA + offsets[f]
+            residuals.append((A_p, q_pred, q_exp, q_pred - q_exp))
         if residuals:
             rmse = math.sqrt(sum(d * d for _, _, _, d in residuals) / len(residuals))
             out[f] = (rmse, residuals)
     return out
 
 
-def bayesian_weights(rmse_data: dict) -> dict[str, float]:
+def bayesian_weights(rmse_data):
     if not rmse_data:
         return {f: 1.0 / len(FUNCTIONALS) for f in FUNCTIONALS}
-    raw = {f: 1.0 / (v[0] ** 2) for f, v in rmse_data.items()}
+    # Floor at 0.01 MeV so a single-cohort-point RMSE of 0 doesn't blow up.
+    raw = {f: 1.0 / max(v[0], 0.01) ** 2 for f, v in rmse_data.items()}
     s = sum(raw.values())
     weights = {f: raw[f] / s for f in raw}
     for f in FUNCTIONALS:
@@ -82,17 +96,15 @@ def bayesian_weights(rmse_data: dict) -> dict[str, float]:
     return weights
 
 
-def calibrated_q(gs, Z_p, A_p, func) -> float | None:
+def calibrated_q(gs, Z_p, A_p, func, offsets):
     p = gs.get((Z_p, A_p, func))
     d = gs.get((Z_p - 2, A_p - 4, func))
-    if p is None or d is None:
+    if p is None or d is None or func not in offsets:
         return None
-    return float(p["BE_mev"]) - float(d["BE_mev"]) - E_ALPHA + CALIBRATION_OFFSETS[func]
+    return float(p["BE_mev"]) - float(d["BE_mev"]) - E_ALPHA + offsets[func]
 
 
-def viola_seaborg_log(Q: float | None, Z_parent: int, N_parent: int) -> float | None:
-    """Viola-Seaborg 1966 with Sobiczewski hindrance for odd-Z / odd-N parents.
-    log10(T_1/2 / s) = (aZ + b)/sqrt(Q) + (cZ + d) + h(parity)."""
+def viola_seaborg_log(Q, Z_parent, N_parent):
     if Q is None or Q <= 0:
         return None
     a, b, c, d = 1.66175, -8.5166, -0.20228, -33.9069
@@ -107,7 +119,7 @@ def viola_seaborg_log(Q: float | None, Z_parent: int, N_parent: int) -> float | 
     return log_t
 
 
-def fmt_halflife(log_t: float | None) -> str:
+def fmt_halflife(log_t):
     if log_t is None:
         return "n/a"
     if log_t < -12:
@@ -131,50 +143,111 @@ def fmt_halflife(log_t: float | None) -> str:
     return f"{10**log_t/86400/365:.2g} y"
 
 
-def main() -> None:
+def parse_int_list(s):
+    return [int(x) for x in s.split(",")]
+
+
+def parse_float_list(s):
+    return [float(x) for x in s.split(",")]
+
+
+def parse_a_range(s):
+    if "-" in s and "," not in s:
+        a, b = s.split("-")
+        return list(range(int(a), int(b) + 1))
+    return parse_int_list(s)
+
+
+def find_cohort_source(args, gs):
+    """If --cohort-source is given, use it. Else if cohort BE values are
+    available in --single, use --single. Else fall back to the project-root
+    nucleusgrid_results.json (preserves prior Mc behaviour)."""
+    if args.cohort_source:
+        return Path(args.cohort_source).resolve()
+    cohort_A = parse_int_list(args.cohort_A)
+    f0 = FUNCTIONALS[0]
+    needed = [(args.parent_Z, A, f0) for A in cohort_A] + \
+             [(args.parent_Z - 2, A - 4, f0) for A in cohort_A]
+    if all(n in gs for n in needed):
+        return Path(args.single).resolve()
+    fallback = Path(args.single).resolve().parent.parent.parent / "nucleusgrid_results.json"
+    if fallback.exists():
+        return fallback
+    return Path(args.single).resolve()
+
+
+def main():
     p = argparse.ArgumentParser(description=__doc__.split("\n")[0])
-    p.add_argument("--single", required=True, help="Machine 2 results JSON")
-    p.add_argument("--calibration", default=None,
-                   help="Path to Machine 1 results JSON for calibration "
-                        "(default: <repo>/nucleusgrid_results.json)")
+    p.add_argument("--single", required=True,
+                   help="Primary HFBTHO results JSON to analyse")
+    p.add_argument("--parent-Z", type=int, default=115,
+                   help="Top of decay chain (default 115=Mc; 117=Ts; 113=Nh; etc.)")
+    p.add_argument("--cohort-A", default="286,287,288,289,290",
+                   help="Comma-sep parent A values for the experimental cohort")
+    p.add_argument("--cohort-Q", default="10.33,10.59,10.01,9.95,9.78",
+                   help="Comma-sep experimental Q_α (MeV), one per --cohort-A")
+    p.add_argument("--chain-A", default="291-299",
+                   help="Range or comma-sep parent A values for decay chains")
+    p.add_argument("--cohort-source", default=None,
+                   help="JSON to read cohort BE values from "
+                        "(default: --single if it has them, else "
+                        "<repo>/nucleusgrid_results.json)")
     p.add_argument("--out", default=None,
-                   help="Output JSON path (default: <input dir>/machine2_analysis.json)")
+                   help="Output JSON (default: <input dir>/<symbol>_analysis.json)")
     args = p.parse_args()
 
     src = Path(args.single).resolve()
     runs = load_runs(src)
     gs = ground_states(runs)
 
-    cal_path = Path(args.calibration).resolve() if args.calibration else (
-        src.parent.parent.parent / "nucleusgrid_results.json").resolve()
-    rmse_data = {}
-    if cal_path.exists():
-        cal_runs = load_runs(cal_path)
-        rmse_data = calibrate(ground_states(cal_runs))
+    cohort_A = parse_int_list(args.cohort_A)
+    cohort_Q = parse_float_list(args.cohort_Q)
+    if len(cohort_A) != len(cohort_Q):
+        print(f"ERROR: --cohort-A has {len(cohort_A)} entries but --cohort-Q has {len(cohort_Q)}",
+              file=sys.stderr)
+        sys.exit(1)
+    cohort = dict(zip(cohort_A, cohort_Q))
+    chain_A = parse_a_range(args.chain_A)
+
+    cal_path = find_cohort_source(args, gs)
+    cohort_gs = gs if cal_path == src else ground_states(load_runs(cal_path))
+
+    offsets = derive_offsets(cohort, args.parent_Z, cohort_gs)
+    rmse_data = calibrate_residuals(cohort, args.parent_Z, cohort_gs, offsets)
     weights = bayesian_weights(rmse_data)
+
+    z_set = sorted({z for (z, _, _) in gs}, reverse=True)
+    symbols = {z: SYMBOL_FULL.get(z, f"Z{z}") for z in z_set}
+    parent_sym = symbols.get(args.parent_Z, f"Z{args.parent_Z}")
 
     n_failed = sum(1 for r in runs if r.get("status") != "converged")
 
-    print(f"\n{' NucleusGrid Phase 3 — Machine 2 Analysis ':=^82}")
+    print(f"\n{f' NucleusGrid Analysis — {parent_sym} (Z={args.parent_Z}) ':=^82}")
     print(f"  Input:        {src}")
-    print(f"  Calibration:  {cal_path if cal_path.exists() else '— (no source — uniform weights)'}")
+    print(f"  Cohort src:   {cal_path}")
     print(f"  Runs:         {len(runs)}  ({n_failed} failed)")
     print(f"  Functionals:  {', '.join(FUNCTIONALS)}")
-    print(f"  Offsets:      " + ", ".join(f"{f}={CALIBRATION_OFFSETS[f]}" for f in FUNCTIONALS))
+    print(f"  Z range:      {z_set[-1]}..{z_set[0]} ({', '.join(symbols[z] for z in z_set)})")
+    print(f"  Cohort:       {parent_sym}-" +
+          "/".join(str(a) for a in cohort_A) + " (Q_exp = " +
+          ", ".join(f"{q}" for q in cohort_Q) + " MeV)")
+    print(f"  Chain heads:  {parent_sym}-{chain_A[0]}..{parent_sym}-{chain_A[-1]} ({len(chain_A)} chains)")
+
+    print(f"\n--- Derived per-functional calibration offsets ---")
+    for f in FUNCTIONALS:
+        if f in offsets:
+            print(f"  {f:<10} offset = {offsets[f]:>9.4f} MeV")
+        else:
+            print(f"  {f:<10} (insufficient cohort data)")
 
     if rmse_data:
-        print(f"\n--- Calibration RMSE vs experimental Q_α (Mc-286..290) ---")
-        print(f"  exp: " + ", ".join(f"Mc-{A}={q}" for A, q in EXP_Q_ALPHA.items()) + "  MeV")
-        print(f"\n  {'functional':<10} {'RMSE (MeV)':>12} {'weight':>10}   residuals (Q_pred − Q_exp, MeV)")
+        print(f"\n--- Calibration RMSE (Q_pred − Q_exp after offset) ---")
         for f in FUNCTIONALS:
             if f not in rmse_data:
-                print(f"  {f:<10} {'—':>12} {'—':>10}   (insufficient calibration data)")
                 continue
             rmse, resid = rmse_data[f]
             res_str = " ".join(f"{d:+.3f}" for _, _, _, d in resid)
-            print(f"  {f:<10} {rmse:>12.4f} {weights[f]:>10.4f}   {res_str}")
-    else:
-        print(f"\n  (no calibration source found — using uniform weights = 0.25)")
+            print(f"  {f:<10} RMSE={rmse:.4f}  weight={weights[f]:.4f}   residuals: {res_str}")
 
     # ---- Stability surface ----
     print(f"\n{' STABILITY SURFACE: BE per (Z, A) per functional ':=^82}")
@@ -186,7 +259,7 @@ def main() -> None:
     all_ZA = sorted({(Z, A) for (Z, A, _) in gs}, key=lambda p: (-p[0], p[1]))
     for (Z, A) in all_ZA:
         N = A - Z
-        sym = SYMBOL.get(Z, f"Z{Z}")
+        sym = symbols.get(Z, f"Z{Z}")
         be = {f: float(gs[(Z, A, f)]["BE_mev"]) if (Z, A, f) in gs else None
               for f in FUNCTIONALS}
         present = [(f, v) for f, v in be.items() if v is not None]
@@ -214,21 +287,37 @@ def main() -> None:
         })
 
     # ---- Decay chains ----
-    print(f"\n{' DECAY CHAINS: Q_α (calibrated) per step, 5 α steps per chain ':=^82}")
+    print(f"\n{f' DECAY CHAINS: Q_α (calibrated) per step ':=^82}")
     chains = {}
-    for A0 in range(291, 300):
-        chain_label = f"Mc-{A0}"
-        print(f"\n  ─── Chain {chain_label} (Mc-{A0} → Db-{A0-20}) ───")
+    for A0 in chain_A:
+        chain_label = f"{parent_sym}-{A0}"
+        # How deep does data let us go?
+        max_steps = 0
+        while True:
+            Z_check = args.parent_Z - 2 * (max_steps + 1)
+            A_check = A0 - 4 * (max_steps + 1)
+            if Z_check < 1 or A_check < 1:
+                break
+            if not any((Z_check, A_check, f) in gs for f in FUNCTIONALS):
+                break
+            max_steps += 1
+        if max_steps == 0:
+            continue
+        end_sym = symbols.get(args.parent_Z - 2 * max_steps,
+                              f"Z{args.parent_Z - 2*max_steps}")
+        end_A = A0 - 4 * max_steps
+        print(f"\n  ─── Chain {chain_label} ({chain_label} → {end_sym}-{end_A}) ───")
         print(f"  {'parent':<10} → {'daughter':<10} {'N_p':>4}  " +
               "  ".join(f"{f:>9}" for f in FUNCTIONALS) +
               f"  {'Q_w':>8}  {'spread':>7}  {'t½(w)':>10}  flags")
         steps = []
-        for k in range(5):
-            Z_p, A_p = 115 - 2 * k, A0 - 4 * k
-            label_p = f"{SYMBOL[Z_p]}-{A_p}"
-            label_d = f"{SYMBOL[Z_p-2]}-{A_p-4}"
+        for k in range(max_steps):
+            Z_p = args.parent_Z - 2 * k
+            A_p = A0 - 4 * k
+            label_p = f"{symbols.get(Z_p, f'Z{Z_p}')}-{A_p}"
+            label_d = f"{symbols.get(Z_p-2, f'Z{Z_p-2}')}-{A_p-4}"
             N_p = A_p - Z_p
-            qs = {f: calibrated_q(gs, Z_p, A_p, f) for f in FUNCTIONALS}
+            qs = {f: calibrated_q(gs, Z_p, A_p, f, offsets) for f in FUNCTIONALS}
             present = [(f, q) for f, q in qs.items() if q is not None]
             if present:
                 wsum = sum(weights[f] for f, _ in present)
@@ -311,6 +400,21 @@ def main() -> None:
             print(f"    {s['symbol']}-{s['A']:<4} (Z={s['Z']:>3})   "
                   f"<BE>_w = {s['BE_weighted']:>11.3f} MeV   spread = {s['BE_spread']:.3f}")
 
+    # Q_α minimum across chains (per-Z, scanning N)
+    print(f"\n  Q_α minima across chains (where each chain's Q_w is smallest):")
+    chain_min = []
+    for label, ch in chains.items():
+        steps_with_q = [s for s in ch["steps"] if s["Q_weighted"] is not None]
+        if not steps_with_q:
+            continue
+        m = min(steps_with_q, key=lambda s: s["Q_weighted"])
+        chain_min.append((label, m))
+    chain_min.sort(key=lambda x: x[1]["Q_weighted"])
+    for label, s in chain_min[:5]:
+        print(f"    {label:<8}   min Q_w = {s['Q_weighted']:>7.4f} MeV at "
+              f"{s['parent']:<8} (N_p={s['N_parent']:>3})  "
+              f"t½ ≈ {s['halflife_human']}")
+
     all_steps = [s for ch in chains.values() for s in ch["steps"]
                  if s["halflife_log10_s"] is not None]
     if all_steps:
@@ -326,14 +430,16 @@ def main() -> None:
             print(f"    {s['parent']:<8} → {s['daughter']:<8}  Q_w = {s['Q_weighted']:>7.4f} MeV  "
                   f"t½ ≈ {s['halflife_human']}{flag}")
 
-    # ---- Save JSON ----
-    out_path = Path(args.out).resolve() if args.out else (src.parent / "machine2_analysis.json")
+    out_path = Path(args.out).resolve() if args.out else (
+        src.parent / f"{parent_sym.lower()}_analysis.json")
     analysis = {
         "metadata": {
             "input_file": str(src),
-            "calibration_source": str(cal_path) if cal_path.exists() else None,
-            "calibration_offsets": CALIBRATION_OFFSETS,
-            "experimental_q_alpha_mev": {f"Mc-{A}": q for A, q in EXP_Q_ALPHA.items()},
+            "cohort_source": str(cal_path),
+            "parent_symbol": parent_sym,
+            "parent_Z": args.parent_Z,
+            "experimental_cohort": {f"{parent_sym}-{a}": q for a, q in cohort.items()},
+            "calibration_offsets": {f: round(offsets[f], 4) for f in offsets},
             "rmse_per_functional": {f: round(v[0], 4) for f, v in rmse_data.items()},
             "bayesian_weights": {f: round(weights[f], 4) for f in FUNCTIONALS},
             "n_runs": len(runs),
