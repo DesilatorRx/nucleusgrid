@@ -703,17 +703,19 @@ add_para(
 doc.add_heading("References", level=1)
 
 refs = [
-    "[1] N. Schunck, J. Dobaczewski, W. Satuła, P. Bączyk, J. Dudek, Y. Gao, "
-    "M. Konieczka, K. Sato, Y. Shi, X.B. Wang, T.R. Werner, "
-    "“Solution of the Skyrme-Hartree-Fock-Bogolyubov equations in the Cartesian "
-    "deformed harmonic-oscillator basis. (VIII) HFODD (v2.73y): a new version "
-    "of the program,” Comput. Phys. Commun. 216 (2017) 145–174.",
+    "[1] R. Navarro Perez, N. Schunck, R.-D. Lasseri, C. Zhang, J. Sarich, "
+    "“Axially deformed solution of the Skyrme-Hartree-Fock-Bogoliubov equations "
+    "using the transformed harmonic oscillator basis (III) HFBTHO (v3.00): "
+    "A new version of the program,” Comput. Phys. Commun. 220 (2017) 363–375.",
 
     "[2] M. Wang, W.J. Huang, F.G. Kondev, G. Audi, S. Naimi, "
     "“The AME 2020 atomic mass evaluation (II). Tables, graphs and references,” "
     "Chinese Phys. C 45 (2021) 030003. [AME2020]",
 
-    "[3] S.G. Nilsson et al., Nucl. Phys. A 131 (1969) 1.   [REF NEEDED — verify]",
+    "[3] S.G. Nilsson, C.F. Tsang, A. Sobiczewski, Z. Szymański, S. Wycech, "
+    "C. Gustafson, I.-L. Lamm, P. Möller, B. Nilsson, "
+    "“On the nuclear structure and stability of heavy and superheavy elements,” "
+    "Nucl. Phys. A 131 (1969) 1–66.",
 
     "[4] Yu. Ts. Oganessian, V.K. Utyonkov, "
     "“Super-heavy element research,” Rep. Prog. Phys. 78 (2015) 036301.",
@@ -752,10 +754,9 @@ refs = [
     "“Towards a better parametrisation of Skyrme-like effective forces: "
     "A critical study of the SkM force,” Nucl. Phys. A 386 (1982) 79–100. [SKM*]",
 
-    "[13] S. Goriely, M. Samyn, J.M. Pearson, "
-    "“Further explorations of Skyrme-Hartree-Fock-Bogoliubov mass formulas. "
-    "VIII. Role of the effective mass in pairing,” Nucl. Phys. A 750 (2005) 425–443. "
-    "[HFB-9 family — verify exact reference]   [REF NEEDED — verify]",
+    "[13] S. Goriely, J.M. Pearson, F. Tondeur, "
+    "“Hartree-Fock-Bogoliubov nuclear mass formula,” "
+    "Atomic Data and Nuclear Data Tables 77 (2001) 311–381. [HFB-9]",
 
     "[14] D. Higdon, J. Gattiker, B. Williams, M. Rightley, "
     "“Computer model calibration using high-dimensional output,” "
